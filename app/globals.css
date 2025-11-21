@@ -1,0 +1,631 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: "Inter", "Inter Fallback";
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Adding smooth floating particle animations */
+@keyframes float-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(30px, -20px) rotate(90deg);
+  }
+  50% {
+    transform: translate(-10px, -40px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-40px, -10px) rotate(270deg);
+  }
+}
+
+@keyframes float-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(-25px, -30px) rotate(120deg);
+  }
+  66% {
+    transform: translate(35px, -15px) rotate(240deg);
+  }
+}
+
+@keyframes float-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(20px, -35px) rotate(72deg);
+  }
+  40% {
+    transform: translate(-30px, -25px) rotate(144deg);
+  }
+  60% {
+    transform: translate(-15px, 10px) rotate(216deg);
+  }
+  80% {
+    transform: translate(25px, 20px) rotate(288deg);
+  }
+}
+
+.animate-float-1 {
+  animation: float-1 4s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-2 6s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-3 5s ease-in-out infinite;
+}
+
+/* Simplified orbital animations for clean solar system - removed complex subcategory animations */
+/* Basic orbital animations for category icons - no self-rotation */
+@keyframes orbit-1 {
+  from {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-2 {
+  from {
+    transform: rotate(0deg) translateX(160px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(160px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-3 {
+  from {
+    transform: rotate(0deg) translateX(200px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(200px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-4 {
+  from {
+    transform: rotate(0deg) translateX(240px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(240px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-5 {
+  from {
+    transform: rotate(0deg) translateX(280px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(280px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-6 {
+  from {
+    transform: rotate(0deg) translateX(320px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(320px) rotate(-360deg);
+  }
+}
+
+/* Comprehensive subcategory orbital animations for all 6 categories */
+@keyframes sub-orbit-1 {
+  from {
+    transform: rotate(0deg) translateX(170px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(170px) rotate(-360deg);
+  }
+}
+
+@keyframes sub-orbit-2 {
+  from {
+    transform: rotate(0deg) translateX(210px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(210px) rotate(-360deg);
+  }
+}
+
+@keyframes sub-orbit-3 {
+  from {
+    transform: rotate(0deg) translateX(250px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(250px) rotate(-360deg);
+  }
+}
+
+@keyframes sub-orbit-4 {
+  from {
+    transform: rotate(0deg) translateX(290px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(290px) rotate(-360deg);
+  }
+}
+
+@keyframes sub-orbit-5 {
+  from {
+    transform: rotate(0deg) translateX(330px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(330px) rotate(-360deg);
+  }
+}
+
+@keyframes sub-orbit-6 {
+  from {
+    transform: rotate(0deg) translateX(370px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(370px) rotate(-360deg);
+  }
+}
+
+/* Counter-rotation animations to keep text horizontal */
+@keyframes counter-rotate-1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counter-rotate-2 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counter-rotate-3 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counter-rotate-4 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counter-rotate-5 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counter-rotate-6 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Subcategory orbital animation classes */
+.animate-sub-orbit-1 {
+  animation: sub-orbit-1 30s linear infinite;
+}
+
+.animate-sub-orbit-2 {
+  animation: sub-orbit-2 35s linear infinite;
+}
+
+.animate-sub-orbit-3 {
+  animation: sub-orbit-3 40s linear infinite;
+}
+
+.animate-sub-orbit-4 {
+  animation: sub-orbit-4 45s linear infinite;
+}
+
+.animate-sub-orbit-5 {
+  animation: sub-orbit-5 50s linear infinite;
+}
+
+.animate-sub-orbit-6 {
+  animation: sub-orbit-6 55s linear infinite;
+}
+
+/* Adding specific orbital animations for Orbit 1 subcategory tags */
+@keyframes orbit-1-sub-1 {
+  from {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-1-sub-2 {
+  from {
+    transform: rotate(90deg) translateX(120px) rotate(-90deg);
+  }
+  to {
+    transform: rotate(450deg) translateX(120px) rotate(-450deg);
+  }
+}
+
+@keyframes orbit-1-sub-3 {
+  from {
+    transform: rotate(180deg) translateX(120px) rotate(-180deg);
+  }
+  to {
+    transform: rotate(540deg) translateX(120px) rotate(-540deg);
+  }
+}
+
+@keyframes orbit-1-sub-4 {
+  from {
+    transform: rotate(270deg) translateX(120px) rotate(-270deg);
+  }
+  to {
+    transform: rotate(630deg) translateX(120px) rotate(-630deg);
+  }
+}
+
+/* Adding specific orbital animations for Orbit 2 subcategory tags */
+@keyframes orbit-2-sub-1 {
+  from {
+    transform: rotate(0deg) translateX(160px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(160px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-2-sub-2 {
+  from {
+    transform: rotate(90deg) translateX(160px) rotate(-90deg);
+  }
+  to {
+    transform: rotate(450deg) translateX(160px) rotate(-450deg);
+  }
+}
+
+@keyframes orbit-2-sub-3 {
+  from {
+    transform: rotate(180deg) translateX(160px) rotate(-180deg);
+  }
+  to {
+    transform: rotate(540deg) translateX(160px) rotate(-540deg);
+  }
+}
+
+@keyframes orbit-2-sub-4 {
+  from {
+    transform: rotate(270deg) translateX(160px) rotate(-270deg);
+  }
+  to {
+    transform: rotate(630deg) translateX(160px) rotate(-630deg);
+  }
+}
+
+/* Subcategory orbital animation classes */
+.animate-sub-orbit-1 {
+  animation: sub-orbit-1 30s linear infinite;
+}
+
+.animate-sub-orbit-1-sub-1 {
+  animation: orbit-1-sub-1 30s linear infinite;
+}
+
+.animate-sub-orbit-1-sub-2 {
+  animation: orbit-1-sub-2 30s linear infinite;
+}
+
+.animate-sub-orbit-1-sub-3 {
+  animation: orbit-1-sub-3 30s linear infinite;
+}
+
+.animate-sub-orbit-1-sub-4 {
+  animation: orbit-1-sub-4 30s linear infinite;
+}
+
+.animate-orbit-2-sub-1 {
+  animation: orbit-2-sub-1 35s linear infinite;
+}
+
+.animate-orbit-2-sub-2 {
+  animation: orbit-2-sub-2 35s linear infinite;
+}
+
+.animate-orbit-2-sub-3 {
+  animation: orbit-2-sub-3 35s linear infinite;
+}
+
+.animate-orbit-2-sub-4 {
+  animation: orbit-2-sub-4 35s linear infinite;
+}
+
+/* Adding refined orbital animations for new elegant solar system design */
+/* Smooth orbital animations with no self-rotation - inner orbits faster, outer slower */
+@keyframes orbit-refined-1 {
+  from {
+    transform: rotate(0deg) translateX(70px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(70px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-refined-2 {
+  from {
+    transform: rotate(0deg) translateX(110px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(110px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-refined-3 {
+  from {
+    transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-refined-4 {
+  from {
+    transform: rotate(0deg) translateX(190px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(190px) rotate(-360deg);
+  }
+}
+
+/* Adding pulse animation for knowledge synthesis logo */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Added smooth gradient shift animation for cohesive page flow */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Apply gradient shift animation */
+.bg-gradient-flow {
+  animation: gradientShift 8s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+/* Ensure smooth transitions between sections with semi-transparent overlays */
+section {
+  position: relative;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  pointer-events: none;
+}
+
+/* Add testimonial scroll animations */
+/* Fixed animations to loop smoothly by translating -50% instead of -100% */
+@keyframes scroll-slow {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll-medium {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll-fast {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* Slowed down desktop speed by 20% (80s -> 100s, 70s -> 87.5s, 60s -> 75s) and added mobile-specific faster animations */
+.animate-scroll-slow {
+  animation: scroll-slow 100s linear infinite;
+}
+
+.animate-scroll-medium {
+  animation: scroll-medium 87.5s linear infinite;
+}
+
+.animate-scroll-fast {
+  animation: scroll-fast 75s linear infinite;
+}
+
+/* Mobile-specific animations - keep original speed */
+@media (max-width: 768px) {
+  .animate-scroll-slow {
+    animation: scroll-slow 80s linear infinite;
+  }
+
+  .animate-scroll-medium {
+    animation: scroll-medium 70s linear infinite;
+  }
+
+  .animate-scroll-fast {
+    animation: scroll-fast 60s linear infinite;
+  }
+}
