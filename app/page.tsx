@@ -1560,7 +1560,7 @@ export default function HomePage() {
         <section className="pt-4 lg:pt-6 pb-13 md:pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white/92">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-[4fr_1fr] gap-12 items-center">
-              <div className="space-y-3">
+              <div className="space-y-3 self-center">
                 <Badge className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white border-0 px-4 py-1.5 text-sm font-semibold">
                   STRATEGY + PODCAST
                 </Badge>
@@ -1581,7 +1581,7 @@ export default function HomePage() {
               </div>
 
               {/* Start of updates */}
-              <div className="relative flex items-center justify-center gap-0">
+              <div className="relative flex items-center justify-center gap-0 md:translate-y-10">
                 {/* Tailored Playbook Logo */}
                 <div className="flex flex-col items-center">
                   <div
