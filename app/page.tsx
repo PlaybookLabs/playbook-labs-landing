@@ -737,24 +737,24 @@ const knowledgeCycles = [
       {
         name: "Psychology",
         color: "#3B82F6", // swapped from pink to blue
-        subs: ["Cognitive\nScience", "Behavioral\nEconomics"],
+        subs: ["Cognitive\nBiases", "Mental\nShortcuts"],
       },
       {
         name: "History",
         color: "#A855F7",
-        subs: ["Event\nAnalysis", "Temporal\nTrends"],
+        subs: ["Temporal\nTrends", "Event\nAnalysis"],
       },
       {
-        name: "Business\nStrategy",
+        name: "Business",
         color: "#EC4899", // swapped from blue to pink
         subs: ["Choice\nModels", "Risk\nMapping"],
       },
     ],
     paths: [
-      { disciplineIndex: 0, subIndex: 0 }, // Cognitive Science → Psychology
-      { disciplineIndex: 0, subIndex: 1 }, // Behavioral Economics → Psychology
-      { disciplineIndex: 1, subIndex: 1 }, // Temporal Trends → History
-      { disciplineIndex: 2, subIndex: 0 }, // Choice Models → Business Strategy
+      { disciplineIndex: 0, subIndex: 0 }, // Cognitive Biases → Psychology
+      { disciplineIndex: 0, subIndex: 1 }, // Mental Shortcuts → Psychology
+      { disciplineIndex: 1, subIndex: 1 }, // Event Analysis → History
+      { disciplineIndex: 2, subIndex: 0 }, // Choice Models → Business
     ],
   },
   {
@@ -767,18 +767,18 @@ const knowledgeCycles = [
       {
         name: "Philosophy",
         color: "#A855F7",
-        subs: ["Ethics", "Logic"],
+        subs: ["Logic\nTools", "Ethical\nTradeoffs"],
       },
       {
         name: "Neuroscience",
         color: "#EC4899", // swapped from blue to pink
-        subs: ["Brain\nFunction", "Habit\nFormation"],
+        subs: ["Habit\nFormation", "Stress\nResponse"],
       },
     ],
     paths: [
       { disciplineIndex: 0, subIndex: 0 }, // Statistical Analysis → Data Science
-      { disciplineIndex: 1, subIndex: 1 }, // Logic → Philosophy
-      { disciplineIndex: 2, subIndex: 1 }, // Habit Formation → Neuroscience
+      { disciplineIndex: 1, subIndex: 1 }, // Ethical Tradeoffs → Philosophy
+      { disciplineIndex: 2, subIndex: 1 }, // Stress Response → Neuroscience
     ],
   },
   {
@@ -789,20 +789,20 @@ const knowledgeCycles = [
         subs: ["Cultural\nNorms", "Social\nDynamics"],
       },
       {
-        name: "Game\nTheory",
+        name: "Economics",
         color: "#A855F7",
-        subs: ["Strategic\nThinking", "Incentive\nDesign"],
+        subs: ["Game\nTheory", "Hidden\nCosts"],
       },
       {
-        name: "Design\nThinking",
+        name: "Systems\nDesign",
         color: "#EC4899", // swapped from blue to pink
-        subs: ["Problem\nFraming", "Systems\nDesign"],
+        subs: ["Feedback\nLoops", "Problem\nFraming"],
       },
     ],
     paths: [
       { disciplineIndex: 0, subIndex: 0 }, // Cultural Norms → Anthropology
-      { disciplineIndex: 1, subIndex: 0 }, // Strategic Thinking → Game Theory
-      { disciplineIndex: 2, subIndex: 0 }, // Problem Framing → Design Thinking
+      { disciplineIndex: 1, subIndex: 0 }, // Game Theory → Economics
+      { disciplineIndex: 2, subIndex: 0 }, // Feedback Loops → Systems Design
     ],
   },
 ]
@@ -1116,7 +1116,7 @@ const KnowledgeSynthesisVisualization = memo(() => {
               style={{
                 width: boxPositions ? `${boxPositions.maxDiscWidth}px` : "auto",
                 height: boxPositions ? `${boxPositions.maxDiscHeight}px` : "auto",
-                padding: "12px 16px",
+                padding: "18px 20px",
                 backgroundColor: isLit ? disc.color : `${disc.color}40`,
                 color: isLit ? "white" : disc.color,
                 fontWeight: isLit ? "600" : "300",
@@ -1574,10 +1574,11 @@ export default function HomePage() {
                 </p>
 
                 <p className="tracking-[-0.01em] leading-[1.5] font-normal text-slate-700 text-base lg:text-lg">
-  No vague concepts or general theory. Your Playbook dissects your specific challenge and provides step-by-step actions you can implement immediately. The strategy document gives you a comprehensive roadmap, while the podcast walks you through the solution in an engaging, thought-provoking format.{" "}
-  <em>Read it, listen to it, or both.</em>
-</p>
-
+                  No vague concepts or general theory. Your Playbook dissects your specific challenge and provides
+                  step-by-step actions you can implement immediately. The strategy document gives you a comprehensive
+                  roadmap, while the podcast walks you through the solution in an engaging, thought-provoking format.{" "}
+                  <em>Read it, listen to it, or both.</em>
+                </p>
               </div>
 
               {/* Start of updates */}
@@ -1724,9 +1725,7 @@ export default function HomePage() {
                   <div className="space-y-5 flex-1">
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-white md:text-base text-base">
-                        Strategy document (10-15 pages)
-                      </span>
+                      <span className="text-white md:text-base text-base">Strategy document (10-15 pages)</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />

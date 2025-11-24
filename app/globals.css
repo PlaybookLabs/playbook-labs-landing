@@ -617,15 +617,16 @@ section::before {
 
 /* Mobile-specific animations - keep original speed */
 @media (max-width: 768px) {
+  /* Increased mobile scrolling speed by 10% (reduced duration by 10%) */
   .animate-scroll-slow {
-    animation: scroll-slow 80s linear infinite;
+    animation: scroll-slow 72.7s linear infinite;
   }
 
   .animate-scroll-medium {
-    animation: scroll-medium 70s linear infinite;
+    animation: scroll-medium 63.6s linear infinite;
   }
 
   .animate-scroll-fast {
-    animation: scroll-fast 60s linear infinite;
+    animation: scroll-fast 54.5s linear infinite;
   }
 }
