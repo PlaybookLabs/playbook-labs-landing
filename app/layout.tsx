@@ -15,8 +15,9 @@ export const metadata: Metadata = {
   title: "Playbook Labs",
   description: "Your personalized problem-solving show",
   icons: {
-    icon: "/icon.svg",
-  },
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+},
     generator: 'v0.app'
 }
 
