@@ -767,7 +767,7 @@ const knowledgeCycles = [
       {
         name: "Philosophy",
         color: "#A855F7",
-        subs: ["Logic\nTools", "Ethical\nTrade-offs"],
+        subs: ["Logic\nTools", "Ethical\nFrames"],
       },
       {
         name: "Neuroscience",
@@ -777,7 +777,7 @@ const knowledgeCycles = [
     ],
     paths: [
       { disciplineIndex: 0, subIndex: 0 }, // Statistical Analysis → Data Science
-      { disciplineIndex: 1, subIndex: 1 }, // Ethical Trade-offs → Philosophy
+      { disciplineIndex: 1, subIndex: 1 }, // Ethical Frames → Philosophy
       { disciplineIndex: 2, subIndex: 1 }, // Stress Response → Neuroscience
     ],
   },
