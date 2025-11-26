@@ -1854,7 +1854,7 @@ export default function HomePage() {
               </div>
 
               <div className="flex gap-6">
-                <a href="mailto:contact@playbooklabs.co" className="text-slate-400 hover:text-white transition-colors">
+                <a href="mailto:team@playbooklabs.co" className="text-slate-400 hover:text-white transition-colors">
                   Contact Us
                 </a>
                 <Link href="/privacy-policy" className="text-slate-400 hover:text-white transition-colors">
