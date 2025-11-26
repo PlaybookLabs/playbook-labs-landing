@@ -1448,8 +1448,13 @@ export default function HomePage() {
                 </a>
               </nav>
 
-              <Button className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold cursor-pointer">
-                Submit Your Problem
+              <Button
+                asChild
+                className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold cursor-pointer"
+              >
+                <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+                  Submit Your Problem
+                </a>
               </Button>
             </div>
           </div>
@@ -1473,11 +1478,14 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
+                asChild
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-3 cursor-pointer"
               >
-                Get Your Playbook
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+                  Get Your Playbook
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
               </Button>
             </div>
           </div>
@@ -1744,8 +1752,13 @@ export default function HomePage() {
                       <span className="text-white md:text-base text-base">Delivered in 5-7 business days</span>
                     </div>
                   </div>
-                  <Button className="w-full mt-8 bg-white hover:bg-slate-50 text-slate-900 py-6 text-base md:text-lg rounded-full font-semibold cursor-pointer">
-                    Get Started
+                  <Button
+                    asChild
+                    className="w-full mt-8 bg-white hover:bg-slate-50 text-slate-900 py-6 text-base md:text-lg rounded-full font-semibold cursor-pointer"
+                  >
+                    <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+                      Get Started
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
@@ -1837,10 +1850,13 @@ export default function HomePage() {
               Find your next best move.
             </p>
             <Button
+              asChild
               size="lg"
               className="bg-white hover:bg-slate-50 text-slate-900 text-lg px-8 py-6 font-semibold cursor-pointer"
             >
-              Submit Your Problem
+              <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+                Submit Your Problem
+              </a>
             </Button>
           </div>
         </section>
