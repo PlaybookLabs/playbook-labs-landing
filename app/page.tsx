@@ -1552,7 +1552,7 @@ export default function HomePage() {
 
                 <p className="tracking-[-0.01em] leading-[1.5] font-normal text-slate-700 text-base lg:text-lg">
                   {
-                    "Countless methods exist to solve all kinds of problems. Different disciplines tackle specific challenges: psychology explores behavior, history examines precedents, business strategy optimizes decisions. But there is never a one-size-fits-all solution. The answer might come from sociology, data analysis, philosophy, or any number of other domains, and most often, it draws from multiple at once. To build your Playbook, we assess your challenge, uncover patterns "
+                    "Countless methods exist to solve all kinds of problems. Different disciplines tackle specific challenges: psychology explores behavior, history examines precedents, business strategy optimizes decisions. But there is never a one-size-fits-all solution. The answer might come from sociology, data analysis, philosophy, or any number of other domains, and most often, it draws from multiple at once. To build your playbook, we assess your challenge, uncover patterns "
                   }
                   <em>across relevant fields</em>
                   {
@@ -1582,7 +1582,7 @@ export default function HomePage() {
                 </p>
 
                 <p className="tracking-[-0.01em] leading-[1.5] font-normal text-slate-700 text-base lg:text-lg">
-                  No vague concepts or general theory. Your Playbook dissects your specific challenge and provides
+                  No vague concepts or general theory. Your playbook dissects your specific challenge and provides
                   step-by-step actions you can implement immediately. The strategy document gives you a comprehensive
                   roadmap, while the podcast walks you through the solution in an engaging, thought-provoking format.{" "}
                   <em>Read it, listen to it, or both.</em>
@@ -1778,17 +1778,17 @@ export default function HomePage() {
                 {
                   question: "Is this therapy or coaching?",
                   answer:
-                    "No. Playbook Labs is not a healthcare or mental health service. We do not diagnose or treat; we analyze, strategize, and advise. Think of it as research-backed consulting for your life. Your Playbook is meant to guide reflection and action, not replace professional care or legal, medical, or financial advice.",
+                    "No. Playbook Labs is not a healthcare or mental health service. We do not diagnose or treat; we analyze, strategize, and advise. Think of it as research-backed consulting for your life. Your playbook is meant to guide reflection and action, not replace professional care or legal, medical, or financial advice.",
                 },
                 {
                   question: "What kinds of problems can I submit?",
                   answer:
-                    "Anything that feels complex or unresolved: romantic, family, work-related, personal, or existential. If humans have faced it, we can study it and build a Playbook for it.",
+                    "Anything that feels complex or unresolved: romantic, family, work-related, personal, or existential. If humans have faced it, we can study it and build a playbook for it.",
                 },
                 {
-                  question: "How much does a Playbook cost, and what's included?",
+                  question: "How much does a playbook cost, and what's included?",
                   answer:
-                    "A Playbook costs $499. This includes a comprehensive strategy document (10-15 pages) and a personalized podcast (45 min). Traditional, time-intensive guidance models that rely on open-ended sessions typically cost anywhere from $1,000 to $6,000 and take months. We deliver a complete, evidence-based strategy in days, for a fraction of the cost. Our pricing reflects the research, analysis, and expertise that goes into every Playbook, while remaining accessible compared to other options.",
+                    "A playbook costs $499. This includes a comprehensive strategy document (10-15 pages) and a personalized podcast (45 min). Traditional, time-intensive guidance models that rely on open-ended sessions typically cost anywhere from $1,000 to $6,000 and take months. We deliver a complete, evidence-based strategy in days, for a fraction of the cost. Our pricing reflects the research, analysis, and expertise that goes into every playbook, while remaining accessible compared to other options.",
                 },
                 {
                   question: "What happens after I submit my case?",
@@ -1798,21 +1798,21 @@ export default function HomePage() {
                 {
                   question: "How long does it take?",
                   answer:
-                    "Timelines vary depending on complexity, but we deliver every Playbook within 7 business days.",
+                    "Timelines vary depending on complexity, but we deliver every playbook within 7 business days.",
                 },
                 {
                   question: "Can I ask follow-up questions or get revisions?",
                   answer:
-                    "Each Playbook is designed as a complete, one-time deliverable. Because it is carefully built from the information you provide, we do not offer revisions or extended back-and-forth once the process begins. This approach allows us to stay focused on producing high-quality, insightful work in a fraction of the time and cost of traditional methods. If you would like to explore your case further or request a new perspective, you can always submit a new request or contact us for special follow-up options.",
+                    "Each playbook is designed as a complete, one-time deliverable. Because it is carefully built from the information you provide, we do not offer revisions or extended back-and-forth once the process begins. This approach allows us to stay focused on producing high-quality, insightful work in a fraction of the time and cost of traditional methods. If you would like to explore your case further or request a new perspective, you can always submit a new request or contact us for special follow-up options.",
                 },
                 {
                   question: "Will my information stay private?",
                   answer:
-                    "Yes. Everything you share is treated as confidential and used only to create your Playbook. Any examples reused for research or media are fully anonymized.",
+                    "Yes. Everything you share is treated as confidential and used only to create your playbook. Any examples reused for research or media are fully anonymized.",
                 },
                 {
                   question: "Are submissions refundable?",
-                  answer: "Because every Playbook is custom-built, all submissions are final once received.",
+                  answer: "Because every playbook is custom-built, all submissions are final once received.",
                 },
               ].map((faq, index) => (
                 <div key={index} className={`border-b border-slate-200 py-8 ${index === 7 ? "border-b-0" : ""}`}>
