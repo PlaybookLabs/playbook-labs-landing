@@ -1737,7 +1737,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-white md:text-base text-base">Custom podcast episode (45 min)</span>
+                      <span className="text-white md:text-base text-base">Custom podcast episode (~30 min)</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
@@ -1788,7 +1788,7 @@ export default function HomePage() {
                 {
                   question: "How much does a playbook cost, and what's included?",
                   answer:
-                    "A playbook costs $499. This includes a comprehensive strategy document (10-15 pages) and a personalized podcast (45 min). Traditional, time-intensive guidance models that rely on open-ended sessions typically cost anywhere from $1,000 to $6,000 and take months. We deliver a complete, evidence-based strategy in days, for a fraction of the cost. Our pricing reflects the research, analysis, and expertise that goes into every playbook, while remaining accessible compared to other options.",
+                    "A playbook costs $499. This includes a comprehensive strategy document (10-15 pages) and a personalized podcast (~30 min). Traditional, time-intensive guidance models that rely on open-ended sessions typically cost anywhere from $1,000 to $6,000 and take months. We deliver a complete, evidence-based strategy in days, for a fraction of the cost. Our pricing reflects the research, analysis, and expertise that goes into every playbook, while remaining accessible compared to other options.",
                 },
                 {
                   question: "What happens after I submit my case?",
