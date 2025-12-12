@@ -12,8 +12,8 @@ const _inter = V0_Font_Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Playbook Labs",
-  description: "We solve your life problems. Playbook Labs builds tailored solutions for your most complex challenges.",
+  title: "Playbook Labs | We solve your life problems",
+  description: "Playbook Labs builds tailored solutions for your most complex challenges.",
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
