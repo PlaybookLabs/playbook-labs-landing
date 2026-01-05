@@ -1222,7 +1222,7 @@ const ScrollingTestimonials = memo(() => {
     },
     {
       name: "F, 33, Melbourne, Australia",
-      text: "I was stuck in analysis paralysis for months. Couldn't decide if I was being too picky or ignoring red flags. The playbook introduced me to decision-making frameworks from philosophy and psychology, plus real relationship cases with similar dynamics. What helped most was realizing my situation mapped to a specific pattern where people who stayed ended up resentful. That clarity let me finally make the call. Hard but right.",
+      text: "I was stuck for months. Couldn't decide if I was being too picky or ignoring red flags. The playbook introduced me to decision-making frameworks from philosophy and psychology, plus real relationship cases with similar dynamics. What helped most was realizing my situation mapped to a specific pattern where people who stayed ended up resentful. That clarity let me finally make the call. Hard but right.",
       avatar: "NB",
       struggle: "Whether to end a 6-year relationship",
     },
