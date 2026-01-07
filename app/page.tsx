@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect, memo, useRef } from "react"
+import HeroSection from "@/components/HeroSection"
+import { ArrowRight, Check, Star, Mic, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useState, useEffect, memo, useRef } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Check, Star, Mic, ChevronDown } from "lucide-react" // Added Check and ChevronDown
-import Link from "next/link" // Added Link import for footer navigation
-import Image from "next/image" // Added Image import
+import Link from "next/link"
+import Image from "next/image"
 
 const StackedLayersIcon = () => (
   <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,109 +90,6 @@ const CheckmarkIcon = () => (
     />
   </svg>
 )
-
-const FloatingParticles = memo(() => {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const particlesRef = useRef<
-    Array<{
-      x: number
-      y: number
-      vx: number
-      vy: number
-      size: number
-      color: string
-      bounce: boolean
-    }>
-  >([])
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    // Set canvas size
-    const updateCanvasSize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    updateCanvasSize()
-    window.addEventListener("resize", updateCanvasSize)
-
-    const colors = ["rgba(96, 165, 250, 0.4)", "rgba(147, 51, 234, 0.4)", "rgba(236, 72, 153, 0.4)"]
-
-    const isMobile = window.innerWidth < 768
-    const particleCount = isMobile ? 5 : 10
-    const bounceCount = isMobile ? 2 : 3
-
-    particlesRef.current = Array.from({ length: particleCount }, (_, i) => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 2,
-      vy: (Math.random() - 0.5) * 2,
-      size: Math.random() * 6 + 6,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      bounce: i < bounceCount, // First 2 on mobile, first 3 on desktop will bounce
-    }))
-
-    let animationFrameId: number
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      particlesRef.current.forEach((particle) => {
-        // Update position with stable velocity
-        particle.x += particle.vx
-        particle.y += particle.vy
-
-        if (particle.bounce) {
-          // Bounce off edges with slight damping
-          if (particle.x < particle.size / 2 || particle.x > canvas.width - particle.size / 2) {
-            particle.vx = -particle.vx * 0.95
-            particle.x = Math.max(particle.size / 2, Math.min(canvas.width - particle.size / 2, particle.x))
-          }
-
-          if (particle.y < particle.size / 2 || particle.y > canvas.height - particle.size / 2) {
-            particle.vy = -particle.vy * 0.95
-            particle.y = Math.max(particle.size / 2, Math.min(canvas.height - particle.size / 2, particle.y))
-          }
-        } else {
-          // Wrap particles around screen edges
-          if (particle.x < -particle.size) {
-            particle.x = canvas.width + particle.size
-          } else if (particle.x > canvas.width + particle.size) {
-            particle.x = -particle.size
-          }
-
-          if (particle.y < -particle.size) {
-            particle.y = canvas.height + particle.size
-          } else if (particle.y > canvas.height + particle.size) {
-            particle.y = -particle.size
-          }
-        }
-
-        // Draw particle
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size / 2, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
-        ctx.fill()
-      })
-
-      animationFrameId = requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    return () => {
-      cancelAnimationFrame(animationFrameId)
-      window.removeEventListener("resize", updateCanvasSize)
-    }
-  }, [])
-
-  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
-})
-
-FloatingParticles.displayName = "FloatingParticles"
 
 const CardParticles = memo(() => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -1460,36 +1358,30 @@ export default function HomePage() {
           </div>
         </header>
 
-        {/* Hero Section */}
-        <section className="pt-32 md:pt-36 pb-12 md:pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-          <FloatingParticles />
-          <div className="max-w-7xl mx-auto text-center relative z-10">
-            <h1 className="font-playfair text-5xl lg:text-7xl leading-[1.1] text-slate-900 text-balance text-center mb-6 font-extrabold md:text-6xl tracking-[-0.035em]">
+        <HeroSection
+          title={
+            <>
               We solve your{" "}
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 life
               </span>{" "}
               problems.
-            </h1>
-
-            <p className="font-normal tracking-[-0.01em] leading-[1.5] text-slate-600 mb-8 max-w-3xl mx-auto text-pretty text-lg md:text-xl">
-              {"Playbook Labs builds tailored solutions for your most complex challenges."}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-3 cursor-pointer"
-              >
-                <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
-                  Get Your Playbook
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
-            </div>
-          </div>
-        </section>
+            </>
+          }
+          subtitle="Playbook Labs builds tailored solutions for your most complex challenges."
+          footerContent={
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-3 cursor-pointer"
+            >
+              <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+                Get Your Playbook
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+          }
+        />
 
         {/* Approach Section */}
         <section
@@ -1866,7 +1758,7 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="text-slate-400 text-center md:text-left">
-                <p>© 2025 Playbook Labs. All rights reserved</p>
+                <p>© 2026 Playbook Labs. All rights reserved</p>
               </div>
 
               <div className="flex gap-6">

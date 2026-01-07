@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "Playbook Labs | Privacy Policy",
@@ -22,6 +24,59 @@ export default function PrivacyPolicy() {
           </Link>
         </div>
       </div>
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 pt-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <a href="/#top" className="flex items-center -ml-11.5 md:ml-0 cursor-pointer">
+              <Image
+                src="/images/playbook-labs-logo-black.png"
+                alt="Playbook Labs"
+                width={200}
+                height={80}
+                className="w-auto h-36"
+                priority
+              />
+            </a>
+
+            <nav className="hidden md:flex items-center space-x-8 mx-0 px-2.5 pl-0">
+              <a
+                href="/#approach"
+                className="text-slate-900 hover:bg-gradient-to-r hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 hover:bg-clip-text hover:text-transparent font-normal transition-all cursor-pointer"
+              >
+                What We Do
+              </a>
+              <a
+                href="/#how-it-works"
+                className="text-slate-900 hover:bg-gradient-to-r hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 hover:bg-clip-text hover:text-transparent font-normal transition-all cursor-pointer"
+              >
+                How It Works
+              </a>
+              <a
+                href="/#pricing"
+                className="text-slate-900 hover:bg-gradient-to-r hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 hover:bg-clip-text hover:text-transparent font-normal transition-all cursor-pointer"
+              >
+                Pricing
+              </a>
+              <a
+                href="/#faq"
+                className="text-slate-900 hover:bg-gradient-to-r hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 hover:bg-clip-text hover:text-transparent font-normal transition-all cursor-pointer"
+              >
+                FAQ
+              </a>
+            </nav>
+
+            <Button
+              asChild
+              className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold cursor-pointer"
+            >
+              <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+                Submit Your Problem
+              </a>
+            </Button>
+          </div>
+        </div>
+      </header>
 
       {/* Main Content */}
       <main className="py-12 px-4 sm:px-6 lg:px-8">
@@ -29,7 +84,7 @@ export default function PrivacyPolicy() {
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-12">
             {/* Page Title */}
             <h1 className="font-playfair text-4xl md:text-5xl font-bold text-slate-900 mb-2">Privacy Policy</h1>
-            <p className="text-slate-500 text-sm mb-8">Last updated: October 20, 2025</p>
+            <p className="text-slate-500 text-sm mb-8">Last updated: October 20, 2026</p>
 
             {/* Legal Content */}
             <div className="prose prose-slate max-w-none">
@@ -244,7 +299,7 @@ export default function PrivacyPolicy() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
-              <p className="text-slate-400">© 2025 Playbook Labs. All rights reserved</p>
+              <p className="text-slate-400">© 2026 Playbook Labs. All rights reserved</p>
             </div>
             <div className="flex gap-6">
               <a href="mailto:team@playbooklabs.co" className="text-slate-400 hover:text-white transition-colors">

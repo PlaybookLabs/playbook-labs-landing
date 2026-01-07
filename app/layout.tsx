@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Inter as V0_Font_Inter } from "next/font/google"
@@ -12,13 +11,11 @@ const _inter = V0_Font_Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Playbook Labs | We solve your life problems",
-  description: "Playbook Labs builds tailored solutions for your most complex challenges.",
+  title: "Playbook Labs",
+  description: "Your personalized problem-solving show",
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-},
-    generator: 'v0.app'
+    icon: "/icon.svg",
+  },
 }
 
 export default function RootLayout({
@@ -28,8 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
+      <body className="font-sans antialiased">
         {children}
+        <script async src="https://tally.so/widgets/embed.js"></script>
         <Analytics />
       </body>
     </html>
