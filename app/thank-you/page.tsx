@@ -1,9 +1,22 @@
+'use client'
+
+import { useEffect } from 'react'
 import HeroSection from "@/components/HeroSection"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 export default function ThankYouPage() {
+  useEffect(() => {
+    // Fire Purchase event when thank you page loads
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Purchase', {
+        value: 499,
+        currency: 'USD'
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 flex flex-col">
       {/* Header */}
@@ -20,7 +33,6 @@ export default function ThankYouPage() {
                 priority
               />
             </a>
-
             <nav className="hidden md:flex items-center space-x-8">
               <a href="/#approach" className="text-slate-900 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all">
                 What We Do
@@ -35,7 +47,6 @@ export default function ThankYouPage() {
                 FAQ
               </a>
             </nav>
-
             <Button
               asChild
               className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold"
@@ -47,7 +58,6 @@ export default function ThankYouPage() {
           </div>
         </div>
       </header>
-
       {/* Main (accounts for fixed header) */}
       <div className="flex-1 flex pt-16">
         <HeroSection
@@ -62,7 +72,6 @@ export default function ThankYouPage() {
           }
         />
       </div>
-
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-300 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
