@@ -40,7 +40,7 @@ export default function ThankYouPage() {
               asChild
               className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold"
             >
-              <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+              <a href="/problem-submission" rel="noopener noreferrer">
                 Submit Your Problem
               </a>
             </Button>

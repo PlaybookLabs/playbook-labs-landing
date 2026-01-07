@@ -1375,7 +1375,7 @@ export default function HomePage() {
               size="lg"
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-3 cursor-pointer"
             >
-              <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+              <a href="/problem-submission">
                 Get Your Playbook
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
@@ -1648,7 +1648,7 @@ export default function HomePage() {
                     asChild
                     className="w-full mt-8 bg-white hover:bg-slate-50 text-slate-900 py-6 text-base md:text-lg rounded-full font-semibold cursor-pointer"
                   >
-                    <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+                    <a href="/problem-submission">
                       Get Started
                     </a>
                   </Button>
@@ -1746,7 +1746,7 @@ export default function HomePage() {
               size="lg"
               className="bg-white hover:bg-slate-50 text-slate-900 text-lg px-8 py-6 font-semibold cursor-pointer"
             >
-              <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+              <a href="/problem-submission">
                 Submit Your Problem
               </a>
             </Button>

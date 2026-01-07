@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
               asChild
               className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold cursor-pointer"
             >
-              <a href="https://tally.so/r/LZDDjy" target="_blank" rel="noopener noreferrer">
+              <a href="/problem-submission">
                 Submit Your Problem
               </a>
             </Button>
