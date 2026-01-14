@@ -36,7 +36,7 @@ export default function SamplePlaybookPage() {
     },
     {
       image: "/images/Case_5.png",
-      title: "Case Study 1",
+      title: "Real 1",
       page: "Extract from page 6",
       blurs: [],
     },
@@ -247,7 +247,7 @@ export default function SamplePlaybookPage() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="font-playfair text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            <h1 className="font-playfair text-4xl md:text-5xl tracking-[-0.02em] leading-[1.2] font-extrabold text-slate-900 mb-4">
               Sample Playbook
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -279,7 +279,7 @@ export default function SamplePlaybookPage() {
                   </svg>
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">
+                  <h2 className="text-xl tracking-[-0.02em] leading-[1.2] font-bold text-slate-900">
                     Custom Podcast
                   </h2>
                   <p className="text-sm text-slate-600">Snippet</p>
@@ -306,7 +306,7 @@ export default function SamplePlaybookPage() {
                   />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">
+                  <h2 className="text-xl tracking-[-0.02em] leading-[1.2] font-bold text-slate-900">
                     Personalized Strategy
                   </h2>
                   <p className="text-sm text-slate-600">Redacted excerpts</p>

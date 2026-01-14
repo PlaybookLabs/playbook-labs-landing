@@ -1,13 +1,13 @@
-import type { ReactNode } from "react"
-import FloatingParticles from "@/components/FloatingParticles"
+import type { ReactNode } from "react";
+import FloatingParticles from "@/components/FloatingParticles";
 
 type HeroSectionProps = {
-  title: ReactNode
-  subtitle: string
-  footerContent?: ReactNode
-  centered?: boolean
-  showParticles?: boolean
-}
+  title: ReactNode;
+  subtitle: string;
+  footerContent?: ReactNode;
+  centered?: boolean;
+  showParticles?: boolean;
+};
 
 export default function HeroSection({
   title,
@@ -49,5 +49,5 @@ export default function HeroSection({
         )}
       </div>
     </section>
-  )
+  );
 }
