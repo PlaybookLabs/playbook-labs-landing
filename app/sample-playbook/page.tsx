@@ -108,12 +108,24 @@ export default function SamplePlaybookPage() {
 
     let touchStartX = 0;
     let touchEndX = 0;
+    let isPinching = false;
 
     const handleTouchStart = (e: TouchEvent) => {
+      // Detect if this is a pinch (multi-touch)
+      if (e.touches.length > 1) {
+        isPinching = true;
+        return;
+      }
+      isPinching = false;
       touchStartX = e.changedTouches[0].screenX;
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
+      // Don't trigger swipe if user was pinching
+      if (isPinching) {
+        isPinching = false;
+        return;
+      }
       touchEndX = e.changedTouches[0].screenX;
       handleSwipe();
     };
@@ -147,6 +159,28 @@ export default function SamplePlaybookPage() {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isModalOpen]);
 
+  // Handle browser back button in modal
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    // Push a fake history state when modal opens
+    window.history.pushState({ modalOpen: true }, "");
+
+    const handlePopState = () => {
+      setIsModalOpen(false);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+      // Clean up: if modal is still open when component unmounts, go back
+      if (window.history.state?.modalOpen) {
+        window.history.back();
+      }
+    };
+  }, [isModalOpen]);
+
   const currentSlideData = slides[currentSlide];
 
   return (
@@ -176,7 +210,7 @@ export default function SamplePlaybookPage() {
       </header>
 
       {/* Main Content */}
-      <main className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
@@ -228,7 +262,7 @@ export default function SamplePlaybookPage() {
           </div>
 
           {/* Document Preview Section */}
-          <div className="mb-16">
+          <div>
             <div className="bg-white rounded-2xl shadow-sm p-8 border border-slate-200">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center">
@@ -324,37 +358,6 @@ export default function SamplePlaybookPage() {
                   </span>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-2xl p-8 md:p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Get Your Own Custom Playbook
-            </h2>
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-              Comprehensive strategy document + personalized podcast for your
-              specific challenge. Delivered in 5-7 business days.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-white hover:bg-slate-50 text-slate-900 text-lg px-8 py-6 font-semibold cursor-pointer"
-              >
-                <Link href="/problem-submission">
-                  Start Your Strategy
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6 font-semibold cursor-pointer"
-              >
-                <Link href="/#pricing">View Pricing</Link>
-              </Button>
             </div>
           </div>
         </div>
@@ -455,6 +458,56 @@ export default function SamplePlaybookPage() {
           </div>
         )}
       </main>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="font-playfair text-4xl lg:text-6xl leading-[1.2] text-white font-extrabold mb-4 text-balance md:text-6xl tracking-[-0.03em]">
+            Get Your Own
+          </h2>
+          <p className="text-xl text-white/90 mb-12 font-normal leading-6 tracking-[-0.01em] md:text-2xl">
+            Every challenge is unique. So is every solution.
+          </p>
+          <Button
+            asChild
+            size="lg"
+            className="bg-white hover:bg-slate-50 text-slate-900 text-lg px-8 py-6 font-semibold cursor-pointer"
+          >
+            <Link href="/problem-submission">Submit Your Problem</Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-300 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="text-slate-400 text-center md:text-left">
+              <p>© 2026 Playbook Labs. All rights reserved</p>
+            </div>
+            <div className="flex gap-6">
+              <a
+                href="mailto:team@playbooklabs.co"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                Contact Us
+              </a>
+              <Link
+                href="/privacy-policy"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms-of-service"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                Terms of Service
+              </Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

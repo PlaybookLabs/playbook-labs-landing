@@ -2000,7 +2000,7 @@ export default function HomePage() {
         {/* CTA Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <h2 className="font-playfair text-4xl lg:text-6xl leading-[1.2] text-white font-extrabold mb-6 text-balance md:text-6xl tracking-[-0.03em]">
+            <h2 className="font-playfair text-4xl lg:text-6xl leading-[1.2] text-white font-extrabold mb-4 text-balance md:text-6xl tracking-[-0.03em]">
               Need a breakthrough?
             </h2>
             <p className="text-xl text-white/90 mb-12 font-normal leading-6 tracking-[-0.01em] md:text-2xl">
