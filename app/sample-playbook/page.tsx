@@ -108,25 +108,56 @@ export default function SamplePlaybookPage() {
 
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
     let isPinching = false;
+    let isZoomed = false;
 
     const handleTouchStart = (e: TouchEvent) => {
       // Detect if this is a pinch (multi-touch)
       if (e.touches.length > 1) {
         isPinching = true;
+        isZoomed = true; // User is zooming
         return;
       }
       isPinching = false;
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      // If multi-touch, user is pinching/zooming
+      if (e.touches.length > 1) {
+        isPinching = true;
+        isZoomed = true;
+      }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      // Don't trigger swipe if user was pinching
+      // Don't trigger swipe if user was pinching or image is zoomed
       if (isPinching) {
         isPinching = false;
         return;
       }
+
+      // Check if viewport is scaled (zoomed)
+      const visualViewport = window.visualViewport;
+      if (visualViewport && visualViewport.scale > 1) {
+        return; // Image is zoomed, don't trigger swipe
+      }
+
+      // Check if this was a vertical scroll rather than horizontal swipe
       touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+
+      const deltaX = Math.abs(touchEndX - touchStartX);
+      const deltaY = Math.abs(touchEndY - touchStartY);
+
+      // If vertical movement is greater than horizontal, it's a scroll not a swipe
+      if (deltaY > deltaX) {
+        return;
+      }
+
       handleSwipe();
     };
 
@@ -140,10 +171,12 @@ export default function SamplePlaybookPage() {
     };
 
     window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
     window.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isModalOpen, nextSlide, prevSlide]);
@@ -465,8 +498,10 @@ export default function SamplePlaybookPage() {
           <h2 className="font-playfair text-4xl lg:text-6xl leading-[1.2] text-white font-extrabold mb-4 text-balance md:text-6xl tracking-[-0.03em]">
             Get Your Own
           </h2>
-          <p className="text-xl text-white/90 mb-12 font-normal leading-6 tracking-[-0.01em] md:text-2xl">
-            Every challenge is unique. So is every solution.
+          <p className="text-xl text-white/90 mb-12 font-normal leading-relaxed tracking-[-0.01em] md:text-2xl">
+            Every challenge is unique.
+            <br />
+            So is every solution.
           </p>
           <Button
             asChild
