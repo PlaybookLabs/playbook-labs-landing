@@ -1,16 +1,28 @@
-"use client"
+"use client";
 
-import HeroSection from "@/components/HeroSection"
-import { ArrowRight, Check, Star, Mic, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useState, useEffect, memo, useRef } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
-import Image from "next/image"
+import HeroSection from "@/components/HeroSection";
+import { ArrowRight, Check, Star, Mic, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState, useEffect, memo, useRef } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import Image from "next/image";
 
 const StackedLayersIcon = () => (
-  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="64"
+    height="64"
+    viewBox="0 0 64 64"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <defs>
       <linearGradient id="layersGradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#2563EB" />
@@ -43,12 +55,24 @@ const StackedLayersIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 const MagnifyingGlassIcon = () => (
-  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="64"
+    height="64"
+    viewBox="0 0 64 64"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <defs>
-      <linearGradient id="magnifyingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <linearGradient
+        id="magnifyingGradient"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="100%"
+      >
         <stop offset="0%" stopColor="#2563EB" />
         <stop offset="50%" stopColor="#9333EA" />
         <stop offset="100%" stopColor="#EC4899" />
@@ -65,14 +89,31 @@ const MagnifyingGlassIcon = () => (
       strokeLinecap="round"
     />
     {/* Inner circle for depth */}
-    <circle cx="28" cy="28" r="10" fill="url(#magnifyingGradient)" fillOpacity="0.2" />
+    <circle
+      cx="28"
+      cy="28"
+      r="10"
+      fill="url(#magnifyingGradient)"
+      fillOpacity="0.2"
+    />
     {/* Handle */}
-    <path d="M40 40L52 52" stroke="url(#magnifyingGradient)" strokeWidth="4" strokeLinecap="round" />
+    <path
+      d="M40 40L52 52"
+      stroke="url(#magnifyingGradient)"
+      strokeWidth="4"
+      strokeLinecap="round"
+    />
   </svg>
-)
+);
 
 const CheckmarkIcon = () => (
-  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="64"
+    height="64"
+    viewBox="0 0 64 64"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <defs>
       <linearGradient id="checkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#2563EB" />
@@ -89,39 +130,43 @@ const CheckmarkIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 const CardParticles = memo(() => {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<
     Array<{
-      x: number
-      y: number
-      vx: number
-      vy: number
-      size: number
-      color: string
-      bounce: boolean
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      color: string;
+      bounce: boolean;
     }>
-  >([])
+  >([]);
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    const container = containerRef.current
-    if (!canvas || !container) return
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     const updateCanvasSize = () => {
-      const rect = container.getBoundingClientRect()
-      canvas.width = rect.width
-      canvas.height = rect.height
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
 
       // Reinitialize particles when canvas resizes
       if (particlesRef.current.length === 0) {
-        const colors = ["rgba(96, 165, 250, 0.2)", "rgba(147, 51, 234, 0.2)", "rgba(236, 72, 153, 0.2)"]
+        const colors = [
+          "rgba(96, 165, 250, 0.2)",
+          "rgba(147, 51, 234, 0.2)",
+          "rgba(236, 72, 153, 0.2)",
+        ];
         particlesRef.current = Array.from({ length: 3 }, (_, i) => ({
           x: Math.random() * rect.width,
           y: Math.random() * rect.height,
@@ -130,78 +175,90 @@ const CardParticles = memo(() => {
           size: Math.random() * 6 + 4,
           color: colors[Math.floor(Math.random() * colors.length)],
           bounce: i === 0,
-        }))
+        }));
       }
-    }
+    };
 
-    updateCanvasSize()
-    window.addEventListener("resize", updateCanvasSize)
+    updateCanvasSize();
+    window.addEventListener("resize", updateCanvasSize);
 
-    let animationFrameId: number
+    let animationFrameId: number;
     const animate = () => {
-      const rect = container.getBoundingClientRect()
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const rect = container.getBoundingClientRect();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const containerWidth = rect.width
-      const containerHeight = rect.height
+      const containerWidth = rect.width;
+      const containerHeight = rect.height;
 
       particlesRef.current.forEach((particle) => {
         // Update position with stable velocity
-        particle.x += particle.vx
-        particle.y += particle.vy
+        particle.x += particle.vx;
+        particle.y += particle.vy;
 
         if (particle.bounce) {
           // Bounce off edges with slight damping
-          if (particle.x < particle.size / 2 || particle.x > containerWidth - particle.size / 2) {
-            particle.vx = -particle.vx * 0.95
-            particle.x = Math.max(particle.size / 2, Math.min(containerWidth - particle.size / 2, particle.x))
+          if (
+            particle.x < particle.size / 2 ||
+            particle.x > containerWidth - particle.size / 2
+          ) {
+            particle.vx = -particle.vx * 0.95;
+            particle.x = Math.max(
+              particle.size / 2,
+              Math.min(containerWidth - particle.size / 2, particle.x)
+            );
           }
 
-          if (particle.y < particle.size / 2 || particle.y > containerHeight - particle.size / 2) {
-            particle.vy = -particle.vy * 0.95
-            particle.y = Math.max(particle.size / 2, Math.min(containerHeight - particle.size / 2, particle.y))
+          if (
+            particle.y < particle.size / 2 ||
+            particle.y > containerHeight - particle.size / 2
+          ) {
+            particle.vy = -particle.vy * 0.95;
+            particle.y = Math.max(
+              particle.size / 2,
+              Math.min(containerHeight - particle.size / 2, particle.y)
+            );
           }
         } else {
           // Wrap particles around container edges
           if (particle.x < -particle.size) {
-            particle.x = containerWidth + particle.size
+            particle.x = containerWidth + particle.size;
           } else if (particle.x > containerWidth + particle.size) {
-            particle.x = -particle.size
+            particle.x = -particle.size;
           }
 
           if (particle.y < -particle.size) {
-            particle.y = containerHeight + particle.size
+            particle.y = containerHeight + particle.size;
           } else if (particle.y > containerHeight + particle.size) {
-            particle.y = -particle.size
+            particle.y = -particle.size;
           }
         }
 
         // Draw particle
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size / 2, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
-        ctx.fill()
-      })
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size / 2, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+      });
 
-      animationFrameId = requestAnimationFrame(animate)
-    }
+      animationFrameId = requestAnimationFrame(animate);
+    };
 
-    animate()
+    animate();
 
     return () => {
-      cancelAnimationFrame(animationFrameId)
-      window.removeEventListener("resize", updateCanvasSize)
-    }
-  }, [])
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", updateCanvasSize);
+    };
+  }, []);
 
   return (
     <div ref={containerRef} className="absolute inset-0 pointer-events-none">
       <canvas ref={canvasRef} className="w-full h-full" />
     </div>
-  )
-})
+  );
+});
 
-CardParticles.displayName = "CardParticles"
+CardParticles.displayName = "CardParticles";
 
 const ScrollingScreenAnimation = memo(() => {
   return (
@@ -228,10 +285,10 @@ const ScrollingScreenAnimation = memo(() => {
         </div>
       </div>
     </div>
-  )
-})
+  );
+});
 
-ScrollingScreenAnimation.displayName = "ScrollingScreenAnimation"
+ScrollingScreenAnimation.displayName = "ScrollingScreenAnimation";
 
 const DataAnalysisAnimation = memo(() => {
   return (
@@ -276,7 +333,14 @@ const DataAnalysisAnimation = memo(() => {
           <div className="flex items-center justify-center">
             <div className="relative w-24 h-24">
               <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" fill="none" stroke="#E0E7FF" strokeWidth="20" />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  fill="none"
+                  stroke="#E0E7FF"
+                  strokeWidth="20"
+                />
                 <circle
                   cx="50"
                   cy="50"
@@ -294,10 +358,10 @@ const DataAnalysisAnimation = memo(() => {
         </div>
       </div>
     </div>
-  )
-})
+  );
+});
 
-DataAnalysisAnimation.displayName = "DataAnalysisAnimation"
+DataAnalysisAnimation.displayName = "DataAnalysisAnimation";
 
 const DocumentAnalysisAnimation = memo(() => {
   return (
@@ -305,7 +369,12 @@ const DocumentAnalysisAnimation = memo(() => {
       <div className="relative w-[380px] h-[380px] bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl shadow-2xl p-8 overflow-hidden">
         {/* Floating icons */}
         <div className="absolute top-8 left-8 w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center animate-float">
-          <svg className="w-10 h-10 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg
+            className="w-10 h-10 text-purple-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -319,7 +388,12 @@ const DocumentAnalysisAnimation = memo(() => {
           className="absolute top-8 right-8 w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center animate-float"
           style={{ animationDelay: "0.5s" }}
         >
-          <svg className="w-10 h-10 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg
+            className="w-10 h-10 text-blue-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -333,7 +407,12 @@ const DocumentAnalysisAnimation = memo(() => {
           className="absolute bottom-8 left-8 w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center animate-float"
           style={{ animationDelay: "1s" }}
         >
-          <svg className="w-10 h-10 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg
+            className="w-10 h-10 text-pink-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -347,7 +426,12 @@ const DocumentAnalysisAnimation = memo(() => {
           className="absolute bottom-8 right-8 w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center animate-float"
           style={{ animationDelay: "1.5s" }}
         >
-          <svg className="w-10 h-10 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg
+            className="w-10 h-10 text-purple-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -393,7 +477,12 @@ const DocumentAnalysisAnimation = memo(() => {
 
             {/* Clock icon */}
             <div className="absolute bottom-4 right-4 w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center">
-              <svg className="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg
+                className="w-6 h-6 text-slate-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -406,10 +495,10 @@ const DocumentAnalysisAnimation = memo(() => {
         </div>
       </div>
     </div>
-  )
-})
+  );
+});
 
-DocumentAnalysisAnimation.displayName = "DocumentAnalysisAnimation"
+DocumentAnalysisAnimation.displayName = "DocumentAnalysisAnimation";
 
 const RocketAnimation = memo(() => {
   return (
@@ -446,9 +535,19 @@ const RocketAnimation = memo(() => {
           <path d="M40 50 L30 70 L40 70 Z" fill="#3B82F6" />
           <path d="M60 50 L70 70 L60 70 Z" fill="#3B82F6" />
           {/* Flame */}
-          <path d="M45 80 L50 95 L55 80 Z" fill="#F59E0B" className="animate-pulse" />
+          <path
+            d="M45 80 L50 95 L55 80 Z"
+            fill="#F59E0B"
+            className="animate-pulse"
+          />
           <defs>
-            <linearGradient id="rocketGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient
+              id="rocketGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#60A5FA" />
               <stop offset="100%" stopColor="#3B82F6" />
             </linearGradient>
@@ -456,14 +555,14 @@ const RocketAnimation = memo(() => {
         </svg>
       </div>
     </div>
-  )
-})
+  );
+});
 
-RocketAnimation.displayName = "RocketAnimation"
+RocketAnimation.displayName = "RocketAnimation";
 
 const SolarSystemVisualization = memo(() => {
-  const [hoveredOrbit, setHoveredOrbit] = useState<number | null>(null)
-  const [clickedOrbit, setClickedOrbit] = useState<number | null>(null)
+  const [hoveredOrbit, setHoveredOrbit] = useState<number | null>(null);
+  const [clickedOrbit, setClickedOrbit] = useState<number | null>(null);
 
   const orbits = [
     {
@@ -471,7 +570,7 @@ const SolarSystemVisualization = memo(() => {
       color: "#EC4899", // Pink (warmest)
       radius: 70,
       speed: 30,
-      tags: ["romance", "family", "parenting", "friendship"],
+      tags: ["couple", "family", "parenting", "friendship"],
     },
     {
       name: "Work",
@@ -485,7 +584,12 @@ const SolarSystemVisualization = memo(() => {
       color: "#8B5CF6", // Violet
       radius: 150,
       speed: 42,
-      tags: ["goals", "discipline & habits", "decision-making", "life transitions"],
+      tags: [
+        "goals",
+        "discipline & habits",
+        "decision-making",
+        "life transitions",
+      ],
     },
     {
       name: "Wellbeing",
@@ -494,20 +598,20 @@ const SolarSystemVisualization = memo(() => {
       speed: 48,
       tags: ["balance", "self-esteem", "belonging", "purpose", "identity"],
     },
-  ]
+  ];
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
+      const target = e.target as HTMLElement;
       if (!target.closest("[data-orbit-interactive]")) {
-        setClickedOrbit(null)
+        setClickedOrbit(null);
       }
-    }
-    document.addEventListener("click", handleClickOutside)
-    return () => document.removeEventListener("click", handleClickOutside)
-  }, [])
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
-  const activeOrbit = clickedOrbit !== null ? clickedOrbit : hoveredOrbit
+  const activeOrbit = clickedOrbit !== null ? clickedOrbit : hoveredOrbit;
 
   return (
     <div className="relative w-full flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
@@ -538,31 +642,43 @@ const SolarSystemVisualization = memo(() => {
               borderRadius: "50%",
             }}
           >
-            <img src="/images/white-logo.png" alt="Playbook Labs" className="size-6 object-contain" />
+            <img
+              src="/images/white-logo.png"
+              alt="Playbook Labs"
+              className="size-6 object-contain"
+            />
           </div>
         </div>
 
         {orbits.map((orbit, orbitIndex) => (
-          <div key={orbit.name} className="absolute inset-0 flex items-center justify-center">
+          <div
+            key={orbit.name}
+            className="absolute inset-0 flex items-center justify-center"
+          >
             <div
               className="absolute rounded-full border-2 transition-all duration-300"
               style={{
                 width: `${orbit.radius * 2}px`,
                 height: `${orbit.radius * 2}px`,
-                borderColor: activeOrbit === orbitIndex ? orbit.color : `${orbit.color}60`,
+                borderColor:
+                  activeOrbit === orbitIndex ? orbit.color : `${orbit.color}60`,
                 zIndex: 10 + orbitIndex,
               }}
             />
 
             {orbit.tags.map((tag, tagIndex) => {
-              const isActive = activeOrbit === orbitIndex
+              const isActive = activeOrbit === orbitIndex;
               return (
                 <div
                   key={tag}
                   className="absolute"
                   style={{
-                    animation: `orbit-refined-${orbitIndex + 1} ${orbit.speed}s linear infinite`,
-                    animationDelay: `${-(orbit.speed / orbit.tags.length) * tagIndex}s`,
+                    animation: `orbit-refined-${orbitIndex + 1} ${
+                      orbit.speed
+                    }s linear infinite`,
+                    animationDelay: `${
+                      -(orbit.speed / orbit.tags.length) * tagIndex
+                    }s`,
                     zIndex: 20 + orbitIndex,
                   }}
                 >
@@ -570,20 +686,22 @@ const SolarSystemVisualization = memo(() => {
                     data-orbit-interactive
                     className="px-2.5 py-1 rounded-full text-xs font-light shadow-md transition-all duration-300 cursor-pointer"
                     style={{
-                      backgroundColor: isActive ? orbit.color : `${orbit.color}40`,
+                      backgroundColor: isActive
+                        ? orbit.color
+                        : `${orbit.color}40`,
                       color: isActive ? "white" : orbit.color,
                       backdropFilter: "blur(8px)",
                       opacity: isActive ? 1 : 0.9,
                     }}
                     onClick={(e) => {
-                      e.stopPropagation()
-                      setClickedOrbit(orbitIndex)
+                      e.stopPropagation();
+                      setClickedOrbit(orbitIndex);
                     }}
                   >
                     {tag}
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         ))}
@@ -599,15 +717,17 @@ const SolarSystemVisualization = memo(() => {
               onMouseEnter={() => setHoveredOrbit(index)}
               onMouseLeave={() => setHoveredOrbit(null)}
               onClick={(e) => {
-                e.stopPropagation()
-                setClickedOrbit(index)
+                e.stopPropagation();
+                setClickedOrbit(index);
               }}
             >
               <div
                 className="w-3 h-3 rounded-full transition-all duration-200"
                 style={{
-                  backgroundColor: activeOrbit === index ? orbit.color : `${orbit.color}BF`,
-                  boxShadow: activeOrbit === index ? `0 0 12px ${orbit.color}` : "none",
+                  backgroundColor:
+                    activeOrbit === index ? orbit.color : `${orbit.color}BF`,
+                  boxShadow:
+                    activeOrbit === index ? `0 0 12px ${orbit.color}` : "none",
                 }}
               />
               <span
@@ -624,10 +744,10 @@ const SolarSystemVisualization = memo(() => {
         </div>
       </div>
     </div>
-  )
-})
+  );
+});
 
-SolarSystemVisualization.displayName = "SolarSystemVisualization"
+SolarSystemVisualization.displayName = "SolarSystemVisualization";
 
 const knowledgeCycles = [
   {
@@ -703,67 +823,67 @@ const knowledgeCycles = [
       { disciplineIndex: 2, subIndex: 0 }, // Feedback Loops → Systems Design
     ],
   },
-]
+];
 
 const KnowledgeSynthesisVisualization = memo(() => {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const logoRef = useRef<HTMLDivElement>(null)
-  const disciplineRefs = useRef<(HTMLDivElement | null)[]>([])
-  const subRefs = useRef<(HTMLDivElement | null)[]>([])
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const disciplineRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const subRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const [currentCycle, setCurrentCycle] = useState(0)
-  const [litBoxes, setLitBoxes] = useState<Set<string>>(new Set())
-  const [boxPositions, setBoxPositions] = useState<any>(null)
+  const [currentCycle, setCurrentCycle] = useState(0);
+  const [litBoxes, setLitBoxes] = useState<Set<string>>(new Set());
+  const [boxPositions, setBoxPositions] = useState<any>(null);
 
   useEffect(() => {
     const calculatePositions = () => {
-      if (!logoRef.current || !containerRef.current) return
+      if (!logoRef.current || !containerRef.current) return;
 
-      const logoRect = logoRef.current.getBoundingClientRect()
-      const containerRect = containerRef.current.getBoundingClientRect()
+      const logoRect = logoRef.current.getBoundingClientRect();
+      const containerRect = containerRef.current.getBoundingClientRect();
 
       // Calculate logo center-bottom point
-      const logoX = logoRect.left + logoRect.width / 2 - containerRect.left
-      const logoY = logoRect.bottom - containerRect.top
+      const logoX = logoRect.left + logoRect.width / 2 - containerRect.left;
+      const logoY = logoRect.bottom - containerRect.top;
 
       // Calculate discipline box positions and find max dimensions
-      const disciplinePositions: any[] = []
-      let maxDiscWidth = 0
-      let maxDiscHeight = 0
+      const disciplinePositions: any[] = [];
+      let maxDiscWidth = 0;
+      let maxDiscHeight = 0;
 
       disciplineRefs.current.forEach((ref, index) => {
         if (ref) {
-          const rect = ref.getBoundingClientRect()
-          maxDiscWidth = Math.max(maxDiscWidth, rect.width)
-          maxDiscHeight = Math.max(maxDiscHeight, rect.height)
+          const rect = ref.getBoundingClientRect();
+          maxDiscWidth = Math.max(maxDiscWidth, rect.width);
+          maxDiscHeight = Math.max(maxDiscHeight, rect.height);
           disciplinePositions.push({
             x: rect.left + rect.width / 2 - containerRect.left,
             y: rect.top - containerRect.top,
             width: rect.width,
             height: rect.height,
-          })
+          });
         }
-      })
+      });
 
       // Calculate sub-category box positions and find max dimensions
-      const subPositions: any[] = []
-      let maxSubWidth = 0
-      let maxSubHeight = 0
+      const subPositions: any[] = [];
+      let maxSubWidth = 0;
+      let maxSubHeight = 0;
 
       subRefs.current.forEach((ref, index) => {
         if (ref) {
-          const rect = ref.getBoundingClientRect()
-          maxSubWidth = Math.max(maxSubWidth, rect.width)
-          maxSubHeight = Math.max(maxSubHeight, rect.height)
+          const rect = ref.getBoundingClientRect();
+          maxSubWidth = Math.max(maxSubWidth, rect.width);
+          maxSubHeight = Math.max(maxSubHeight, rect.height);
           subPositions.push({
             x: rect.left + rect.width / 2 - containerRect.left,
             y: rect.top - containerRect.top,
             width: rect.width,
             height: rect.height,
-          })
+          });
         }
-      })
+      });
 
       setBoxPositions({
         logo: { x: logoX, y: logoY },
@@ -773,68 +893,68 @@ const KnowledgeSynthesisVisualization = memo(() => {
         maxDiscHeight,
         maxSubWidth,
         maxSubHeight,
-      })
-    }
+      });
+    };
 
-    calculatePositions()
-    window.addEventListener("resize", calculatePositions)
-    return () => window.removeEventListener("resize", calculatePositions)
-  }, [currentCycle])
+    calculatePositions();
+    window.addEventListener("resize", calculatePositions);
+    return () => window.removeEventListener("resize", calculatePositions);
+  }, [currentCycle]);
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas || !boxPositions) return
+    const canvas = canvasRef.current;
+    if (!canvas || !boxPositions) return;
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     // High-resolution canvas setup
-    const dpr = window.devicePixelRatio || 1
-    const rect = canvas.getBoundingClientRect()
-    canvas.width = rect.width * dpr
-    canvas.height = rect.height * dpr
-    ctx.scale(dpr, dpr)
-    canvas.style.width = `${rect.width}px`
-    canvas.style.height = `${rect.height}px`
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
 
-    const currentDisciplines = knowledgeCycles[currentCycle].disciplines
-    const cyclePaths = knowledgeCycles[currentCycle].paths
+    const currentDisciplines = knowledgeCycles[currentCycle].disciplines;
+    const cyclePaths = knowledgeCycles[currentCycle].paths;
 
     const drawDottedPaths = () => {
-      ctx.setLineDash([4, 4])
-      ctx.lineWidth = 1.5
-      ctx.lineCap = "round"
+      ctx.setLineDash([4, 4]);
+      ctx.lineWidth = 1.5;
+      ctx.lineCap = "round";
 
       currentDisciplines.forEach((disc, discIndex) => {
         disc.subs.forEach((sub, subIndex) => {
-          const subPos = boxPositions.subs[discIndex * 2 + subIndex]
-          const discPos = boxPositions.disciplines[discIndex]
+          const subPos = boxPositions.subs[discIndex * 2 + subIndex];
+          const discPos = boxPositions.disciplines[discIndex];
 
-          if (!subPos || !discPos) return
+          if (!subPos || !discPos) return;
 
           // Path from sub to discipline
-          ctx.strokeStyle = disc.color
-          ctx.globalAlpha = 0.3
-          ctx.beginPath()
-          ctx.moveTo(subPos.x, subPos.y) // Center-top of sub box
-          ctx.lineTo(discPos.x, discPos.y + discPos.height) // Center-bottom of discipline box
-          ctx.stroke()
+          ctx.strokeStyle = disc.color;
+          ctx.globalAlpha = 0.3;
+          ctx.beginPath();
+          ctx.moveTo(subPos.x, subPos.y); // Center-top of sub box
+          ctx.lineTo(discPos.x, discPos.y + discPos.height); // Center-bottom of discipline box
+          ctx.stroke();
 
           // Path from discipline to logo
-          ctx.beginPath()
-          ctx.moveTo(discPos.x, discPos.y) // Center-top of discipline box
-          ctx.lineTo(boxPositions.logo.x, boxPositions.logo.y) // Bottom-center of logo
-          ctx.stroke()
-        })
-      })
+          ctx.beginPath();
+          ctx.moveTo(discPos.x, discPos.y); // Center-top of discipline box
+          ctx.lineTo(boxPositions.logo.x, boxPositions.logo.y); // Bottom-center of logo
+          ctx.stroke();
+        });
+      });
 
-      ctx.globalAlpha = 1
-      ctx.setLineDash([])
-    }
+      ctx.globalAlpha = 1;
+      ctx.setLineDash([]);
+    };
 
-    drawDottedPaths()
+    drawDottedPaths();
 
-    let animationFrame: number
+    let animationFrame: number;
     const paths: any[] = cyclePaths.map((pathDef, index) => ({
       disciplineIndex: pathDef.disciplineIndex,
       subIndex: pathDef.subIndex,
@@ -842,136 +962,140 @@ const KnowledgeSynthesisVisualization = memo(() => {
       delay: index * 800,
       startTime: Date.now() + index * 800,
       hasStarted: false,
-    }))
+    }));
 
     const animate = () => {
-      ctx.clearRect(0, 0, rect.width, rect.height)
+      ctx.clearRect(0, 0, rect.width, rect.height);
 
       // Redraw dotted paths
-      drawDottedPaths()
+      drawDottedPaths();
 
-      const now = Date.now()
-      let allComplete = true
-      const newLitBoxes = new Set<string>()
+      const now = Date.now();
+      let allComplete = true;
+      const newLitBoxes = new Set<string>();
 
       paths.forEach((path) => {
         if (now < path.startTime) {
-          allComplete = false
-          return
+          allComplete = false;
+          return;
         }
 
         if (!path.hasStarted) {
-          path.hasStarted = true
+          path.hasStarted = true;
         }
 
-        const elapsed = now - path.startTime
-        path.progress = Math.min(elapsed / 2000, 1)
+        const elapsed = now - path.startTime;
+        path.progress = Math.min(elapsed / 2000, 1);
 
-        if (path.progress < 1) allComplete = false
+        if (path.progress < 1) allComplete = false;
 
-        const subPos = boxPositions.subs[path.disciplineIndex * 2 + path.subIndex]
-        const discPos = boxPositions.disciplines[path.disciplineIndex]
+        const subPos =
+          boxPositions.subs[path.disciplineIndex * 2 + path.subIndex];
+        const discPos = boxPositions.disciplines[path.disciplineIndex];
 
-        if (!subPos || !discPos) return
+        if (!subPos || !discPos) return;
 
         // Calculate exact positions
-        const subX = subPos.x // Center-top of sub box
-        const subY = subPos.y
-        const discX = discPos.x // Center of discipline box
-        const discBottomY = discPos.y + discPos.height // Center-bottom of discipline box
-        const discTopY = discPos.y // Center-top of discipline box
-        const logoX = boxPositions.logo.x // Bottom-center of logo
-        const logoY = boxPositions.logo.y
+        const subX = subPos.x; // Center-top of sub box
+        const subY = subPos.y;
+        const discX = discPos.x; // Center of discipline box
+        const discBottomY = discPos.y + discPos.height; // Center-bottom of discipline box
+        const discTopY = discPos.y; // Center-top of discipline box
+        const logoX = boxPositions.logo.x; // Bottom-center of logo
+        const logoY = boxPositions.logo.y;
 
-        const disciplineColor = currentDisciplines[path.disciplineIndex].color
+        const disciplineColor = currentDisciplines[path.disciplineIndex].color;
 
-        ctx.strokeStyle = disciplineColor
-        ctx.lineWidth = 2
-        ctx.lineCap = "round"
-        ctx.setLineDash([])
+        ctx.strokeStyle = disciplineColor;
+        ctx.lineWidth = 2;
+        ctx.lineCap = "round";
+        ctx.setLineDash([]);
 
         if (path.progress < 0.33) {
           // Sub to Discipline - light up sub box
-          const segmentProgress = path.progress / 0.33
-          const currentX = subX + (discX - subX) * segmentProgress
-          const currentY = subY + (discBottomY - subY) * segmentProgress
+          const segmentProgress = path.progress / 0.33;
+          const currentX = subX + (discX - subX) * segmentProgress;
+          const currentY = subY + (discBottomY - subY) * segmentProgress;
 
-          ctx.beginPath()
-          ctx.moveTo(subX, subY)
-          ctx.lineTo(currentX, currentY)
-          ctx.stroke()
+          ctx.beginPath();
+          ctx.moveTo(subX, subY);
+          ctx.lineTo(currentX, currentY);
+          ctx.stroke();
 
           // Draw comet head
-          ctx.beginPath()
-          ctx.arc(currentX, currentY, 4, 0, Math.PI * 2)
-          ctx.fillStyle = disciplineColor
-          ctx.fill()
+          ctx.beginPath();
+          ctx.arc(currentX, currentY, 4, 0, Math.PI * 2);
+          ctx.fillStyle = disciplineColor;
+          ctx.fill();
 
-          newLitBoxes.add(`sub-${path.disciplineIndex}-${path.subIndex}`)
+          newLitBoxes.add(`sub-${path.disciplineIndex}-${path.subIndex}`);
         } else if (path.progress < 0.66) {
           // Discipline to Logo - light up both sub and discipline boxes
-          const segmentProgress = (path.progress - 0.33) / 0.33
-          const currentX = discX + (logoX - discX) * segmentProgress
-          const currentY = discTopY + (logoY - discTopY) * segmentProgress
+          const segmentProgress = (path.progress - 0.33) / 0.33;
+          const currentX = discX + (logoX - discX) * segmentProgress;
+          const currentY = discTopY + (logoY - discTopY) * segmentProgress;
 
           // Draw complete first segment
-          ctx.beginPath()
-          ctx.moveTo(subX, subY)
-          ctx.lineTo(discX, discBottomY)
-          ctx.stroke()
+          ctx.beginPath();
+          ctx.moveTo(subX, subY);
+          ctx.lineTo(discX, discBottomY);
+          ctx.stroke();
 
           // Draw current segment
-          ctx.beginPath()
-          ctx.moveTo(discX, discTopY)
-          ctx.lineTo(currentX, currentY)
-          ctx.stroke()
+          ctx.beginPath();
+          ctx.moveTo(discX, discTopY);
+          ctx.lineTo(currentX, currentY);
+          ctx.stroke();
 
           // Draw comet head
-          ctx.beginPath()
-          ctx.arc(currentX, currentY, 4, 0, Math.PI * 2)
-          ctx.fillStyle = disciplineColor
-          ctx.fill()
+          ctx.beginPath();
+          ctx.arc(currentX, currentY, 4, 0, Math.PI * 2);
+          ctx.fillStyle = disciplineColor;
+          ctx.fill();
 
-          newLitBoxes.add(`sub-${path.disciplineIndex}-${path.subIndex}`)
-          newLitBoxes.add(`disc-${path.disciplineIndex}`)
+          newLitBoxes.add(`sub-${path.disciplineIndex}-${path.subIndex}`);
+          newLitBoxes.add(`disc-${path.disciplineIndex}`);
         } else {
           // Complete path - light up all boxes
-          ctx.beginPath()
-          ctx.moveTo(subX, subY)
-          ctx.lineTo(discX, discBottomY)
-          ctx.lineTo(discX, discTopY)
-          ctx.lineTo(logoX, logoY)
-          ctx.stroke()
+          ctx.beginPath();
+          ctx.moveTo(subX, subY);
+          ctx.lineTo(discX, discBottomY);
+          ctx.lineTo(discX, discTopY);
+          ctx.lineTo(logoX, logoY);
+          ctx.stroke();
 
-          newLitBoxes.add(`sub-${path.disciplineIndex}-${path.subIndex}`)
-          newLitBoxes.add(`disc-${path.disciplineIndex}`)
-          newLitBoxes.add("logo")
+          newLitBoxes.add(`sub-${path.disciplineIndex}-${path.subIndex}`);
+          newLitBoxes.add(`disc-${path.disciplineIndex}`);
+          newLitBoxes.add("logo");
         }
-      })
+      });
 
-      setLitBoxes(newLitBoxes)
+      setLitBoxes(newLitBoxes);
 
       if (!allComplete) {
-        animationFrame = requestAnimationFrame(animate)
+        animationFrame = requestAnimationFrame(animate);
       } else {
         setTimeout(() => {
-          setLitBoxes(new Set())
-          setCurrentCycle((prev) => (prev + 1) % 3)
-        }, 2000)
+          setLitBoxes(new Set());
+          setCurrentCycle((prev) => (prev + 1) % 3);
+        }, 2000);
       }
-    }
+    };
 
-    animate()
+    animate();
 
     return () => {
-      if (animationFrame) cancelAnimationFrame(animationFrame)
-    }
-  }, [currentCycle, boxPositions])
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    };
+  }, [currentCycle, boxPositions]);
 
-  const currentDisciplines = knowledgeCycles[currentCycle].disciplines
+  const currentDisciplines = knowledgeCycles[currentCycle].disciplines;
 
   return (
-    <div ref={containerRef} className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center">
+    <div
+      ref={containerRef}
+      className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center"
+    >
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
       <div className="absolute top-[10%] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
@@ -998,14 +1122,18 @@ const KnowledgeSynthesisVisualization = memo(() => {
             borderRadius: "50%",
           }}
         >
-          <img src="/images/white-logo.png" alt="Playbook Labs" className="size-11 object-contain" />
+          <img
+            src="/images/white-logo.png"
+            alt="Playbook Labs"
+            className="size-11 object-contain"
+          />
         </div>
       </div>
 
       {/* Middle row: Disciplines */}
       <div className="absolute top-[45%] left-0 right-0 flex justify-around px-4 md:px-12 z-10">
         {currentDisciplines.map((disc, index) => {
-          const isLit = litBoxes.has(`disc-${index}`)
+          const isLit = litBoxes.has(`disc-${index}`);
           return (
             <div
               key={disc.name}
@@ -1013,7 +1141,9 @@ const KnowledgeSynthesisVisualization = memo(() => {
               className="rounded-lg text-xs md:text-sm font-light transition-all duration-300 flex items-center justify-center text-center whitespace-pre-line"
               style={{
                 width: boxPositions ? `${boxPositions.maxDiscWidth}px` : "auto",
-                height: boxPositions ? `${boxPositions.maxDiscHeight}px` : "auto",
+                height: boxPositions
+                  ? `${boxPositions.maxDiscHeight}px`
+                  : "auto",
                 padding: "18px 20px",
                 backgroundColor: isLit ? disc.color : `${disc.color}40`,
                 color: isLit ? "white" : disc.color,
@@ -1024,7 +1154,7 @@ const KnowledgeSynthesisVisualization = memo(() => {
             >
               {disc.name}
             </div>
-          )
+          );
         })}
       </div>
 
@@ -1032,16 +1162,20 @@ const KnowledgeSynthesisVisualization = memo(() => {
       <div className="absolute bottom-[10%] left-0 right-0 grid grid-cols-6 gap-1 md:gap-2 px-4 md:px-8 z-10">
         {currentDisciplines.flatMap((disc, discIndex) =>
           disc.subs.map((sub, subIndex) => {
-            const isLit = litBoxes.has(`sub-${discIndex}-${subIndex}`)
-            const lightColor = disc.color + "66"
+            const isLit = litBoxes.has(`sub-${discIndex}-${subIndex}`);
+            const lightColor = disc.color + "66";
             return (
               <div
                 key={`${disc.name}-${sub}`}
                 ref={(el) => (subRefs.current[discIndex * 2 + subIndex] = el)}
                 className="rounded-lg text-[10px] md:text-xs font-light transition-all duration-300 flex items-center justify-center text-center whitespace-pre-line"
                 style={{
-                  width: boxPositions ? `${boxPositions.maxSubWidth}px` : "auto",
-                  height: boxPositions ? `${boxPositions.maxSubHeight}px` : "auto",
+                  width: boxPositions
+                    ? `${boxPositions.maxSubWidth}px`
+                    : "auto",
+                  height: boxPositions
+                    ? `${boxPositions.maxSubHeight}px`
+                    : "auto",
                   padding: "8px 4px",
                   backgroundColor: isLit ? disc.color : lightColor,
                   color: isLit ? "white" : disc.color,
@@ -1052,15 +1186,15 @@ const KnowledgeSynthesisVisualization = memo(() => {
               >
                 {sub}
               </div>
-            )
-          }),
+            );
+          })
         )}
       </div>
     </div>
-  )
-})
+  );
+});
 
-KnowledgeSynthesisVisualization.displayName = "KnowledgeSynthesisVisualization"
+KnowledgeSynthesisVisualization.displayName = "KnowledgeSynthesisVisualization";
 
 const ScrollingTestimonials = memo(() => {
   const testimonials = [
@@ -1113,7 +1247,7 @@ const ScrollingTestimonials = memo(() => {
       struggle: "Feeling behind peers in career and life",
     },
     {
-      name: "F, 34, Seattle, USA",
+      name: "M, 42, Seattle, US",
       text: "A colleague told me about this service after I mentioned I was heading toward a breakdown. The interdisciplinary synthesis was eye-opening. They pulled from chronobiology, neuroscience, and case studies of executives who burned out and rebuilt. What shocked me was learning my solution wasn't working less but restructuring my work rhythm completely. The specific recovery protocols are the only thing that's worked in three years.",
       avatar: "LP",
       struggle: "Chronic overwork and burnout prevention",
@@ -1125,13 +1259,13 @@ const ScrollingTestimonials = memo(() => {
       struggle: "Whether to end a 6-year relationship",
     },
     {
-      name: "M, 28, Denver, USA",
+      name: "M, 28, Denver, US",
       text: "Best money I've spent this year! A friend told me I should use Playbook Labs and I'm sooo glad I listened. My playbook connected my situation to research on social connection patterns, urban sociology on friendship formation, and real cases of people who rebuilt social lives in new cities. I have three solid friendships now and a weekly game night. Thank you PL!!",
       avatar: "BR",
       struggle: "Social anxiety & making friends post-move",
     },
     {
-      name: "F, 42, London, UK",
+      name: "F, 42, New York, US",
       text: "We've been together 12 years and I love him but I was so lonely. The strategy document helped me understand why he shuts down and gave me specific communication approaches based on attachment research and actual couples who solved this exact dynamic. He's trying now. We're actually talking about feelings without him walking away. I've told three friends about this already.",
       avatar: "EW",
       struggle: "Partner's emotional unavailability",
@@ -1149,7 +1283,7 @@ const ScrollingTestimonials = memo(() => {
       struggle: "Confidence in leadership role",
     },
     {
-      name: "F, 42, Boston, USA",
+      name: "F, 42, Boston, US",
       text: "This is embarrassing to admit but it was destroying me. My younger brother has the career and life I thought I'd have. My playbook helped me understand the specific cognitive distortions I was stuck in and showed me cases of people who transformed sibling rivalry into something healthier. Less than three therapy sessions cost and honestly more targeted. I called my brother last week. We're okay now.",
       avatar: "HG",
       struggle: "Resentment toward successful sibling",
@@ -1166,14 +1300,18 @@ const ScrollingTestimonials = memo(() => {
       avatar: "ZT",
       struggle: "Conflict with mother-in-law",
     },
-  ]
+  ];
 
   // Split testimonials into 3 columns
-  const column1 = testimonials.slice(0, 6)
-  const column2 = testimonials.slice(6, 12)
-  const column3 = testimonials.slice(12, 17)
+  const column1 = testimonials.slice(0, 6);
+  const column2 = testimonials.slice(6, 12);
+  const column3 = testimonials.slice(12, 17);
 
-  const TestimonialCard = ({ testimonial }: { testimonial: (typeof testimonials)[0] }) => (
+  const TestimonialCard = ({
+    testimonial,
+  }: {
+    testimonial: (typeof testimonials)[0];
+  }) => (
     <Card className="bg-white border-slate-200 shadow-md">
       <CardContent className="pt-6 space-y-4">
         <div className="flex items-center gap-1">
@@ -1184,47 +1322,51 @@ const ScrollingTestimonials = memo(() => {
         <p className="text-slate-600 leading-relaxed">{testimonial.text}</p>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-semibold text-sm">{testimonial.avatar}</span>
+            <span className="text-white font-semibold text-sm">
+              {testimonial.avatar}
+            </span>
           </div>
           <div>
             <p className="font-semibold text-slate-900">{testimonial.name}</p>
             <p className="text-sm text-slate-500">Struggled with:</p>
-            <p className="text-sm text-slate-500 italic">{testimonial.struggle}</p>
+            <p className="text-sm text-slate-500 italic">
+              {testimonial.struggle}
+            </p>
           </div>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 
   const TestimonialColumn = ({
     testimonials,
     columnIndex,
     animationClass,
   }: {
-    testimonials: typeof column1
-    columnIndex: number
-    animationClass: string
+    testimonials: typeof column1;
+    columnIndex: number;
+    animationClass: string;
   }) => {
-    const [isHovered, setIsHovered] = useState(false)
-    const [isTouching, setIsTouching] = useState(false)
+    const [isHovered, setIsHovered] = useState(false);
+    const [isTouching, setIsTouching] = useState(false);
 
     const handleMouseEnter = () => {
-      setIsHovered(true)
-    }
+      setIsHovered(true);
+    };
 
     const handleMouseLeave = () => {
-      setIsHovered(false)
-    }
+      setIsHovered(false);
+    };
 
     const handleTouchStart = () => {
-      setIsTouching(true)
-    }
+      setIsTouching(true);
+    };
 
     const handleTouchEnd = () => {
-      setIsTouching(false)
-    }
+      setIsTouching(false);
+    };
 
-    const isPaused = isHovered || isTouching
+    const isPaused = isHovered || isTouching;
 
     return (
       <div
@@ -1241,12 +1383,15 @@ const ScrollingTestimonials = memo(() => {
           }}
         >
           {[...testimonials, ...testimonials].map((testimonial, index) => (
-            <TestimonialCard key={`${testimonial.name}-${index}`} testimonial={testimonial} />
+            <TestimonialCard
+              key={`${testimonial.name}-${index}`}
+              testimonial={testimonial}
+            />
           ))}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className="relative h-[600px] overflow-hidden">
@@ -1256,30 +1401,42 @@ const ScrollingTestimonials = memo(() => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
         {/* Column 1 */}
-        <TestimonialColumn testimonials={column1} columnIndex={0} animationClass="animate-scroll-slow" />
+        <TestimonialColumn
+          testimonials={column1}
+          columnIndex={0}
+          animationClass="animate-scroll-slow"
+        />
 
         {/* Column 2 - Hidden on mobile */}
         <div className="hidden md:block">
-          <TestimonialColumn testimonials={column2} columnIndex={1} animationClass="animate-scroll-medium" />
+          <TestimonialColumn
+            testimonials={column2}
+            columnIndex={1}
+            animationClass="animate-scroll-medium"
+          />
         </div>
 
         {/* Column 3 - Hidden on mobile */}
         <div className="hidden md:block">
-          <TestimonialColumn testimonials={column3} columnIndex={2} animationClass="animate-scroll-fast" />
+          <TestimonialColumn
+            testimonials={column3}
+            columnIndex={2}
+            animationClass="animate-scroll-fast"
+          />
         </div>
       </div>
     </div>
-  )
-})
+  );
+});
 
-ScrollingTestimonials.displayName = "ScrollingTestimonials"
+ScrollingTestimonials.displayName = "ScrollingTestimonials";
 
 export default function HomePage() {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index)
-  }
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
 
   return (
     <div className="min-h-screen bg-white relative">
@@ -1308,7 +1465,10 @@ export default function HomePage() {
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 pt-1">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <a href="#top" className="flex items-center -ml-11.5 md:ml-0 cursor-pointer">
+              <a
+                href="#top"
+                className="flex items-center -ml-11.5 md:ml-0 cursor-pointer"
+              >
                 <Image
                   src="/images/playbook-labs-logo-black.png"
                   alt="Playbook Labs"
@@ -1350,9 +1510,7 @@ export default function HomePage() {
                 asChild
                 className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold cursor-pointer"
               >
-                <a href="/problem-submission">
-                  Submit Your Problem
-                </a>
+                <a href="/problem-submission">Submit Your Problem</a>
               </Button>
             </div>
           </div>
@@ -1400,7 +1558,9 @@ export default function HomePage() {
                 </h2>
 
                 <p className="tracking-[-0.01em] leading-[1.5] md:text-lg text-slate-800 font-bold text-lg">
-                  {"Someone has already been exactly where you are, faced the same problem, and solved it."}
+                  {
+                    "Someone has already been exactly where you are, faced the same problem, and solved it."
+                  }
                 </p>
 
                 <p className="tracking-[-0.01em] leading-[1.5] font-normal text-slate-700 text-base lg:text-lg">
@@ -1470,37 +1630,73 @@ export default function HomePage() {
                 </h2>
 
                 <p className="md:text-lg tracking-[-0.01em] leading-[1.5] text-slate-800 font-bold text-lg">
-                  A strategy document with clear instructions. A podcast that brings it to life.
+                  A strategy document with clear instructions. A podcast that
+                  brings it to life.
                 </p>
 
                 <p className="tracking-[-0.01em] leading-[1.5] font-normal text-slate-700 text-base lg:text-lg">
-                  No vague concepts or general theory. Your playbook dissects your specific challenge and provides
-                  step-by-step actions you can implement immediately. The strategy document gives you a comprehensive
-                  roadmap, while the podcast walks you through the solution in an engaging, thought-provoking format.{" "}
+                  No vague concepts or general theory. Your playbook dissects
+                  your specific challenge and provides step-by-step actions you
+                  can implement immediately. The strategy document gives you a
+                  comprehensive roadmap, while the podcast walks you through the
+                  solution in an engaging, thought-provoking format.{" "}
                   <em>Read it, listen to it, or both.</em>
                 </p>
               </div>
 
               {/* Start of updates */}
-              <div className="relative flex items-center justify-center gap-0 md:translate-y-10">
-                {/* Tailored Playbook Logo */}
-                <div className="flex flex-col items-center">
-                  <div
-                    className="w-20 h-20 rounded-xl flex items-center justify-center transition-all duration-300 -rotate-12 md:scale-100 scale-90"
-                    style={{
-                      background: "black",
-                    }}
-                  >
-                    <img src="/images/white-logo.png" alt="Playbook Labs" className="w-14 h-14 object-contain" />
+              <div className="relative flex flex-col items-center gap-6 md:translate-y-10">
+                {/* Icons Container */}
+                <div className="flex items-center justify-center gap-0">
+                  {/* Tailored Playbook Logo */}
+                  <div className="flex flex-col items-center">
+                    <div
+                      className="w-20 h-20 rounded-xl flex items-center justify-center transition-all duration-300 -rotate-12 md:scale-100 scale-90"
+                      style={{
+                        background: "black",
+                      }}
+                    >
+                      <img
+                        src="/images/white-logo.png"
+                        alt="Playbook Labs"
+                        className="w-14 h-14 object-contain"
+                      />
+                    </div>
+                  </div>
+                  {/* Custom Podcast Logo */}
+                  <div className="flex flex-col items-center -ml-2 md:ml-0">
+                    <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-xl transition-all duration-300 rotate-12 md:scale-100 scale-90">
+                      <Mic className="h-10 w-10 text-white" />
+                    </div>
                   </div>
                 </div>
 
-                {/* Custom Podcast Logo */}
-                <div className="flex flex-col items-center -ml-2 md:ml-0">
-                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-xl transition-all duration-300 rotate-12 md:scale-100 scale-90">
-                    <Mic className="h-10 w-10 text-white" />
-                  </div>
-                </div>
+                {/* Sample Playbook Button - Below Icons */}
+                <Link
+                  href="/sample-playbook"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-slate-700 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full hover:bg-white hover:shadow-lg transition-all duration-300"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                  <span>See a sample playbook</span>
+                </Link>
               </div>
               {/* End of updates */}
             </div>
@@ -1531,10 +1727,12 @@ export default function HomePage() {
                     <StackedLayersIcon />
                   </div>
                   <div className="space-y-3">
-                    <h3 className="md:text-xl text-slate-900 font-bold text-xl">Submit Your Case</h3>
+                    <h3 className="md:text-xl text-slate-900 font-bold text-xl">
+                      Submit Your Case
+                    </h3>
                     <p className="md:text-base text-slate-600 leading-relaxed text-base">
-                      Share your situation in detail. The more context you provide, the better we can tailor your
-                      solution.
+                      Share your situation in detail. The more context you
+                      provide, the better we can tailor your solution.
                     </p>
                   </div>
                 </CardContent>
@@ -1548,10 +1746,13 @@ export default function HomePage() {
                     <MagnifyingGlassIcon />
                   </div>
                   <div className="space-y-3">
-                    <h3 className="md:text-xl text-slate-900 text-xl font-bold">We Build Your Solution</h3>
+                    <h3 className="md:text-xl text-slate-900 text-xl font-bold">
+                      We Build Your Solution
+                    </h3>
                     <p className="md:text-base text-slate-600 leading-relaxed text-base">
-                      Our team finds similar real-life cases and bridges the gap across multiple disciplines to craft a
-                      strategy unique to your situation.
+                      Our team finds similar real-life cases and bridges the gap
+                      across multiple disciplines to craft a strategy unique to
+                      your situation.
                     </p>
                   </div>
                 </CardContent>
@@ -1565,10 +1766,12 @@ export default function HomePage() {
                     <CheckmarkIcon />
                   </div>
                   <div className="space-y-3">
-                    <h3 className="md:text-xl text-slate-900 text-xl font-bold">Receive Your Playbook</h3>
+                    <h3 className="md:text-xl text-slate-900 text-xl font-bold">
+                      Receive Your Playbook
+                    </h3>
                     <p className="md:text-base text-slate-600 leading-relaxed text-base">
-                      Get your detailed strategy document and custom podcast episode with practical next steps to move
-                      forward.
+                      Get your detailed strategy document and custom podcast
+                      episode with practical next steps to move forward.
                     </p>
                   </div>
                 </CardContent>
@@ -1588,7 +1791,8 @@ export default function HomePage() {
                 Real problems. Real solutions. Real results.
               </h2>
               <p className="md:text-lg tracking-[-0.01em] leading-[1.5] text-slate-600 max-w-2xl mx-auto text-pretty font-normal text-lg">
-                See how our method has helped others find clarity and move forward.
+                See how our method has helped others find clarity and move
+                forward.
               </p>
             </div>
 
@@ -1597,7 +1801,10 @@ export default function HomePage() {
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-16">
+        <section
+          id="pricing"
+          className="py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-16"
+        >
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-5xl tracking-[-0.02em] leading-[1.2] text-slate-900 mb-4 text-balance font-extrabold">
@@ -1612,12 +1819,16 @@ export default function HomePage() {
               {/* Playbook */}
               <Card className="border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 shadow-lg rounded-3xl relative overflow-visible flex flex-col w-full">
                 <CardHeader className="text-center pb-8 pt-6">
-                  <CardTitle className="text-3xl md:text-4xl font-bold text-white mb-2">Playbook</CardTitle>
+                  <CardTitle className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    Playbook
+                  </CardTitle>
                   <CardDescription className="text-slate-300 text-sm md:text-base">
                     Comprehensive solutions for complex challenges
                   </CardDescription>
                   <div className="mt-6">
-                    <span className="text-5xl md:text-6xl text-white font-extrabold">$499</span>
+                    <span className="text-5xl md:text-6xl text-white font-extrabold">
+                      $499
+                    </span>
                   </div>
                 </CardHeader>
 
@@ -1625,33 +1836,75 @@ export default function HomePage() {
                   <div className="space-y-5 flex-1">
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-white md:text-base text-base">Strategy document (10-15 pages)</span>
+                      <span className="text-white md:text-base text-base">
+                        Strategy document (10-15 pages)
+                      </span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-white md:text-base text-base">Custom podcast episode (~30 min)</span>
+                      <span className="text-white md:text-base text-base">
+                        Custom podcast episode (~30 min)
+                      </span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-white md:text-base text-base">Real case studies from your situation</span>
+                      <span className="text-white md:text-base text-base">
+                        Real case studies from your situation
+                      </span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-white md:text-base text-base">Actionable roadmap with next steps</span>
+                      <span className="text-white md:text-base text-base">
+                        Actionable roadmap with next steps
+                      </span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <Check className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-white md:text-base text-base">Delivered in 5-7 business days</span>
+                      <span className="text-white md:text-base text-base">
+                        Delivered in 5-7 business days
+                      </span>
                     </div>
                   </div>
-                  <Button
-                    asChild
-                    className="w-full mt-8 bg-white hover:bg-slate-50 text-slate-900 py-6 text-base md:text-lg rounded-full font-semibold cursor-pointer"
-                  >
-                    <a href="/problem-submission">
-                      Get Started
-                    </a>
-                  </Button>
+
+                  {/* Buttons Container */}
+                  <div className="space-y-3 mt-8">
+                    {/* Sample Playbook Button */}
+                    <button
+                      onClick={() =>
+                        (window.location.href = "/sample-playbook")
+                      }
+                      className="w-full px-6 py-3 border-2 border-purple-300/50 text-purple-300 hover:border-purple-200 hover:text-white hover:bg-purple-500/10 transition-all duration-300 rounded-full text-base font-medium flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        />
+                      </svg>
+                      <span>See a sample playbook</span>
+                    </button>
+
+                    {/* Get Started Button */}
+                    <Button
+                      asChild
+                      className="w-full bg-white hover:bg-slate-50 text-slate-900 py-6 text-base md:text-lg rounded-full font-semibold cursor-pointer"
+                    >
+                      <a href="/problem-submission">Get Started</a>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -1659,7 +1912,10 @@ export default function HomePage() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="pt-12 pb-6 px-4 base:px-6 lg:px-8 relative overflow-hidden scroll-mt-16">
+        <section
+          id="faq"
+          className="pt-12 pb-6 px-4 base:px-6 lg:px-8 relative overflow-hidden scroll-mt-16"
+        >
           <div className="max-w-4xl mx-auto">
             <h2 className="font-playfair text-3xl md:text-5xl tracking-[-0.02em] leading-[1.2] text-slate-900 mb-12 text-balance font-extrabold text-center">
               Frequently asked questions
@@ -1678,7 +1934,8 @@ export default function HomePage() {
                     "Anything that feels complex or unresolved: romantic, family, work-related, personal, or existential. If humans have faced it, we can study it and build a playbook for it.",
                 },
                 {
-                  question: "How much does a playbook cost, and what's included?",
+                  question:
+                    "How much does a playbook cost, and what's included?",
                   answer:
                     "A playbook costs $499. This includes a comprehensive strategy document (10-15 pages) and a personalized podcast (~30 min). Traditional, time-intensive guidance models that rely on open-ended sessions typically cost anywhere from $1,000 to $6,000 and take months. We deliver a complete, evidence-based strategy in days, for a fraction of the cost. Our pricing reflects the research, analysis, and expertise that goes into every playbook, while remaining accessible compared to other options.",
                 },
@@ -1704,10 +1961,16 @@ export default function HomePage() {
                 },
                 {
                   question: "Are submissions refundable?",
-                  answer: "Because every playbook is custom-built, all submissions are final once received.",
+                  answer:
+                    "Because every playbook is custom-built, all submissions are final once received.",
                 },
               ].map((faq, index) => (
-                <div key={index} className={`border-b border-slate-200 py-8 ${index === 7 ? "border-b-0" : ""}`}>
+                <div
+                  key={index}
+                  className={`border-b border-slate-200 py-8 ${
+                    index === 7 ? "border-b-0" : ""
+                  }`}
+                >
                   <button
                     onClick={() => toggleFaq(index)}
                     className="flex items-start justify-between gap-8 w-full text-left cursor-pointer"
@@ -1717,7 +1980,9 @@ export default function HomePage() {
                         {faq.question}
                       </h3>
                       {openFaqIndex === index && (
-                        <p className="text-sm md:text-base text-slate-600 leading-relaxed">{faq.answer}</p>
+                        <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+                          {faq.answer}
+                        </p>
                       )}
                     </div>
                     <ChevronDown
@@ -1746,9 +2011,7 @@ export default function HomePage() {
               size="lg"
               className="bg-white hover:bg-slate-50 text-slate-900 text-lg px-8 py-6 font-semibold cursor-pointer"
             >
-              <a href="/problem-submission">
-                Submit Your Problem
-              </a>
+              <a href="/problem-submission">Submit Your Problem</a>
             </Button>
           </div>
         </section>
@@ -1762,13 +2025,22 @@ export default function HomePage() {
               </div>
 
               <div className="flex gap-6">
-                <a href="mailto:team@playbooklabs.co" className="text-slate-400 hover:text-white transition-colors">
+                <a
+                  href="mailto:team@playbooklabs.co"
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
                   Contact Us
                 </a>
-                <Link href="/privacy-policy" className="text-slate-400 hover:text-white transition-colors">
+                <Link
+                  href="/privacy-policy"
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
                   Privacy Policy
                 </Link>
-                <Link href="/terms-of-service" className="text-slate-400 hover:text-white transition-colors">
+                <Link
+                  href="/terms-of-service"
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
                   Terms of Service
                 </Link>
               </div>
@@ -1777,5 +2049,5 @@ export default function HomePage() {
         </footer>
       </div>
     </div>
-  )
+  );
 }
