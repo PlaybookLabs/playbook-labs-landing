@@ -10,7 +10,7 @@ export default function SamplePlaybookPage() {
 
   const slides = [
     {
-      image: "/images/cover_3.png",
+      image: "/images/Cover_3.png",
       title: "Cover Page",
       page: "Playbook Overview",
       blurs: [], // No blur for cover
