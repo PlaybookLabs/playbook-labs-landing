@@ -7,81 +7,62 @@ import { useState, useEffect, useCallback } from "react";
 
 export default function SamplePlaybookPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const slides = [
     {
-      image: "/images/Cover_3.png",
+      image: "/images/cover_3.png",
       title: "Cover Page",
       page: "Playbook Overview",
-      blurs: [], // No blur for cover
+      blurs: [],
     },
     {
       image: "/images/TOC_3.png",
       title: "Table of Contents",
       page: "Page 1",
-      blurs: [], // No blur for TOC
+      blurs: [],
     },
     {
-      image: "/images/Situation_4.png",
+      image: "/images/Situation_5.png",
       title: "Executive Summary",
       page: "Extract from page 2",
-      blurs: [
-        { top: "22%", left: "10.5%", width: "4.3%", height: "2.3%" }, // Name "Imran"
-        { top: "36%", left: "10%", right: "12%", bottom: "50%" }, // Bottom paragraph with specific examples
-      ],
+      blurs: [],
     },
     {
-      image: "/images/Diagnosis_3.png",
+      image: "/images/Diagnosis_5.png",
       title: "Contributing Factors",
       page: "Extract from page 3",
-      blurs: [
-        { top: "46%", left: "12%", width: "38%", bottom: "29%" }, // Left column bullet points
-      ],
+      blurs: [],
     },
     {
-      image: "/images/Case_3.png",
+      image: "/images/Case_5.png",
       title: "Case Study 1",
       page: "Extract from page 6",
-      blurs: [
-        { top: "73.5%", left: "14%", right: "12%", bottom: "12.5%" }, // "Parallel to You" section
-      ],
+      blurs: [],
     },
     {
-      image: "/images/Disciplines_3.png",
+      image: "/images/Disciplines_5.png",
       title: "Core Disciplines & Frameworks",
       page: "Extract from page 9",
-      blurs: [
-        { top: "87%", left: "25.2%", right: "12.5%", bottom: "11.5%" },
-        { top: "89.25%", left: "10.4%", right: "79.5%", bottom: "9.3%" }, // "Relevance in Your Situation" excerpt
-      ],
+      blurs: [],
     },
     {
-      image: "/images/Options_3.png",
+      image: "/images/Options_5.png",
       title: "Options",
       page: "Extract from page 12",
-      blurs: [
-        { top: "6%", left: "10%", right: "9.5%", height: "7%" }, // Top intro paragraph
-        { top: "23.3%", left: "24%", right: "26.8%", bottom: "23.9%" }, // Table content
-        { top: "82.5%", left: "14.9%", right: "11.3%", bottom: "3.5%" }, // Recommendation box
-      ],
+      blurs: [],
     },
     {
-      image: "/images/Strategy_3.png",
+      image: "/images/Strategy_5.png",
       title: "Personalized Strategy",
       page: "Extract from page 13",
-      blurs: [
-        { top: "14%", left: "10%", right: "11%", height: "8%" }, // Top intro paragraph
-        { top: "89.2%", left: "17%", right: "11.7%", bottom: "3%" }, // Box 3 specific details
-      ],
+      blurs: [],
     },
     {
-      image: "/images/Roadmap_3.png",
+      image: "/images/Roadmap_5.png",
       title: "Solution Roadmap",
       page: "Extract from page 14",
-      blurs: [
-        { top: "14.1%", left: "30.3%", width: "20%", bottom: "0" }, // Action column
-        { top: "14.1%", left: "69.5%", width: "19.6%", bottom: "0" }, // Milestone column
-      ],
+      blurs: [],
     },
   ];
 
@@ -90,7 +71,7 @@ export default function SamplePlaybookPage() {
     setTimeout(() => {
       const carousel = document.getElementById("carousel-container");
       if (carousel) {
-        const yOffset = 300;
+        const yOffset = 240;
         const y =
           carousel.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
@@ -103,7 +84,7 @@ export default function SamplePlaybookPage() {
     setTimeout(() => {
       const carousel = document.getElementById("carousel-container");
       if (carousel) {
-        const yOffset = 300;
+        const yOffset = 240;
         const y =
           carousel.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
@@ -120,6 +101,51 @@ export default function SamplePlaybookPage() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [nextSlide, prevSlide]);
+
+  // Swipe support for modal
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      if (touchEndX < touchStartX - 50) {
+        nextSlide();
+      }
+      if (touchEndX > touchStartX + 50) {
+        prevSlide();
+      }
+    };
+
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [isModalOpen, nextSlide, prevSlide]);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isModalOpen) {
+        setIsModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isModalOpen]);
 
   const currentSlideData = slides[currentSlide];
 
@@ -164,10 +190,10 @@ export default function SamplePlaybookPage() {
           </div>
 
           {/* Audio Section */}
-          <div className="mb-16">
+          <div className="mb-6">
             <div
               id="carousel-container"
-              className="bg-white rounded-2xl shadow-lg p-8 border border-slate-200"
+              className="bg-white rounded-2xl shadow-sm p-8 border border-slate-200"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
@@ -203,7 +229,7 @@ export default function SamplePlaybookPage() {
 
           {/* Document Preview Section */}
           <div className="mb-16">
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-200">
+            <div className="bg-white rounded-2xl shadow-sm p-8 border border-slate-200">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center">
                   <img
@@ -216,104 +242,87 @@ export default function SamplePlaybookPage() {
                   <h2 className="text-xl font-bold text-slate-900">
                     Personalized Strategy
                   </h2>
-                  <p className="text-sm text-slate-600">
-                    Excerpts of the 16-page deliverable (confidential
-                    information redacted)
-                  </p>
+                  <p className="text-sm text-slate-600">Redacted excerpts</p>
                 </div>
               </div>
 
               {/* Image with Blur Overlays */}
-              <div className="relative rounded-lg overflow-hidden border border-slate-200 mb-6">
+              <div
+                className="relative rounded-lg overflow-hidden border border-slate-200 mb-6 cursor-pointer hover:opacity-95 transition-opacity"
+                onClick={() => setIsModalOpen(true)}
+              >
                 <img
                   src={currentSlideData.image}
                   alt={currentSlideData.title}
                   className="w-full h-auto"
                 />
-
-                {/* Blur Overlays */}
-                {currentSlideData.blurs.map((blur, index) => (
-                  <div
-                    key={index}
-                    className="absolute backdrop-blur-[4px] bg-slate-900/3"
-                    style={{
-                      top: blur.top,
-                      left: blur.left,
-                      right: blur.right,
-                      bottom: blur.bottom,
-                      width: blur.width,
-                      height: blur.height,
-                    }}
-                  />
-                ))}
               </div>
 
               {/* Navigation Controls */}
-              <div className="flex items-center justify-between mb-6">
-                {/* Previous Button */}
-                <button
-                  onClick={prevSlide}
-                  className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                  <span className="text-sm font-medium hidden sm:inline">
-                    Previous
-                  </span>
-                </button>
+              <div className="relative mb-12">
+                {/* First Row: Previous + Dots + Next */}
+                <div className="flex items-center justify-between mb-4">
+                  {/* Previous Button */}
+                  <button
+                    onClick={prevSlide}
+                    className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                    aria-label="Previous slide"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                    <span className="text-sm font-medium hidden sm:inline">
+                      Previous
+                    </span>
+                  </button>
 
-                {/* Slide Indicator Dots */}
-                <div className="flex items-center gap-2">
-                  {slides.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        setCurrentSlide(index);
-                        // Scroll to carousel top
-                        setTimeout(() => {
-                          const carousel =
-                            document.getElementById("carousel-container");
-                          if (carousel) {
-                            const yOffset = 300;
-                            const y =
-                              carousel.getBoundingClientRect().top +
-                              window.pageYOffset +
-                              yOffset;
-                            window.scrollTo({ top: y, behavior: "smooth" });
-                          }
-                        }, 50);
-                      }}
-                      className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                        index === currentSlide
-                          ? "bg-blue-800"
-                          : "bg-slate-300 hover:bg-slate-400"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
+                  {/* Slide Indicator Dots */}
+                  <div className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
+                    {slides.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          setCurrentSlide(index);
+                          setTimeout(() => {
+                            const carousel =
+                              document.getElementById("carousel-container");
+                            if (carousel) {
+                              const yOffset = 240;
+                              const y =
+                                carousel.getBoundingClientRect().top +
+                                window.pageYOffset +
+                                yOffset;
+                              window.scrollTo({ top: y, behavior: "smooth" });
+                            }
+                          }, 50);
+                        }}
+                        className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
+                          index === currentSlide
+                            ? "bg-blue-800"
+                            : "bg-slate-300 hover:bg-slate-400"
+                        }`}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={nextSlide}
+                    className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                    aria-label="Next slide"
+                  >
+                    <span className="text-sm font-medium hidden sm:inline">
+                      Next
+                    </span>
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
                 </div>
 
-                {/* Next Button */}
-                <button
-                  onClick={nextSlide}
-                  className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
-                  aria-label="Next slide"
-                >
-                  <span className="text-sm font-medium hidden sm:inline">
-                    Next
+                {/* Second Row: Tag (Absolutely Centered) */}
+                <div className="flex justify-center absolute left-1/2 -translate-x-1/2 w-full">
+                  <span className="text-sm font-medium text-slate-700 bg-slate-100 px-4 py-2 rounded-full">
+                    {currentSlideData.title}
                   </span>
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Section Label */}
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-slate-700">
-                  Section: {currentSlideData.title}
-                </span>
-                <span className="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
-                  {currentSlideData.page}
-                </span>
+                </div>
               </div>
             </div>
           </div>
@@ -349,6 +358,102 @@ export default function SamplePlaybookPage() {
             </div>
           </div>
         </div>
+
+        {/* Lightbox Modal */}
+        {isModalOpen && (
+          <div
+            className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center"
+            onClick={() => setIsModalOpen(false)}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-[110]"
+              aria-label="Close modal"
+            >
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Modal Content */}
+            <div
+              className="relative max-w-6xl w-full h-full flex items-center justify-center p-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Previous Button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevSlide();
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-3 z-[110]"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-8 h-8" />
+              </button>
+
+              {/* Image */}
+              <div className="relative max-h-[75vh] max-w-full mb-20">
+                <img
+                  src={currentSlideData.image}
+                  alt={currentSlideData.title}
+                  className="max-h-[75vh] max-w-full w-auto h-auto object-contain"
+                />
+              </div>
+
+              {/* Next Button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextSlide();
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-3 z-[110]"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-8 h-8" />
+              </button>
+
+              {/* Slide Info */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent pt-16 pb-12">
+                <div className="text-center">
+                  <div className="px-4 py-2 mb-4">
+                    <p className="text-white text-base font-medium">
+                      {currentSlideData.title}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 justify-center">
+                    {slides.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentSlide(index);
+                        }}
+                        className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
+                          index === currentSlide
+                            ? "bg-white"
+                            : "bg-white/50 hover:bg-white/70"
+                        }`}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
