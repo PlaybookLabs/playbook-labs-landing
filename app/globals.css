@@ -638,3 +638,17 @@ section::before {
     opacity: 0.95;
   }
 }
+@keyframes scroll-mobile-full {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% + -20px));
+  }
+}
+
+.animate-scroll-mobile-full {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: scroll-mobile-full 35s linear infinite;
+}

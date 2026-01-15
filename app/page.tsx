@@ -1224,7 +1224,7 @@ const ScrollingTestimonials = memo(() => {
     },
     {
       name: "M, 38, Toronto, Canada",
-      text: "This was the darkest time of my life and I was drowning. My playbook gave me something I didn't know I needed: proof that other people survived this exact situation and came out okay. The emotional relief from the podcast was unexpected and it got me through some really hard nights.",
+      text: "This was the darkest time of my life and I was at my breaking point. My playbook gave me something I didn't know I needed: proof that other people survived this exact situation and came out okay. The emotional relief from the podcast was unexpected and it got me through some really hard nights.",
       avatar: "DM",
       struggle: "Caring for aging parent with dementia",
     },
@@ -1540,7 +1540,160 @@ export default function HomePage() {
             </Button>
           }
         />
+        {/* Trusted By Banner */}
+        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white/80 backdrop-blur-sm overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            {/* Mobile: Scrolling Banner */}
+            <div className="md:hidden">
+              <div className="relative overflow-hidden">
+                <div className="animate-scroll-mobile-full">
+                  {/* First set - Text + Logos */}
+                  <p
+                    className="font-extrabold text-sm leading-tight text-left flex-shrink-0 mx-6 inline-block align-middle"
+                    style={{ color: "#9a9ba0" }}
+                  >
+                    Where our
+                    <br />
+                    clients work
+                  </p>
+                  <Image
+                    src="/images/stripe-logo.png"
+                    alt="Stripe"
+                    width={96}
+                    height={32}
+                    className="h-6 w-auto opacity-45 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                  <Image
+                    src="/images/nyt-logo.svg"
+                    alt="New York Times"
+                    width={128}
+                    height={32}
+                    className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                  <Image
+                    src="/images/bcg-logo.png"
+                    alt="BCG"
+                    width={80}
+                    height={32}
+                    className="h-5 w-auto opacity-55 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                  <Image
+                    src="/images/shopify-logo.svg"
+                    alt="Shopify"
+                    width={96}
+                    height={32}
+                    className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                  <Image
+                    src="/images/blackrock-logo.png"
+                    alt="BlackRock"
+                    width={112}
+                    height={32}
+                    className="h-5 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
 
+                  {/* Second set - Text + Logos (duplicate) */}
+                  <p
+                    className="font-extrabold text-sm leading-tight text-left flex-shrink-0 mx-6 inline-block align-middle"
+                    style={{ color: "#9a9ba0" }}
+                  >
+                    Where our
+                    <br />
+                    clients work
+                  </p>
+                  <Image
+                    src="/images/stripe-logo.png"
+                    alt="Stripe"
+                    width={96}
+                    height={32}
+                    className="h-6 w-auto opacity-45 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                  <Image
+                    src="/images/nyt-logo.svg"
+                    alt="New York Times"
+                    width={128}
+                    height={32}
+                    className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                  <Image
+                    src="/images/bcg-logo.png"
+                    alt="BCG"
+                    width={80}
+                    height={32}
+                    className="h-5 w-auto opacity-55 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                  <Image
+                    src="/images/shopify-logo.svg"
+                    alt="Shopify"
+                    width={96}
+                    height={32}
+                    className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                  <Image
+                    src="/images/blackrock-logo.png"
+                    alt="BlackRock"
+                    width={112}
+                    height={32}
+                    className="h-5 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop: Static Layout */}
+            <div className="hidden md:flex flex-wrap items-center justify-between gap-y-8 gap-x-4">
+              {/* Text Label */}
+              <p
+                className="font-extrabold text-lg leading-tight text-left"
+                style={{ color: "#9a9ba0" }}
+              >
+                Where our
+                <br />
+                clients work
+              </p>
+              {/* Stripe Logo */}
+              <Image
+                src="/images/stripe-logo.png"
+                alt="Stripe"
+                width={96}
+                height={32}
+                className="h-8 w-auto opacity-45 grayscale"
+              />
+              {/* New York Times Logo */}
+              <Image
+                src="/images/nyt-logo.svg"
+                alt="New York Times"
+                width={128}
+                height={32}
+                className="h-8 w-auto opacity-40 grayscale"
+              />
+              {/* BCG Logo */}
+              <Image
+                src="/images/bcg-logo.png"
+                alt="BCG"
+                width={80}
+                height={32}
+                className="h-5.5 w-auto opacity-55 grayscale"
+              />
+              {/* Shopify Logo */}
+              <Image
+                src="/images/shopify-logo.svg"
+                alt="Shopify"
+                width={96}
+                height={32}
+                className="h-8 w-auto opacity-40 grayscale"
+              />
+              {/* BlackRock Logo */}
+              <Image
+                src="/images/blackrock-logo.png"
+                alt="BlackRock"
+                width={112}
+                height={32}
+                className="h-5 w-auto opacity-40 grayscale"
+              />
+            </div>
+          </div>
+        </section>
         {/* Approach Section */}
         <section
           id="approach"
@@ -1674,7 +1827,7 @@ export default function HomePage() {
                 {/* Sample Playbook Button - Below Icons */}
                 <Link
                   href="/sample-playbook"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-slate-700 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full hover:bg-white hover:shadow-lg transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-slate-700 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full shadow-md hover:bg-white hover:shadow-lg transition-all duration-300"
                 >
                   <svg
                     className="w-4 h-4"
@@ -1686,23 +1839,209 @@ export default function HomePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
                     />
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span>See a sample playbook</span>
+                  <span>Sample Playbook</span>
                 </Link>
               </div>
               {/* End of updates */}
             </div>
           </div>
         </section>
+        {/* Comparison Table Section */}
+        <section className="pt-14 pb-8 md:pb-14 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="font-playfair text-3xl md:text-5xl tracking-[-0.02em] leading-[1.2] text-slate-900 text-balance font-extrabold">
+                When you don't know where to start
+              </h2>
+              <p className="md:text-lg tracking-[-0.01em] leading-[1.5] text-slate-600 text-pretty max-w-2xl mx-auto font-normal text-lg">
+                Playbook Labs is for people who need a concrete plan, fast.
+              </p>
+            </div>
 
+            {/* Table - Horizontal Scroll on Mobile */}
+            <div className="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
+              <table className="w-full border-collapse min-w-[640px]">
+                <thead>
+                  <tr className="border-b-2 border-slate-200">
+                    <th className="text-left py-4 px-4 text-slate-700 font-medium text-xs md:text-sm tracking-wide"></th>
+                    <th className="text-center py-4 px-6 text-center py-4 px-4 text-slate-700 font-bold text-base md:text-lg bg-white rounded-t-xl shadow-lg">
+                      Playbook Labs
+                    </th>
+                    <th className="text-center py-4 px-4 text-slate-700 font-bold text-base md:text-lg">
+                      Therapy
+                    </th>
+                    <th className="text-center py-4 px-4 text-slate-700 font-bold text-base md:text-lg border-l border-dotted border-slate-300">
+                      Coaching
+                    </th>
+                    <th className="text-center py-4 px-4 text-slate-700 font-bold text-base md:text-lg border-l border-dotted border-slate-300">
+                      Self-Help
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Focus Row */}
+                  <tr className="border-b border-slate-200">
+                    <td className="py-4 px-4 text-slate-700 font-medium text-base md:text-base">
+                      Focus
+                    </td>
+                    <td className="py-4 px-6 text-center bg-white shadow-lg text-slate-800 font-bold text-sm">
+                      Strategic Action
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm">
+                      Emotional Processing
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm border-l border-dotted border-slate-300">
+                      Goal Accountability
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm border-l border-dotted border-slate-300">
+                      Passive Learning
+                    </td>
+                  </tr>
+
+                  {/* Total Investment Row */}
+                  <tr className="border-b border-slate-200">
+                    <td className="py-4 px-4 text-slate-700 font-medium text-base md:text-base">
+                      Total Investment
+                    </td>
+                    <td className="py-4 px-6 text-center bg-white shadow-lg text-slate-800 font-bold text-sm">
+                      $499
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm">
+                      $1,500–2,500+
+                      <br />
+                      <span className="text-xs text-slate-700">
+                        (10+ sessions)
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm border-l border-dotted border-slate-300">
+                      $1,000–6,000+
+                      <br />
+                      <span className="text-xs text-slate-700">
+                        (3–6 months)
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm border-l border-dotted border-slate-300">
+                      $20–200
+                    </td>
+                  </tr>
+
+                  {/* Your Time Row */}
+                  <tr className="border-b border-slate-200">
+                    <td className="py-4 px-4 text-slate-700 font-medium text-base md:text-base">
+                      Your Time
+                    </td>
+                    <td className="py-4 px-6 text-center bg-white shadow-lg text-slate-800 font-bold text-sm">
+                      &lt;1 hour
+                      <br />
+                      <span className="text-xs text-slate-700 font-bold">
+                        (intake form)
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm">
+                      10–20+ hours
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm border-l border-dotted border-slate-300">
+                      12–24+ hours
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm border-l border-dotted border-slate-300">
+                      Self-paced
+                    </td>
+                  </tr>
+
+                  {/* Timeline to Plan Row */}
+                  <tr className="border-b border-slate-200">
+                    <td className="py-4 px-4 text-slate-700 font-medium text-base md:text-base">
+                      Timeline to Plan
+                    </td>
+                    <td className="py-4 px-6 text-center bg-white shadow-lg text-slate-800 font-bold text-sm">
+                      &lt;7 days
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm italic">
+                      Unknown
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm italic border-l border-dotted border-slate-300">
+                      Unknown
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm italic border-l border-dotted border-slate-300">
+                      Unknown
+                    </td>
+                  </tr>
+
+                  {/* Concrete Roadmap Row */}
+                  <tr className="border-b border-slate-200">
+                    <td className="py-4 px-4 text-slate-700 font-medium text-base md:text-base">
+                      Concrete Roadmap
+                    </td>
+                    <td className="py-4 px-6 text-center bg-white shadow-lg">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-500 text-lg">
+                      —
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-500 text-lg border-l border-dotted border-slate-300">
+                      —
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-500 text-lg border-l border-dotted border-slate-300">
+                      —
+                    </td>
+                  </tr>
+
+                  {/* Custom Podcast Row */}
+                  <tr className="border-b border-slate-200">
+                    <td className="py-4 px-4 text-slate-700 font-medium text-base md:text-base">
+                      Custom Podcast
+                    </td>
+                    <td className="py-4 px-6 text-center bg-white shadow-lg">
+                      <Check className="h-5 w-5 text-green-600 mx-auto" />
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-500 text-lg">
+                      —
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-500 text-lg border-l border-dotted border-slate-300">
+                      —
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-500 text-lg border-l border-dotted border-slate-300">
+                      —
+                    </td>
+                  </tr>
+
+                  {/* What You Receive Row */}
+                  <tr>
+                    <td className="py-4 px-4 text-slate-700 font-medium text-base md:text-base">
+                      What You Receive
+                    </td>
+                    <td className="py-4 px-6 text-center bg-white rounded-b-xl shadow-lg text-slate-800 font-bold text-sm">
+                      Playbook
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-500 text-lg">
+                      —
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-500 text-lg border-l border-dotted border-slate-300">
+                      —
+                    </td>
+                    <td className="py-4 px-4 text-center text-slate-800 text-sm border-l border-dotted border-slate-300">
+                      Books/Courses
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Scroll Hint */}
+            <p className="md:hidden text-center text-xs text-slate-500 mt-4">
+              ← Swipe to compare →
+            </p>
+          </div>
+        </section>
         {/* How It Works Section */}
         <section
           id="how-it-works"
@@ -1873,7 +2212,7 @@ export default function HomePage() {
                       onClick={() =>
                         (window.location.href = "/sample-playbook")
                       }
-                      className="w-full px-6 py-3 border-2 border-purple-300/50 text-purple-300 hover:border-purple-200 hover:text-white hover:bg-purple-500/10 transition-all duration-300 rounded-full text-base font-medium flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full px-6 py-3 border-2 border-purple-300/75 text-purple-300 hover:border-purple-200 hover:text-white hover:bg-purple-500/10 transition-all duration-300 rounded-full text-base font-semibold flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <svg
                         className="w-4 h-4"
@@ -1894,13 +2233,13 @@ export default function HomePage() {
                           d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                         />
                       </svg>
-                      <span>See a sample playbook</span>
+                      <span>Sample Playbook</span>
                     </button>
 
                     {/* Get Started Button */}
                     <Button
                       asChild
-                      className="w-full bg-white hover:bg-slate-50 text-slate-900 py-6 text-base md:text-lg rounded-full font-semibold cursor-pointer"
+                      className="w-full bg-white hover:bg-slate-50 text-slate-900 py-6 text-lg md:text-lg rounded-full font-semibold cursor-pointer"
                     >
                       <a href="/problem-submission">Get Started</a>
                     </Button>
