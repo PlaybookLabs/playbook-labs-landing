@@ -650,4 +650,6 @@ section::before {
 .marquee {
   animation: marquee 28s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
+

@@ -1547,15 +1547,14 @@ export default function HomePage() {
             <div className="md:hidden">
               <div
                 className="relative overflow-hidden
-  before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-6 before:bg-gradient-to-r before:from-white
-  after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-6 after:bg-gradient-to-l after:from-white
-"
+          before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-6 before:bg-gradient-to-r before:from-white
+          after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-6 after:bg-gradient-to-l after:from-white"
               >
                 <div className="inline-flex w-max marquee whitespace-nowrap">
                   {/* === Sequence A === */}
-                  <div className="flex items-center">
+                  <div className="flex items-center gap-12 pr-12">
                     <p
-                      className="font-extrabold text-sm leading-tight flex-shrink-0 mx-6"
+                      className="font-extrabold text-sm leading-tight flex-shrink-0"
                       style={{ color: "#9a9ba0" }}
                     >
                       Where our
@@ -1567,42 +1566,41 @@ export default function HomePage() {
                       alt="Stripe"
                       width={120}
                       height={40}
-                      className="h-8 w-auto opacity-45 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-45 grayscale flex-shrink-0"
                     />
                     <Image
                       src="/images/nyt-logo.svg"
                       alt="New York Times"
                       width={150}
                       height={40}
-                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                     <Image
                       src="/images/bcg-logo.png"
                       alt="BCG"
                       width={100}
                       height={40}
-                      className="h-6 w-auto opacity-55 grayscale flex-shrink-0 mx-6"
+                      className="h-6 w-auto opacity-55 grayscale flex-shrink-0"
                     />
                     <Image
                       src="/images/shopify-logo.svg"
                       alt="Shopify"
                       width={120}
                       height={40}
-                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                     <Image
                       src="/images/blackrock-logo.png"
                       alt="BlackRock"
                       width={140}
                       height={40}
-                      className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-6 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                   </div>
-
                   {/* === Sequence B (duplicate) === */}
-                  <div className="flex items-center">
+                  <div className="flex items-center gap-12 pr-12">
                     <p
-                      className="font-extrabold text-base leading-tight flex-shrink-0 mx-6"
+                      className="font-extrabold text-sm leading-tight flex-shrink-0"
                       style={{ color: "#9a9ba0" }}
                     >
                       Where our
@@ -1614,44 +1612,42 @@ export default function HomePage() {
                       alt="Stripe"
                       width={120}
                       height={40}
-                      className="h-8 w-auto opacity-45 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-45 grayscale flex-shrink-0"
                     />
                     <Image
                       src="/images/nyt-logo.svg"
                       alt="New York Times"
                       width={150}
                       height={40}
-                      className="8 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                     <Image
                       src="/images/bcg-logo.png"
                       alt="BCG"
                       width={100}
                       height={40}
-                      className="h-6 w-auto opacity-55 grayscale flex-shrink-0 mx-6"
+                      className="h-6 w-auto opacity-55 grayscale flex-shrink-0"
                     />
                     <Image
                       src="/images/shopify-logo.svg"
                       alt="Shopify"
                       width={120}
                       height={40}
-                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                     <Image
                       src="/images/blackrock-logo.png"
                       alt="BlackRock"
                       width={140}
                       height={40}
-                      className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-6 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Desktop: Static Layout */}
+            {/* Desktop: Static Layout - unchanged */}
             <div className="hidden md:flex flex-wrap items-center justify-between gap-y-8 gap-x-4">
-              {/* Text Label */}
               <p
                 className="font-extrabold text-lg leading-tight text-left"
                 style={{ color: "#9a9ba0" }}
@@ -1660,7 +1656,6 @@ export default function HomePage() {
                 <br />
                 clients work
               </p>
-              {/* Stripe Logo */}
               <Image
                 src="/images/stripe-logo.png"
                 alt="Stripe"
@@ -1668,7 +1663,6 @@ export default function HomePage() {
                 height={32}
                 className="h-8 w-auto opacity-45 grayscale"
               />
-              {/* New York Times Logo */}
               <Image
                 src="/images/nyt-logo.svg"
                 alt="New York Times"
@@ -1676,7 +1670,6 @@ export default function HomePage() {
                 height={32}
                 className="h-8 w-auto opacity-40 grayscale"
               />
-              {/* BCG Logo */}
               <Image
                 src="/images/bcg-logo.png"
                 alt="BCG"
@@ -1684,7 +1677,6 @@ export default function HomePage() {
                 height={32}
                 className="h-5.5 w-auto opacity-55 grayscale"
               />
-              {/* Shopify Logo */}
               <Image
                 src="/images/shopify-logo.svg"
                 alt="Shopify"
@@ -1692,7 +1684,6 @@ export default function HomePage() {
                 height={32}
                 className="h-8 w-auto opacity-40 grayscale"
               />
-              {/* BlackRock Logo */}
               <Image
                 src="/images/blackrock-logo.png"
                 alt="BlackRock"
