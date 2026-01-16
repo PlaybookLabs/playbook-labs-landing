@@ -1545,97 +1545,106 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto">
             {/* Mobile: Scrolling Banner */}
             <div className="md:hidden">
-              <div className="relative overflow-hidden">
-                <div className="animate-scroll-mobile-full">
-                  {/* First set - Text + Logos */}
-                  <p
-                    className="font-extrabold text-sm leading-tight text-left flex-shrink-0 mx-6 inline-block align-middle"
-                    style={{ color: "#9a9ba0" }}
-                  >
-                    Where our
-                    <br />
-                    clients work
-                  </p>
-                  <Image
-                    src="/images/stripe-logo.png"
-                    alt="Stripe"
-                    width={96}
-                    height={32}
-                    className="h-6 w-auto opacity-45 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
-                  <Image
-                    src="/images/nyt-logo.svg"
-                    alt="New York Times"
-                    width={128}
-                    height={32}
-                    className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
-                  <Image
-                    src="/images/bcg-logo.png"
-                    alt="BCG"
-                    width={80}
-                    height={32}
-                    className="h-5 w-auto opacity-55 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
-                  <Image
-                    src="/images/shopify-logo.svg"
-                    alt="Shopify"
-                    width={96}
-                    height={32}
-                    className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
-                  <Image
-                    src="/images/blackrock-logo.png"
-                    alt="BlackRock"
-                    width={112}
-                    height={32}
-                    className="h-5 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
+              <div
+                className="relative overflow-hidden
+  before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-6 before:bg-gradient-to-r before:from-white
+  after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-6 after:bg-gradient-to-l after:from-white
+"
+              >
+                <div className="inline-flex w-max marquee whitespace-nowrap">
+                  {/* === Sequence A === */}
+                  <div className="flex items-center">
+                    <p
+                      className="font-extrabold text-sm leading-tight flex-shrink-0 mx-6"
+                      style={{ color: "#9a9ba0" }}
+                    >
+                      Where our
+                      <br />
+                      clients work
+                    </p>
+                    <Image
+                      src="/images/stripe-logo.png"
+                      alt="Stripe"
+                      width={120}
+                      height={40}
+                      className="h-7 w-auto opacity-45 grayscale flex-shrink-0 mx-6"
+                    />
+                    <Image
+                      src="/images/nyt-logo.svg"
+                      alt="New York Times"
+                      width={150}
+                      height={40}
+                      className="h-7 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                    />
+                    <Image
+                      src="/images/bcg-logo.png"
+                      alt="BCG"
+                      width={100}
+                      height={40}
+                      className="h-6 w-auto opacity-55 grayscale flex-shrink-0 mx-6"
+                    />
+                    <Image
+                      src="/images/shopify-logo.svg"
+                      alt="Shopify"
+                      width={120}
+                      height={40}
+                      className="h-7 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                    />
+                    <Image
+                      src="/images/blackrock-logo.png"
+                      alt="BlackRock"
+                      width={140}
+                      height={40}
+                      className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                    />
+                  </div>
 
-                  {/* Second set - Text + Logos (duplicate) */}
-                  <p
-                    className="font-extrabold text-sm leading-tight text-left flex-shrink-0 mx-6 inline-block align-middle"
-                    style={{ color: "#9a9ba0" }}
-                  >
-                    Where our
-                    <br />
-                    clients work
-                  </p>
-                  <Image
-                    src="/images/stripe-logo.png"
-                    alt="Stripe"
-                    width={96}
-                    height={32}
-                    className="h-6 w-auto opacity-45 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
-                  <Image
-                    src="/images/nyt-logo.svg"
-                    alt="New York Times"
-                    width={128}
-                    height={32}
-                    className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
-                  <Image
-                    src="/images/bcg-logo.png"
-                    alt="BCG"
-                    width={80}
-                    height={32}
-                    className="h-5 w-auto opacity-55 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
-                  <Image
-                    src="/images/shopify-logo.svg"
-                    alt="Shopify"
-                    width={96}
-                    height={32}
-                    className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
-                  <Image
-                    src="/images/blackrock-logo.png"
-                    alt="BlackRock"
-                    width={112}
-                    height={32}
-                    className="h-5 w-auto opacity-40 grayscale flex-shrink-0 mx-6 inline-block align-middle"
-                  />
+                  {/* === Sequence B (duplicate) === */}
+                  <div className="flex items-center">
+                    <p
+                      className="font-extrabold text-sm leading-tight flex-shrink-0 mx-6"
+                      style={{ color: "#9a9ba0" }}
+                    >
+                      Where our
+                      <br />
+                      clients work
+                    </p>
+                    <Image
+                      src="/images/stripe-logo.png"
+                      alt="Stripe"
+                      width={120}
+                      height={40}
+                      className="h-7 w-auto opacity-45 grayscale flex-shrink-0 mx-6"
+                    />
+                    <Image
+                      src="/images/nyt-logo.svg"
+                      alt="New York Times"
+                      width={150}
+                      height={40}
+                      className="h-7 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                    />
+                    <Image
+                      src="/images/bcg-logo.png"
+                      alt="BCG"
+                      width={100}
+                      height={40}
+                      className="h-6 w-auto opacity-55 grayscale flex-shrink-0 mx-6"
+                    />
+                    <Image
+                      src="/images/shopify-logo.svg"
+                      alt="Shopify"
+                      width={120}
+                      height={40}
+                      className="h-7 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                    />
+                    <Image
+                      src="/images/blackrock-logo.png"
+                      alt="BlackRock"
+                      width={140}
+                      height={40}
+                      className="h-6 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -1855,6 +1864,84 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* How It Works Section */}
+        <section
+          id="how-it-works"
+          className="pt-14 pb-8 md:pb-14 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-16"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="font-playfair text-3xl md:text-5xl tracking-[-0.02em] leading-[1.2] text-slate-900 text-balance font-extrabold">
+                Feeling stuck?
+              </h2>
+              <p className="md:text-lg tracking-[-0.01em] leading-[1.5] text-slate-600 text-pretty max-w-2xl mx-auto font-normal text-lg">
+                Let&#39;s get you out of there.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Step 1: Submit Your Case */}
+              <Card className="relative overflow-hidden bg-white/60 backdrop-blur-sm border-slate-200 hover:shadow-xl transition-all duration-300">
+                <CardParticles />
+                <CardContent className="pt-8 pb-8 px-6 text-center space-y-6 relative z-10">
+                  <div className="flex justify-center">
+                    <StackedLayersIcon />
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="md:text-xl text-slate-900 font-bold text-xl">
+                      Submit Your Case
+                    </h3>
+                    <p className="md:text-base text-slate-600 leading-relaxed text-base">
+                      Share your situation in detail. The more context you
+                      provide, the better we can tailor your solution.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Step 2: Deep Analysis & Research */}
+              <Card className="relative overflow-hidden bg-white/60 backdrop-blur-sm border-slate-200 hover:shadow-xl transition-all duration-300">
+                <CardParticles />
+                <CardContent className="pt-8 pb-8 px-6 text-center space-y-6 relative z-10">
+                  <div className="flex justify-center">
+                    <MagnifyingGlassIcon />
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="md:text-xl text-slate-900 text-xl font-bold">
+                      We Build Your Solution
+                    </h3>
+                    <p className="md:text-base text-slate-600 leading-relaxed text-base">
+                      Our team finds similar real-life cases and bridges the gap
+                      across multiple disciplines to craft a strategy unique to
+                      your situation.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Step 3: Receive Your Solution */}
+              <Card className="relative overflow-hidden bg-white/60 backdrop-blur-sm border-slate-200 hover:shadow-xl transition-all duration-300">
+                <CardParticles />
+                <CardContent className="pt-8 pb-8 px-6 text-center space-y-6 relative z-10">
+                  <div className="flex justify-center">
+                    <CheckmarkIcon />
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="md:text-xl text-slate-900 text-xl font-bold">
+                      Receive Your Playbook
+                    </h3>
+                    <p className="md:text-base text-slate-600 leading-relaxed text-base">
+                      Get your detailed strategy document and custom podcast
+                      episode with practical next steps to move forward.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* Comparison Table Section */}
         <section className="pt-14 pb-8 md:pb-14 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
           <div className="max-w-7xl mx-auto">
@@ -2040,82 +2127,6 @@ export default function HomePage() {
             <p className="md:hidden text-center text-xs text-slate-500 mt-4">
               ← Swipe to compare →
             </p>
-          </div>
-        </section>
-        {/* How It Works Section */}
-        <section
-          id="how-it-works"
-          className="pt-14 pb-8 md:pb-14 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-16"
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16 space-y-4">
-              <h2 className="font-playfair text-3xl md:text-5xl tracking-[-0.02em] leading-[1.2] text-slate-900 text-balance font-extrabold">
-                Feeling stuck?
-              </h2>
-              <p className="md:text-lg tracking-[-0.01em] leading-[1.5] text-slate-600 text-pretty max-w-2xl mx-auto font-normal text-lg">
-                Let&#39;s get you out of there.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Step 1: Submit Your Case */}
-              <Card className="relative overflow-hidden bg-white/60 backdrop-blur-sm border-slate-200 hover:shadow-xl transition-all duration-300">
-                <CardParticles />
-                <CardContent className="pt-8 pb-8 px-6 text-center space-y-6 relative z-10">
-                  <div className="flex justify-center">
-                    <StackedLayersIcon />
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="md:text-xl text-slate-900 font-bold text-xl">
-                      Submit Your Case
-                    </h3>
-                    <p className="md:text-base text-slate-600 leading-relaxed text-base">
-                      Share your situation in detail. The more context you
-                      provide, the better we can tailor your solution.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Step 2: Deep Analysis & Research */}
-              <Card className="relative overflow-hidden bg-white/60 backdrop-blur-sm border-slate-200 hover:shadow-xl transition-all duration-300">
-                <CardParticles />
-                <CardContent className="pt-8 pb-8 px-6 text-center space-y-6 relative z-10">
-                  <div className="flex justify-center">
-                    <MagnifyingGlassIcon />
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="md:text-xl text-slate-900 text-xl font-bold">
-                      We Build Your Solution
-                    </h3>
-                    <p className="md:text-base text-slate-600 leading-relaxed text-base">
-                      Our team finds similar real-life cases and bridges the gap
-                      across multiple disciplines to craft a strategy unique to
-                      your situation.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Step 3: Receive Your Solution */}
-              <Card className="relative overflow-hidden bg-white/60 backdrop-blur-sm border-slate-200 hover:shadow-xl transition-all duration-300">
-                <CardParticles />
-                <CardContent className="pt-8 pb-8 px-6 text-center space-y-6 relative z-10">
-                  <div className="flex justify-center">
-                    <CheckmarkIcon />
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="md:text-xl text-slate-900 text-xl font-bold">
-                      Receive Your Playbook
-                    </h3>
-                    <p className="md:text-base text-slate-600 leading-relaxed text-base">
-                      Get your detailed strategy document and custom podcast
-                      episode with practical next steps to move forward.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </section>
 
