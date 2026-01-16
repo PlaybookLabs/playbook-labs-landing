@@ -1567,14 +1567,14 @@ export default function HomePage() {
                       alt="Stripe"
                       width={120}
                       height={40}
-                      className="h-7 w-auto opacity-45 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-45 grayscale flex-shrink-0 mx-6"
                     />
                     <Image
                       src="/images/nyt-logo.svg"
                       alt="New York Times"
                       width={150}
                       height={40}
-                      className="h-7 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
                     />
                     <Image
                       src="/images/bcg-logo.png"
@@ -1588,7 +1588,7 @@ export default function HomePage() {
                       alt="Shopify"
                       width={120}
                       height={40}
-                      className="h-7 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
                     />
                     <Image
                       src="/images/blackrock-logo.png"
@@ -1602,7 +1602,7 @@ export default function HomePage() {
                   {/* === Sequence B (duplicate) === */}
                   <div className="flex items-center">
                     <p
-                      className="font-extrabold text-sm leading-tight flex-shrink-0 mx-6"
+                      className="font-extrabold text-base leading-tight flex-shrink-0 mx-6"
                       style={{ color: "#9a9ba0" }}
                     >
                       Where our
@@ -1614,14 +1614,14 @@ export default function HomePage() {
                       alt="Stripe"
                       width={120}
                       height={40}
-                      className="h-7 w-auto opacity-45 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-45 grayscale flex-shrink-0 mx-6"
                     />
                     <Image
                       src="/images/nyt-logo.svg"
                       alt="New York Times"
                       width={150}
                       height={40}
-                      className="h-7 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="8 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
                     />
                     <Image
                       src="/images/bcg-logo.png"
@@ -1635,7 +1635,7 @@ export default function HomePage() {
                       alt="Shopify"
                       width={120}
                       height={40}
-                      className="h-7 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
+                      className="h-8 w-auto opacity-40 grayscale flex-shrink-0 mx-6"
                     />
                     <Image
                       src="/images/blackrock-logo.png"
