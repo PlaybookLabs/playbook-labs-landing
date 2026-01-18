@@ -1994,14 +1994,14 @@ export default function HomePage() {
                       $499
                     </td>
                     <td className="py-4 px-4 text-center text-slate-800 text-sm">
-                      $1,500–2,500+
+                      <span className="whitespace-nowrap">$1,500–2,500+</span>
                       <br />
                       <span className="text-xs text-slate-700">
                         (10+ sessions)
                       </span>
                     </td>
                     <td className="py-4 px-4 text-center text-slate-800 text-sm border-l border-dotted border-slate-300">
-                      $1,000–6,000+
+                      <span className="whitespace-nowrap">$1,000–6,000+</span>
                       <br />
                       <span className="text-xs text-slate-700">
                         (3–6 months)
@@ -2011,7 +2011,6 @@ export default function HomePage() {
                       $20–200
                     </td>
                   </tr>
-
                   {/* Your Time Row */}
                   <tr className="border-b border-slate-200">
                     <td className="py-4 px-4 text-slate-700 font-medium text-base md:text-base">
@@ -2214,7 +2213,7 @@ export default function HomePage() {
                       onClick={() =>
                         (window.location.href = "/sample-playbook")
                       }
-                      className="w-full px-6 py-3 border-2 border-purple-300/75 text-purple-300 hover:border-purple-200 hover:text-white hover:bg-purple-500/10 transition-all duration-300 rounded-full text-base font-semibold flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full px-6 py-3 border-2 border-purple-300/75 text-purple-300 hover:border-purple-200 hover:text-white hover:bg-purple-500/10 transition-all duration-300 rounded-full text-base font-normal flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <svg
                         className="w-4 h-4"
