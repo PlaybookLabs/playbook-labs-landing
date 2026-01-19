@@ -404,7 +404,7 @@ export default function SamplePlaybookPage() {
             {/* Close Button */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-[110]"
+              className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-[110] cursor-pointer"
               aria-label="Close modal"
             >
               <svg
@@ -433,7 +433,7 @@ export default function SamplePlaybookPage() {
                   e.stopPropagation();
                   prevSlide();
                 }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-3 z-[110]"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-3 z-[110] cursor-pointer"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="w-8 h-8" />
@@ -454,7 +454,7 @@ export default function SamplePlaybookPage() {
                   e.stopPropagation();
                   nextSlide();
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-3 z-[110]"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-3 z-[110] cursor-pointer"
                 aria-label="Next slide"
               >
                 <ChevronRight className="w-8 h-8" />

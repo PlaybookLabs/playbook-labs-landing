@@ -1196,6 +1196,318 @@ const KnowledgeSynthesisVisualization = memo(() => {
 
 KnowledgeSynthesisVisualization.displayName = "KnowledgeSynthesisVisualization";
 
+const VideoTestimonial = memo(
+  ({
+    videoSrc,
+    category,
+    categoryColor,
+    caption,
+  }: {
+    videoSrc: string;
+    category: string;
+    categoryColor: string;
+    caption: string;
+  }) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isMuted, setIsMuted] = useState(false);
+    const [showControls, setShowControls] = useState(false);
+    const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    const handleVideoClick = () => {
+      if (videoRef.current) {
+        if (isPlaying) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        } else {
+          videoRef.current.play();
+          setIsPlaying(true);
+        }
+        showControlsTemporarily();
+      }
+    };
+
+    const handleMuteToggle = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (videoRef.current) {
+        videoRef.current.muted = !isMuted;
+        setIsMuted(!isMuted);
+        showControlsTemporarily();
+      }
+    };
+
+    const showControlsTemporarily = () => {
+      setShowControls(true);
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+      controlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 3000);
+    };
+
+    useEffect(() => {
+      return () => {
+        if (controlsTimeoutRef.current) {
+          clearTimeout(controlsTimeoutRef.current);
+        }
+      };
+    }, []);
+
+    return (
+      <div className="flex flex-col rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-300 w-full max-w-[160px] md:max-w-[180px]">
+        {/* Video Container */}
+        <div
+          className="relative cursor-pointer bg-slate-100 aspect-[9/14]"
+          onClick={handleVideoClick}
+          onMouseEnter={showControlsTemporarily}
+        >
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            muted={isMuted}
+            playsInline
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            onEnded={() => setIsPlaying(false)}
+          >
+            <source src={videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Category Tag */}
+          <div className="absolute top-2 left-2 z-20">
+            <div
+              className="px-2 py-0.5 rounded-full text-[10px] font-normal text-white shadow-md"
+              style={{ backgroundColor: categoryColor }}
+            >
+              {category}
+            </div>
+          </div>
+
+          {/* Play Button - Bottom Left (always visible when paused) */}
+          {!isPlaying && (
+            <div className="absolute bottom-2 left-2 z-20">
+              <button
+                className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-all cursor-pointer"
+                onClick={handleVideoClick}
+              >
+                <svg
+                  className="w-4 h-4 text-slate-900 ml-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+            </div>
+          )}
+
+          {/* Pause & Mute Buttons - Bottom corners (visible when playing and controls shown) */}
+          {isPlaying && (
+            <div
+              className={`absolute bottom-2 left-2 right-2 flex justify-between z-20 transition-opacity duration-300 ${
+                showControls ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              {/* Pause Button - Bottom Left */}
+              <button
+                className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-all cursor-pointer"
+                onClick={handleVideoClick}
+              >
+                <svg
+                  className="w-4 h-4 text-slate-900"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                </svg>
+              </button>
+
+              {/* Mute Button - Bottom Right */}
+              <button
+                className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-all cursor-pointer"
+                onClick={handleMuteToggle}
+              >
+                {isMuted ? (
+                  <svg
+                    className="w-4 h-4 text-slate-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-4 h-4 text-slate-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Caption Bar */}
+        <div
+          className="px-3 py-2 text-white font-medium text-xs text-center"
+          style={{ backgroundColor: categoryColor }}
+        >
+          {caption}
+        </div>
+      </div>
+    );
+  }
+);
+VideoTestimonial.displayName = "VideoTestimonial";
+
+const VideoTestimonialCarousel = memo(() => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const videos = [
+    {
+      videoSrc: "/videos/partner-disconnect.mp4",
+      category: "couple",
+      categoryColor: "#EC4899",
+      caption: "Partner Disconnect",
+    },
+    {
+      videoSrc: "/videos/work-life-architecture.mp4",
+      category: "balance",
+      categoryColor: "#3B82F6",
+      caption: "Work-Life Architecture",
+    },
+    {
+      videoSrc: "/videos/strategic-clarity.mp4",
+      category: "decision-making",
+      categoryColor: "#8B5CF6",
+      caption: "Strategic Clarity",
+    },
+  ];
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === videos.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  return (
+    <>
+      {/* Mobile Carousel */}
+      <div className="md:hidden relative flex items-center justify-center gap-16">
+        {/* Left Arrow */}
+        <button
+          onClick={goToPrevious}
+          className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:bg-white transition-all flex items-center justify-center"
+          aria-label="Previous video"
+        >
+          <svg
+            className="w-5 h-5 text-slate-900"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        {/* Video */}
+        <div className="flex-shrink-0">
+          <VideoTestimonial
+            key={currentIndex}
+            videoSrc={videos[currentIndex].videoSrc}
+            category={videos[currentIndex].category}
+            categoryColor={videos[currentIndex].categoryColor}
+            caption={videos[currentIndex].caption}
+          />
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={goToNext}
+          className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:bg-white transition-all flex items-center justify-center"
+          aria-label="Next video"
+        >
+          <svg
+            className="w-5 h-5 text-slate-900"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Dot Indicators - Mobile Only */}
+      <div className="md:hidden flex justify-center gap-2 mt-6">
+        {videos.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex
+                ? "bg-slate-900"
+                : "bg-slate-300 hover:bg-slate-400"
+            }`}
+            aria-label={`Go to video ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Desktop - Original Layout */}
+      <div className="hidden md:flex flex-row justify-center items-center gap-30">
+        {videos.map((video, index) => (
+          <VideoTestimonial
+            key={index}
+            videoSrc={video.videoSrc}
+            category={video.category}
+            categoryColor={video.categoryColor}
+            caption={video.caption}
+          />
+        ))}
+      </div>
+    </>
+  );
+});
+VideoTestimonialCarousel.displayName = "VideoTestimonialCarousel";
+
 const ScrollingTestimonials = memo(() => {
   const testimonials = [
     {
@@ -1933,6 +2245,31 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section
+          id="testimonials"
+          className="pt-10 md:pt-12 pb-8 md:pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="font-playfair text-3xl md:text-5xl tracking-[-0.02em] leading-[1.2] text-slate-900 mb-4 text-balance font-extrabold">
+                Real problems. Real solutions. Real results.
+              </h2>
+              <p className="md:text-lg tracking-[-0.01em] leading-[1.5] text-slate-600 max-w-2xl mx-auto text-pretty font-normal text-lg">
+                See how our method has helped others find clarity and move
+                forward.
+              </p>
+            </div>
+
+            {/* Video Testimonials - Carousel on Mobile, Row on Desktop */}
+            <div className="mb-16">
+              <VideoTestimonialCarousel />
+            </div>
+
+            <ScrollingTestimonials />
+          </div>
+        </section>
+
         {/* Comparison Table Section */}
         <section className="pt-14 pb-8 md:pb-14 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
           <div className="max-w-7xl mx-auto">
@@ -2117,26 +2454,6 @@ export default function HomePage() {
             <p className="md:hidden text-center text-xs text-slate-500 mt-4">
               ← Swipe to compare →
             </p>
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section
-          id="testimonials"
-          className="pt-10 md:pt-12 pb-8 md:pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="font-playfair text-3xl md:text-5xl tracking-[-0.02em] leading-[1.2] text-slate-900 mb-4 text-balance font-extrabold">
-                Real problems. Real solutions. Real results.
-              </h2>
-              <p className="md:text-lg tracking-[-0.01em] leading-[1.5] text-slate-600 max-w-2xl mx-auto text-pretty font-normal text-lg">
-                See how our method has helped others find clarity and move
-                forward.
-              </p>
-            </div>
-
-            <ScrollingTestimonials />
           </div>
         </section>
 
