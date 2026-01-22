@@ -204,7 +204,7 @@ const CardParticles = memo(() => {
             particle.vx = -particle.vx * 0.95;
             particle.x = Math.max(
               particle.size / 2,
-              Math.min(containerWidth - particle.size / 2, particle.x)
+              Math.min(containerWidth - particle.size / 2, particle.x),
             );
           }
 
@@ -215,7 +215,7 @@ const CardParticles = memo(() => {
             particle.vy = -particle.vy * 0.95;
             particle.y = Math.max(
               particle.size / 2,
-              Math.min(containerHeight - particle.size / 2, particle.y)
+              Math.min(containerHeight - particle.size / 2, particle.y),
             );
           }
         } else {
@@ -1187,7 +1187,7 @@ const KnowledgeSynthesisVisualization = memo(() => {
                 {sub}
               </div>
             );
-          })
+          }),
         )}
       </div>
     </div>
@@ -1377,7 +1377,7 @@ const VideoTestimonial = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 VideoTestimonial.displayName = "VideoTestimonial";
 
@@ -1402,6 +1402,12 @@ const VideoTestimonialCarousel = memo(() => {
       category: "decision-making",
       categoryColor: "#8B5CF6",
       caption: "Strategic Clarity",
+    },
+    {
+      videoSrc: "/videos/relationship-patterns.mp4",
+      category: "couple",
+      categoryColor: "#EC4899F6",
+      caption: "Relationship Patterns",
     },
   ];
 
@@ -1511,25 +1517,25 @@ VideoTestimonialCarousel.displayName = "VideoTestimonialCarousel";
 const ScrollingTestimonials = memo(() => {
   const testimonials = [
     {
-      name: "F, 29, Austin, USA",
-      text: "I kept putting off launching my business for two years. My playbook showed me three real cases of people who broke through similar paralysis. Seeing that someone with my exact fear pattern succeeded by doing the opposite of what I thought I needed (starting messy instead of waiting for perfect) changed everything. I launched within two weeks.",
+      name: "F, 29, Austin, US",
+      text: "I kept putting off launching my business for two years. My playbook showed me real cases of people who broke through similar paralysis. Seeing that someone with the same fear as mine succeeded by doing the opposite of what I thought I needed (starting messy instead of waiting for perfect) changed everything. I launched within two weeks.",
       avatar: "AK",
       struggle: "Procrastination on starting a business",
     },
     {
-      name: "F, 52, Chicago, USA",
-      text: "My son and I hadn't had a real conversation in months. Everything was a fight. The strategy document broke down exactly why our communication pattern had spiraled (with references to actual family therapy cases) and outlined a week-by-week approach to rebuild trust. What hit hardest was the podcast explaining how my generation's parenting instincts often backfire with Gen Z kids. We had dinner together yesterday and he actually opened up. First time in over a year.",
+      name: "F, 52, Chicago, US",
+      text: "My son and I hadn't had a real conversation in months. Everything was a fight. The strategy document broke down exactly why our communication pattern had spiraled (with references to actual family therapy cases) and outlined a week-by-week approach to rebuild trust. The biggest insight was how my generation's parenting instincts often backfire with Gen Z kids. We had dinner together yesterday and he finally opened up.",
       avatar: "RJ",
       struggle: "Relationship with teenage son",
     },
     {
       name: "M, 41, Singapore",
-      text: "I was skeptical about this kind of service, but the depth of analysis was incredible, and the podcast touch was really cool. They pulled insights from career psychology, industry research, and real cases of people who made similar pivots in their 40s. I expected general advice but got a 7-step roadmap with specific month by month actions. Worth every penny.",
+      text: "I was skeptical about this kind of service, but the depth of analysis was incredible, and the podcast touch was really cool. They used career psychology, industry research, and real cases of people who made similar pivots in their 40s. I expected general advice but got a 7-step roadmap with specific month by month actions. Worth every penny.",
       avatar: "SM",
       struggle: "Career transition from finance to tech",
     },
     {
-      name: "F, 27, Brooklyn, USA",
+      name: "F, 27, San Francisco, US",
       text: "The scripts for saying no felt awkward at first but they actually worked!!! I've turned down three unreasonable requests this month without guilt. Already recommended this to two coworkers.",
       avatar: "TL",
       struggle: "Constant people-pleasing at work",
@@ -1541,32 +1547,32 @@ const ScrollingTestimonials = memo(() => {
       struggle: "Caring for aging parent with dementia",
     },
     {
-      name: "F, 31, Portland, USA",
-      text: 'We were about to start couples therapy when I found Playbook Labs. The playbook identified the exact dynamic we were stuck in (they called it a "pursue-withdraw pattern around financial control") and showed me real couples who broke the cycle. The solution came from negotiation research and conflict resolution studies... they even pulled insights from behavioral economics about decision fatigue. We implemented the communication structure and had our first productive money conversation in maybe a year. For a fraction of therapy costs!',
+      name: "F, 31, Portland, US",
+      text: 'We were about to start couples therapy when I found Playbook Labs. The playbook identified the dynamic we were stuck in (they called it a "pursue-withdraw pattern around financial control") and showed couples who went through this too. The solution came from negotiation research and conflict resolution studies... they even pulled insights from behavioral economics about decision fatigue. We implemented the communication structure and had our first productive money conversation in maybe a year. For a fraction of therapy costs!',
       avatar: "KW",
       struggle: "Recurring money disputes with partner",
     },
     {
       name: "M, 45, Seattle, USA",
-      text: "My boss was micromanaging everything and undermining me in meetings. I was stressed, couldn't sleep, and seriously considering quitting. The playbook analyzed workplace power dynamics, primate social hierarchy research, and real cases of people who navigated similar situations. The strategy was counterintuitive: instead of avoiding him, I started sending brief end-of-day updates proactively. Within two weeks, the micromanaging dropped by half. He felt in the loop and I got my autonomy back. I'm not dreading work anymore.",
+      text: "My boss was micromanaging everything and undermining me in meetings. I was stressed and seriously considering quitting. They analyzed workplace power dynamics and primate social hierarchy. The strategy was counterintuitive: instead of avoiding him, I started sending end-of-day updates proactively. Within two weeks, the micromanaging dropped by half. He felt in the loop and I got my autonomy back!!",
       avatar: "JH",
       struggle: "Managing conflict with a difficult boss",
     },
     {
       name: "F, 25, Tokyo, Japan",
-      text: "The comparison thing was killing me. Everyone seemed ahead. My playbook made me realize the solution wasn't mindset work or affirmations but actually reframing and owning my timeline. The part about how cultural expectations (especially in Japan) create artificial pressure around age and achievement really helped me understand. I have a plan now instead of just anxiety.",
+      text: "The comparison thing was killing me. Everyone seemed ahead. My playbook made me realize the solution wasn't mindset work but actually reframing and owning my own timeline. The part about how cultural expectations (especially in Japan) create artificial pressure around age and achievement really helped me gain some perspective.",
       avatar: "MC",
       struggle: "Feeling behind peers in career and life",
     },
     {
-      name: "M, 42, Seattle, US",
-      text: "A colleague told me about this service after I mentioned I was heading toward a breakdown. The interdisciplinary synthesis was eye-opening. They pulled from chronobiology, neuroscience, and case studies of executives who burned out and rebuilt. What shocked me was learning my solution wasn't working less but restructuring my work rhythm completely. The specific recovery protocols are the only thing that's worked in three years.",
+      name: "M, 42, Miami, US",
+      text: "A colleague told me about this service after I mentioned I was heading toward a breakdown. The interdisciplinary synthesis was eye-opening. They explained concepts from chronobiology, neuroscience, and showed case studies of executives who burned out and rebuilt. I didn't need to work less. It was about restructuring my rhythm completely. The specific recovery protocols are the only thing that's worked for me.",
       avatar: "LP",
       struggle: "Chronic overwork and burnout prevention",
     },
     {
-      name: "F, 33, Melbourne, Australia",
-      text: "I was stuck for months. Couldn't decide if I was being too picky or ignoring red flags. The playbook introduced me to decision-making frameworks from philosophy and psychology, plus real relationship cases with similar dynamics. What helped most was realizing my situation mapped to a specific pattern where people who stayed ended up resentful. That clarity let me finally make the call. Hard but right.",
+      name: "F, 30, New York, US",
+      text: "I was stuck for months. Couldn't decide if I was being too picky or ignoring red flags. The playbook introduced me to decision-making frameworks from philosophy and psychology, plus real relationship cases with similar dynamics. My situation mapped to a specific pattern where people who stayed ended up resentful. That let me finally make the call. Hard but right.",
       avatar: "NB",
       struggle: "Whether to end a 6-year relationship",
     },
@@ -1577,8 +1583,8 @@ const ScrollingTestimonials = memo(() => {
       struggle: "Social anxiety & making friends post-move",
     },
     {
-      name: "F, 42, New York, US",
-      text: "We've been together 12 years and I love him but I was so lonely. The strategy document helped me understand why he shuts down and gave me specific communication approaches based on attachment research and actual couples who solved this exact dynamic. He's trying now. We're actually talking about feelings without him walking away. I've told three friends about this already.",
+      name: "F, 34, San Diego, US",
+      text: "My partner shut down emotionally. I felt completely alone. Playbook Labs showed me real couples who solved this exact dynamic and gave me a communication strategy based on actual attachment research. Hearing a podcast analyzing my relationship was wild. Now we're actually talking about feelings without him panicking.",
       avatar: "EW",
       struggle: "Partner's emotional unavailability",
     },
@@ -1590,25 +1596,25 @@ const ScrollingTestimonials = memo(() => {
     },
     {
       name: "F, 36, São Paulo, Brazil",
-      text: "I got promoted to director and immediately felt like an imposter. The combination of the written playbook and the podcast was GENIUS. I could study the document before big meetings and listen during my commute to internalize the strategies. Here's what blew my mind: they incorporated findings from elite athlete performance routines and applied them to my meeting anxiety!! I never would have connected those dots. The 30-day action plan is on my desk every day.",
+      text: "I got promoted to director and immediately felt like an imposter. The combination of the written playbook and the podcast was GENIUS. I could study the document before big meetings and listen during my commute to internalize the strategies. They incorporated findings from elite athlete performance routines and applied them to my meeting anxiety!! I never would have connected those dots.",
       avatar: "CS",
       struggle: "Confidence in leadership role",
     },
     {
       name: "F, 42, Boston, US",
-      text: "This is embarrassing to admit but it was destroying me. My younger brother has the career and life I thought I'd have. My playbook helped me understand the specific cognitive distortions I was stuck in and showed me cases of people who transformed sibling rivalry into something healthier. Less than three therapy sessions cost and honestly more targeted. I called my brother last week. We're okay now.",
+      text: "This is embarrassing to admit but my younger brother has the career and life I thought I'd have. Playbook Labs helped me understand the specific cognitive distortions I was stuck in and showed me cases of people who transformed sibling rivalry into something healthier. Less than three therapy sessions cost and honestly more targeted. I've told three friends about this already.",
       avatar: "HG",
       struggle: "Resentment toward successful sibling",
     },
     {
       name: "F, 29, Madrid, Spain",
-      text: 'Talk about thinking outside the box! I thought this was just going to be pros and cons lists but they brought in decision science research and showed me actual data on how people evaluate career moves. The numbers were eye-opening. Turns out the factors I was weighing heavily (salary, title) mattered way less than new skill acquisition and future market value of those skills. And with a podcast about myself?! I picked the "riskier" offer and six months in, best decision I\'ve made.',
+      text: 'Talk about thinking outside the box! I thought this was just going to be pros and cons lists but they brought in decision science research and showed me data on how people evaluate career moves. Turns out the factors I was weighing heavily (salary, title) mattered way less than new skill acquisition and future market value of those skills. And with a podcast about myself?! I picked the "riskier" offer and four months in, best decision I\'ve made.',
       avatar: "IM",
       struggle: "Choosing between two job offers",
     },
     {
       name: "F, 38, Berlin, Germany",
-      text: "The first time I used Playbook Labs was for this family situation that was really affecting my marriage. My playbook was so helpful that when I had a completely different problem three months later (struggling with motivation at work), I came back immediately. Both times they found patterns I couldn't see. Can't recommend enough!",
+      text: "The first time I used Playbook Labs was for this family situation that was really affecting my marriage. My playbook was so helpful that when I had a completely different problem three months later (struggling with motivation at work), I came back immediately. Both times they explained things I couldn't see. Can't recommend enough!",
       avatar: "ZT",
       struggle: "Conflict with mother-in-law",
     },
@@ -2468,7 +2474,7 @@ export default function HomePage() {
                 From problem to solution in days, not months
               </h2>
               <p className="tracking-[-0.01em] leading-[1.5] text-slate-600 max-w-2xl mx-auto text-pretty md:text-lg font-normal text-lg">
-                Other approaches are slow and cost thousands. Get results now.
+                Time compounds. Get results now.
               </p>
             </div>
 

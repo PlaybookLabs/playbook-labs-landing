@@ -36,7 +36,7 @@ export default function SamplePlaybookPage() {
     },
     {
       image: "/images/Case_5.png",
-      title: "Real 1",
+      title: "Real Case 1",
       page: "Extract from page 6",
       blurs: [],
     },

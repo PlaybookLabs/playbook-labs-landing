@@ -1,9 +1,21 @@
-"use client"
-
-import Image from "next/image"
-import Link from "next/link"
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function SubmitPage() {
+  // Fire InitiateCheckout event when page loads
+  useEffect(() => {
+    // Check if fbq is available (Meta Pixel loaded)
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "InitiateCheckout", {
+        value: 499,
+        currency: "USD",
+        content_name: "Problem Submission Form",
+      });
+    }
+  }, []); // Empty dependency array = runs once on mount
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
       <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
@@ -22,7 +34,6 @@ export default function SubmitPage() {
           </div>
         </div>
       </header>
-
       <main className="flex-1 flex flex-col">
         <div className="flex-1 relative">
           <iframe
@@ -38,7 +49,6 @@ export default function SubmitPage() {
           />
         </div>
       </main>
-
       <footer className="bg-slate-900 text-slate-300 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -46,6 +56,7 @@ export default function SubmitPage() {
               <p>© 2026 Playbook Labs. All rights reserved</p>
             </div>
             <div className="flex gap-6 text-sm">
+              {" "}
               <a
                 href="mailto:team@playbooklabs.co"
                 className="text-slate-400 hover:text-white transition-colors"
@@ -69,5 +80,5 @@ export default function SubmitPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
