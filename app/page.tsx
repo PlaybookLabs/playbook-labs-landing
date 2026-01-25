@@ -2540,7 +2540,7 @@ export default function HomePage() {
                 {
                   question: "What kinds of problems can I submit?",
                   answer:
-                    "Anything that feels complex or unresolved: romantic, family, work-related, personal, or existential. If people have faced it, we can study it and build a playbook for it.",
+                    "Anything that feels complex or unresolved: couple, family, work-related, personal, or existential. If people have faced it, we can study it and build a playbook for it.",
                 },
                 {
                   question:
@@ -2551,7 +2551,7 @@ export default function HomePage() {
                 {
                   question: "What happens after I submit my case?",
                   answer:
-                    "You describe your situation through our form. We research analogous real-life cases, extract insights across disciplines, and craft a strategy unique to your context. You then receive a personalized document and podcast episode explaining the solution.",
+                    "You describe your situation through our form. We research analogous real-life cases, extract insights across relevant disciplines, and craft a strategy unique to your context. You then receive a personalized document and podcast episode explaining the solution.",
                 },
                 {
                   question: "How long does it take?",
@@ -2566,7 +2566,7 @@ export default function HomePage() {
                 {
                   question: "Will my information stay private?",
                   answer:
-                    "Yes. Everything you share is treated as confidential and used only to create your playbook. Any examples reused for research or media are fully anonymized.",
+                    "Yes. Everything you share is treated as confidential and used only to create your playbook.",
                 },
                 {
                   question: "Are submissions refundable?",
