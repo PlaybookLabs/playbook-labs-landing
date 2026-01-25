@@ -1210,7 +1210,6 @@ const VideoTestimonial = memo(
   }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isMuted, setIsMuted] = useState(false);
     const [showControls, setShowControls] = useState(false);
     const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -1223,15 +1222,6 @@ const VideoTestimonial = memo(
           videoRef.current.play();
           setIsPlaying(true);
         }
-        showControlsTemporarily();
-      }
-    };
-
-    const handleMuteToggle = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      if (videoRef.current) {
-        videoRef.current.muted = !isMuted;
-        setIsMuted(!isMuted);
         showControlsTemporarily();
       }
     };
@@ -1265,7 +1255,6 @@ const VideoTestimonial = memo(
           <video
             ref={videoRef}
             className="w-full h-full object-cover"
-            muted={isMuted}
             playsInline
             disablePictureInPicture
             controlsList="nodownload nofullscreen noremoteplayback"
@@ -1303,14 +1292,13 @@ const VideoTestimonial = memo(
             </div>
           )}
 
-          {/* Pause & Mute Buttons - Bottom corners (visible when playing and controls shown) */}
+          {/* Pause Button - Bottom Left (visible when playing and controls shown) */}
           {isPlaying && (
             <div
-              className={`absolute bottom-2 left-2 right-2 flex justify-between z-20 transition-opacity duration-300 ${
+              className={`absolute bottom-2 left-2 z-20 transition-opacity duration-300 ${
                 showControls ? "opacity-100" : "opacity-0"
               }`}
             >
-              {/* Pause Button - Bottom Left */}
               <button
                 className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-all cursor-pointer"
                 onClick={handleVideoClick}
@@ -1322,47 +1310,6 @@ const VideoTestimonial = memo(
                 >
                   <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                 </svg>
-              </button>
-
-              {/* Mute Button - Bottom Right */}
-              <button
-                className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-all cursor-pointer"
-                onClick={handleMuteToggle}
-              >
-                {isMuted ? (
-                  <svg
-                    className="w-4 h-4 text-slate-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="w-4 h-4 text-slate-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                    />
-                  </svg>
-                )}
               </button>
             </div>
           )}
@@ -1426,7 +1373,7 @@ const VideoTestimonialCarousel = memo(() => {
   return (
     <>
       {/* Mobile Carousel */}
-      <div className="md:hidden relative flex items-center justify-center gap-16">
+      <div className="md:hidden relative flex items-center justify-center gap-12">
         {/* Left Arrow */}
         <button
           onClick={goToPrevious}
@@ -1530,7 +1477,7 @@ const ScrollingTestimonials = memo(() => {
     },
     {
       name: "M, 41, Singapore",
-      text: "I was skeptical about this kind of service, but the depth of analysis was incredible, and the podcast touch was really cool. They used career psychology, industry research, and real cases of people who made similar pivots in their 40s. I expected general advice but got a 7-step roadmap with specific month by month actions. Worth every penny.",
+      text: "I was skeptical about this kind of service, but the depth of analysis was incredible, and the podcast touch was really cool. They used career psychology, industry research, and real cases of people who made similar pivots in their 40s. The document included a 7-step roadmap with specific month by month actions. Worth every penny.",
       avatar: "SM",
       struggle: "Career transition from finance to tech",
     },
@@ -1566,7 +1513,7 @@ const ScrollingTestimonials = memo(() => {
     },
     {
       name: "M, 42, Miami, US",
-      text: "A colleague told me about this service after I mentioned I was heading toward a breakdown. The interdisciplinary synthesis was eye-opening. They explained concepts from chronobiology, neuroscience, and showed case studies of executives who burned out and rebuilt. I didn't need to work less. It was about restructuring my rhythm completely. The specific recovery protocols are the only thing that's worked for me.",
+      text: "A colleague told me about this service after I mentioned I was heading toward a breakdown. The interdisciplinary synthesis was eye-opening. They explained concepts from chronobiology, neuroscience, and showed case studies of executives who dealt with burnout. I didn't need to work less. It was about restructuring my rhythm completely. The specific recovery protocols are the only thing that's worked for me.",
       avatar: "LP",
       struggle: "Chronic overwork and burnout prevention",
     },
@@ -1596,7 +1543,7 @@ const ScrollingTestimonials = memo(() => {
     },
     {
       name: "F, 36, São Paulo, Brazil",
-      text: "I got promoted to director and immediately felt like an imposter. The combination of the written playbook and the podcast was GENIUS. I could study the document before big meetings and listen during my commute to internalize the strategies. They incorporated findings from elite athlete performance routines and applied them to my meeting anxiety!! I never would have connected those dots.",
+      text: "I got promoted to director and immediately felt like an imposter. The combination of the written playbook and the podcast was GENIUS. I could study the plan before big meetings and listen during my commute to internalize the strategies. They incorporated findings from elite athlete performance routines and applied them to my meeting anxiety!! I never would have connected those dots.",
       avatar: "CS",
       struggle: "Confidence in leadership role",
     },
@@ -1718,28 +1665,28 @@ const ScrollingTestimonials = memo(() => {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none"></div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
-        {/* Column 1 */}
+        {/* Column 1 - Scrolls down */}
         <TestimonialColumn
           testimonials={column1}
           columnIndex={0}
-          animationClass="animate-scroll-slow"
+          animationClass="animate-scroll-down"
         />
 
-        {/* Column 2 - Hidden on mobile */}
+        {/* Column 2 - Scrolls down - Hidden on mobile */}
         <div className="hidden md:block">
           <TestimonialColumn
             testimonials={column2}
             columnIndex={1}
-            animationClass="animate-scroll-medium"
+            animationClass="animate-scroll-down"
           />
         </div>
 
-        {/* Column 3 - Hidden on mobile */}
+        {/* Column 3 - Scrolls down - Hidden on mobile */}
         <div className="hidden md:block">
           <TestimonialColumn
             testimonials={column3}
             columnIndex={2}
-            animationClass="animate-scroll-fast"
+            animationClass="animate-scroll-down"
           />
         </div>
       </div>
@@ -2262,8 +2209,7 @@ export default function HomePage() {
                 Real problems. Real solutions. Real results.
               </h2>
               <p className="md:text-lg tracking-[-0.01em] leading-[1.5] text-slate-600 max-w-2xl mx-auto text-pretty font-normal text-lg">
-                See how our method has helped others find clarity and move
-                forward.
+                See how our method has helped others move forward.
               </p>
             </div>
 
@@ -2294,7 +2240,7 @@ export default function HomePage() {
                 <thead>
                   <tr className="border-b-2 border-slate-200">
                     <th className="text-left py-4 px-4 text-slate-700 font-medium text-xs md:text-sm tracking-wide"></th>
-                    <th className="text-center py-4 px-6 text-center py-4 px-4 text-slate-700 font-bold text-base md:text-lg bg-white rounded-t-xl shadow-lg">
+                    <th className="text-center py-4 px-6 text-center py-4 px-4 text-slate-700 font-bold text-base md:text-lg bg-white rounded-t-xl shadow-lg whitespace-nowrap">
                       Playbook Labs
                     </th>
                     <th className="text-center py-4 px-4 text-slate-700 font-bold text-base md:text-lg">
@@ -2362,7 +2308,7 @@ export default function HomePage() {
                     <td className="py-4 px-6 text-center bg-white shadow-lg text-slate-800 font-bold text-sm">
                       &lt;1 hour
                       <br />
-                      <span className="text-xs text-slate-700 font-bold">
+                      <span className="text-xs text-slate-700 font-bold whitespace-nowrap">
                         (intake form)
                       </span>
                     </td>
@@ -2386,13 +2332,13 @@ export default function HomePage() {
                       &lt;7 days
                     </td>
                     <td className="py-4 px-4 text-center text-slate-800 text-sm italic">
-                      Unknown
+                      Varies
                     </td>
                     <td className="py-4 px-4 text-center text-slate-800 text-sm italic border-l border-dotted border-slate-300">
-                      Unknown
+                      Varies
                     </td>
                     <td className="py-4 px-4 text-center text-slate-800 text-sm italic border-l border-dotted border-slate-300">
-                      Unknown
+                      Varies
                     </td>
                   </tr>
 
@@ -2474,7 +2420,7 @@ export default function HomePage() {
                 From problem to solution in days, not months
               </h2>
               <p className="tracking-[-0.01em] leading-[1.5] text-slate-600 max-w-2xl mx-auto text-pretty md:text-lg font-normal text-lg">
-                Time compounds. Get results now.
+                The longer you wait, the harder it gets.
               </p>
             </div>
 
@@ -2594,7 +2540,7 @@ export default function HomePage() {
                 {
                   question: "What kinds of problems can I submit?",
                   answer:
-                    "Anything that feels complex or unresolved: romantic, family, work-related, personal, or existential. If humans have faced it, we can study it and build a playbook for it.",
+                    "Anything that feels complex or unresolved: romantic, family, work-related, personal, or existential. If people have faced it, we can study it and build a playbook for it.",
                 },
                 {
                   question:
@@ -2687,22 +2633,22 @@ export default function HomePage() {
                 <p>© 2026 Playbook Labs. All rights reserved</p>
               </div>
 
-              <div className="flex gap-6">
+              <div className="flex gap-6 flex wrap">
                 <a
                   href="mailto:team@playbooklabs.co"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-white transition-colors whitespace-nowrap"
                 >
                   Contact Us
                 </a>
                 <Link
                   href="/privacy-policy"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-white transition-colors whitespace-nowrap"
                 >
                   Privacy Policy
                 </Link>
                 <Link
                   href="/terms-of-service"
-                  className="text-slate-400 hover:text-white transition-colors"
+                  className="text-slate-400 hover:text-white transition-colors whitespace-nowrap"
                 >
                   Terms of Service
                 </Link>

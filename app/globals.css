@@ -573,9 +573,8 @@ section::before {
   pointer-events: none;
 }
 
-/* Add testimonial scroll animations */
-/* Fixed animations to loop smoothly by translating -50% instead of -100% */
-@keyframes scroll-slow {
+/* Testimonial scroll animations */
+@keyframes scroll-down {
   0% {
     transform: translateY(0);
   }
@@ -584,50 +583,32 @@ section::before {
   }
 }
 
-@keyframes scroll-medium {
+@keyframes scroll-up {
   0% {
-    transform: translateY(0);
-  }
-  100% {
     transform: translateY(-50%);
   }
-}
-
-@keyframes scroll-fast {
-  0% {
+  100% {
     transform: translateY(0);
   }
-  100% {
-    transform: translateY(-50%);
-  }
 }
 
-/* Slowed down desktop speed by 20% (80s -> 100s, 70s -> 87.5s, 60s -> 75s) and added mobile-specific faster animations */
-.animate-scroll-slow {
-  animation: scroll-slow 100s linear infinite;
+/* Desktop: slower, smoother scroll */
+.animate-scroll-down {
+  animation: scroll-down 87.5s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
-.animate-scroll-medium {
-  animation: scroll-medium 87.5s linear infinite;
+.animate-scroll-up {
+  animation: scroll-up 87.5s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
-.animate-scroll-fast {
-  animation: scroll-fast 75s linear infinite;
-}
-
-/* Mobile-specific animations - keep original speed */
+/* Mobile: faster scroll (single column) */
 @media (max-width: 768px) {
-  /* Increased mobile scrolling speed by 10% (reduced duration by 10%) */
-  .animate-scroll-slow {
-    animation: scroll-slow 72.7s linear infinite;
-  }
-
-  .animate-scroll-medium {
-    animation: scroll-medium 63.6s linear infinite;
-  }
-
-  .animate-scroll-fast {
-    animation: scroll-fast 54.5s linear infinite;
+  .animate-scroll-down {
+    animation: scroll-down 63.6s linear infinite;
   }
 }
 @keyframes gradientShift {
