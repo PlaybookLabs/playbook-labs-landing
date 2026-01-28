@@ -2511,7 +2511,20 @@ export default function HomePage() {
                       asChild
                       className="w-full bg-white hover:bg-slate-50 text-slate-900 py-6 text-lg md:text-lg rounded-full font-semibold cursor-pointer"
                     >
-                      <a href="/problem-submission">Get Started</a>
+                      <a
+                        href="/problem-submission"
+                        onClick={() => {
+                          if (typeof window !== "undefined" && window.fbq) {
+                            window.fbq("track", "GetStarted", {
+                              value: 499,
+                              currency: "USD",
+                              content_name: "Pricing Card Click",
+                            });
+                          }
+                        }}
+                      >
+                        Get Started
+                      </a>
                     </Button>
                   </div>
                 </CardContent>
