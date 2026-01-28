@@ -2515,7 +2515,7 @@ export default function HomePage() {
                         href="/problem-submission"
                         onClick={() => {
                           if (typeof window !== "undefined" && window.fbq) {
-                            window.fbq("track", "GetStarted", {
+                            window.fbq("track", "AddToCart", {
                               value: 499,
                               currency: "USD",
                               content_name: "Pricing Card Click",
