@@ -2584,7 +2584,7 @@ export default function HomePage() {
                 {
                   question: "Are submissions refundable?",
                   answer:
-                    "Because every playbook is custom-built, all submissions are final once received.",
+                    "If your playbook doesn't provide actionable insights that help you move forward, we'll refund you in full within 7 days of delivery.",
                 },
               ].map((faq, index) => (
                 <div
