@@ -9,7 +9,7 @@ export default function SubmitPage() {
     // Check if fbq is available (Meta Pixel loaded)
     if (typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "InitiateCheckout", {
-        value: 499,
+        value: 299,
         currency: "USD",
         content_name: "Problem Submission Form",
       });

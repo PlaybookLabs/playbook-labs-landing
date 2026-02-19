@@ -2280,7 +2280,7 @@ export default function HomePage() {
                       Total Investment
                     </td>
                     <td className="py-4 px-6 text-center bg-white shadow-lg text-slate-800 font-bold text-sm">
-                      $499
+                      $299
                     </td>
                     <td className="py-4 px-4 text-center text-slate-800 text-sm">
                       <span className="whitespace-nowrap">$1,500–2,500+</span>
@@ -2436,7 +2436,7 @@ export default function HomePage() {
                   </CardDescription>
                   <div className="mt-6">
                     <span className="text-5xl md:text-6xl text-white font-extrabold">
-                      $499
+                      $299
                     </span>
                   </div>
                 </CardHeader>
@@ -2516,7 +2516,7 @@ export default function HomePage() {
                         onClick={() => {
                           if (typeof window !== "undefined" && window.fbq) {
                             window.fbq("track", "AddToCart", {
-                              value: 499,
+                              value: 299,
                               currency: "USD",
                               content_name: "Pricing Card Click",
                             });
@@ -2559,7 +2559,7 @@ export default function HomePage() {
                   question:
                     "How much does a playbook cost, and what's included?",
                   answer:
-                    "A playbook costs $499. This includes a comprehensive strategy document (10-15 pages) and a personalized podcast (~30 min). Traditional, time-intensive guidance models that rely on open-ended sessions typically cost anywhere from $1,000 to $6,000 and take months. We deliver a complete, evidence-based strategy in days, for a fraction of the cost. Our pricing reflects the research, analysis, and expertise that goes into every playbook, while remaining accessible compared to other options.",
+                    "A playbook costs $299. This includes a comprehensive strategy document (10-15 pages) and a personalized podcast (~30 min). Traditional, time-intensive guidance models that rely on open-ended sessions typically cost anywhere from $1,000 to $6,000 and take months. We deliver a complete, evidence-based strategy in days, for a fraction of the cost. Our pricing reflects the research, analysis, and expertise that goes into every playbook, while remaining accessible compared to other options.",
                 },
                 {
                   question: "What happens after I submit my case?",

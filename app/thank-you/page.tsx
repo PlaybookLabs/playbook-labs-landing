@@ -12,7 +12,7 @@ export default function ThankYouPage() {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get("purchase") === "true") {
         (window as any).fbq("track", "Purchase", {
-          value: 499,
+          value: 299,
           currency: "USD",
           content_name: "Playbook Submission",
         });
