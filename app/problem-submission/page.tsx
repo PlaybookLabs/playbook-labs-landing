@@ -87,16 +87,23 @@ export default function SubmitPage() {
         </div>
       </header>
 
-      <main className="flex-1 relative min-h-[800px]">
-        {/* We keep data-tally-src so the embed.js can "hook" into it */}
+      <main className="flex-1 w-full bg-white">
         <iframe
           id="tally-iframe"
           data-tally-src="https://case.playbooklabs.co"
           width="100%"
-          height="100%"
+          height="1000"
           frameBorder="0"
           title="Problem Submission"
-          className="absolute inset-0 w-full h-full"
+          style={{
+            display: "block",
+            width: "100%",
+            border: "none",
+            scrollBehavior: "smooth",
+          }}
+          /* This attribute helps Tally communicate its height to the parent */
+          data-tally-layout="scroll"
+          className="mx-auto"
         />
       </main>
 
