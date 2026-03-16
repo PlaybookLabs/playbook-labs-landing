@@ -37,7 +37,7 @@ export default function SubmitPage() {
       <main className="flex-1 flex flex-col">
         <div className="flex-1 relative">
           <iframe
-            data-tally-src="https://tally.so/r/LZDDjy?transparentBackground=1"
+            data-tally-src="https://case.playbooklabs.co/r/LZDDjy?transparentBackground=1"
             loading="lazy"
             width="100%"
             height="100%"

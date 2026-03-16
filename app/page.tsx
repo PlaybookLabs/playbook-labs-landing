@@ -1791,15 +1791,15 @@ export default function HomePage() {
               problems.
             </>
           }
-          subtitle="Playbook Labs builds tailored solutions for your most complex challenges."
+          subtitle="Playbook Labs builds strategic solutions for your most complex challenges."
           footerContent={
             <Button
               asChild
               size="lg"
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-3 cursor-pointer"
             >
-              <a href="/problem-submission">
-                Get Your Playbook
+              <a href="/sample-playbook">
+                See a Sample
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
@@ -2091,7 +2091,7 @@ export default function HomePage() {
 
                 {/* Sample Playbook Button - Below Icons */}
                 <Link
-                  href="/sample-playbook"
+                  href="/sample-podcast"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-slate-700 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full shadow-md hover:bg-white hover:shadow-lg transition-all duration-300"
                 >
                   <svg
@@ -2113,7 +2113,7 @@ export default function HomePage() {
                       d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span>Sample Playbook</span>
+                  <span>Sample Podcast</span>
                 </Link>
               </div>
               {/* End of updates */}

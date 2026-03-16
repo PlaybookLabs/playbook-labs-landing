@@ -1,14 +1,11 @@
 "use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-
 export default function SamplePlaybookPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const slides = [
     {
       image: "/images/Cover_3.png",
@@ -65,7 +62,6 @@ export default function SamplePlaybookPage() {
       blurs: [],
     },
   ];
-
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
     setTimeout(() => {
@@ -78,7 +74,6 @@ export default function SamplePlaybookPage() {
       }
     }, 50);
   }, [slides.length]);
-
   const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     setTimeout(() => {
@@ -91,7 +86,6 @@ export default function SamplePlaybookPage() {
       }
     }, 50);
   }, [slides.length]);
-
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -101,66 +95,49 @@ export default function SamplePlaybookPage() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [nextSlide, prevSlide]);
-
   // Swipe support for modal
   useEffect(() => {
     if (!isModalOpen) return;
-
     let touchStartX = 0;
     let touchEndX = 0;
     let touchStartY = 0;
     let touchEndY = 0;
     let isPinching = false;
     let isZoomed = false;
-
     const handleTouchStart = (e: TouchEvent) => {
-      // Detect if this is a pinch (multi-touch)
       if (e.touches.length > 1) {
         isPinching = true;
-        isZoomed = true; // User is zooming
+        isZoomed = true;
         return;
       }
       isPinching = false;
       touchStartX = e.changedTouches[0].screenX;
       touchStartY = e.changedTouches[0].screenY;
     };
-
     const handleTouchMove = (e: TouchEvent) => {
-      // If multi-touch, user is pinching/zooming
       if (e.touches.length > 1) {
         isPinching = true;
         isZoomed = true;
       }
     };
-
     const handleTouchEnd = (e: TouchEvent) => {
-      // Don't trigger swipe if user was pinching or image is zoomed
       if (isPinching) {
         isPinching = false;
         return;
       }
-
-      // Check if viewport is scaled (zoomed)
       const visualViewport = window.visualViewport;
       if (visualViewport && visualViewport.scale > 1) {
-        return; // Image is zoomed, don't trigger swipe
+        return;
       }
-
-      // Check if this was a vertical scroll rather than horizontal swipe
       touchEndX = e.changedTouches[0].screenX;
       touchEndY = e.changedTouches[0].screenY;
-
       const deltaX = Math.abs(touchEndX - touchStartX);
       const deltaY = Math.abs(touchEndY - touchStartY);
-
-      // If vertical movement is greater than horizontal, it's a scroll not a swipe
       if (deltaY > deltaX) {
         return;
       }
-
       handleSwipe();
     };
-
     const handleSwipe = () => {
       if (touchEndX < touchStartX - 50) {
         nextSlide();
@@ -169,18 +146,15 @@ export default function SamplePlaybookPage() {
         prevSlide();
       }
     };
-
     window.addEventListener("touchstart", handleTouchStart);
     window.addEventListener("touchmove", handleTouchMove);
     window.addEventListener("touchend", handleTouchEnd);
-
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isModalOpen, nextSlide, prevSlide]);
-
   // Close modal on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -191,31 +165,22 @@ export default function SamplePlaybookPage() {
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isModalOpen]);
-
   // Handle browser back button in modal
   useEffect(() => {
     if (!isModalOpen) return;
-
-    // Push a fake history state when modal opens
     window.history.pushState({ modalOpen: true }, "");
-
     const handlePopState = () => {
       setIsModalOpen(false);
     };
-
     window.addEventListener("popstate", handlePopState);
-
     return () => {
       window.removeEventListener("popstate", handlePopState);
-      // Clean up: if modal is still open when component unmounts, go back
       if (window.history.state?.modalOpen) {
         window.history.back();
       }
     };
   }, [isModalOpen]);
-
   const currentSlideData = slides[currentSlide];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
       {/* Navbar */}
@@ -241,7 +206,6 @@ export default function SamplePlaybookPage() {
           </div>
         </div>
       </header>
-
       {/* Main Content */}
       <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -255,7 +219,6 @@ export default function SamplePlaybookPage() {
               avoidance
             </p>
           </div>
-
           {/* Audio Section */}
           <div className="mb-6">
             <div
@@ -285,7 +248,21 @@ export default function SamplePlaybookPage() {
                   <p className="text-sm text-slate-600">Snippet</p>
                 </div>
               </div>
-
+              {/* Context Pills */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="text-xs font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+                  Clinical Psychology
+                </span>
+                <span className="text-xs font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+                  Aviation Safety
+                </span>
+                <span className="text-xs font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+                  Behavioral Economics
+                </span>
+                <span className="text-xs font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+                  Organizational Learning
+                </span>
+              </div>
               {/* Audio Player */}
               <audio controls className="w-full">
                 <source src="/playbook_snippet.mp3" type="audio/mpeg" />
@@ -293,7 +270,6 @@ export default function SamplePlaybookPage() {
               </audio>
             </div>
           </div>
-
           {/* Document Preview Section */}
           <div>
             <div className="bg-white rounded-2xl shadow-sm p-8 border border-slate-200">
@@ -312,7 +288,6 @@ export default function SamplePlaybookPage() {
                   <p className="text-sm text-slate-600">Redacted excerpts</p>
                 </div>
               </div>
-
               {/* Image with Blur Overlays */}
               <div
                 className="relative rounded-lg overflow-hidden border border-slate-200 mb-6 cursor-pointer hover:opacity-95 transition-opacity"
@@ -324,12 +299,9 @@ export default function SamplePlaybookPage() {
                   className="w-full h-auto"
                 />
               </div>
-
               {/* Navigation Controls */}
               <div className="relative mb-12">
-                {/* First Row: Previous + Dots + Next */}
                 <div className="flex items-center justify-between mb-4">
-                  {/* Previous Button */}
                   <button
                     onClick={prevSlide}
                     className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
@@ -340,8 +312,6 @@ export default function SamplePlaybookPage() {
                       Previous
                     </span>
                   </button>
-
-                  {/* Slide Indicator Dots */}
                   <div className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
                     {slides.map((_, index) => (
                       <button
@@ -370,8 +340,6 @@ export default function SamplePlaybookPage() {
                       />
                     ))}
                   </div>
-
-                  {/* Next Button */}
                   <button
                     onClick={nextSlide}
                     className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
@@ -383,8 +351,6 @@ export default function SamplePlaybookPage() {
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
-
-                {/* Second Row: Tag (Absolutely Centered) */}
                 <div className="flex justify-center absolute left-1/2 -translate-x-1/2 w-full">
                   <span className="text-sm font-medium text-slate-700 bg-slate-100 px-4 py-2 rounded-full">
                     {currentSlideData.title}
@@ -394,14 +360,12 @@ export default function SamplePlaybookPage() {
             </div>
           </div>
         </div>
-
         {/* Lightbox Modal */}
         {isModalOpen && (
           <div
             className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center"
             onClick={() => setIsModalOpen(false)}
           >
-            {/* Close Button */}
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-[110] cursor-pointer"
@@ -421,13 +385,10 @@ export default function SamplePlaybookPage() {
                 />
               </svg>
             </button>
-
-            {/* Modal Content */}
             <div
               className="relative max-w-6xl w-full h-full flex items-center justify-center p-4"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Previous Button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -438,8 +399,6 @@ export default function SamplePlaybookPage() {
               >
                 <ChevronLeft className="w-8 h-8" />
               </button>
-
-              {/* Image */}
               <div className="relative max-h-[75vh] max-w-full mb-20">
                 <img
                   src={currentSlideData.image}
@@ -447,8 +406,6 @@ export default function SamplePlaybookPage() {
                   className="max-h-[75vh] max-w-full w-auto h-auto object-contain"
                 />
               </div>
-
-              {/* Next Button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -459,8 +416,6 @@ export default function SamplePlaybookPage() {
               >
                 <ChevronRight className="w-8 h-8" />
               </button>
-
-              {/* Slide Info */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent pt-16 pb-12">
                 <div className="text-center">
                   <div className="px-4 py-2 mb-4">
@@ -491,7 +446,6 @@ export default function SamplePlaybookPage() {
           </div>
         )}
       </main>
-
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -512,7 +466,6 @@ export default function SamplePlaybookPage() {
           </Button>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-300 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
