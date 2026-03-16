@@ -5,13 +5,9 @@ import { useEffect } from "react";
 
 export default function SubmitPage() {
   useEffect(() => {
-    // 1. Load the Tally embed script so the form renders
-    const script = document.createElement("script");
-    script.src = "https://tally.so/widgets/embed.js";
-    script.async = true;
-    document.body.appendChild(script);
+    // We removed the script injection entirely because the iframe src is now direct.
 
-    // 2. Existing Meta Pixel logic
+    // 2. Existing Meta Pixel logic remains
     if (typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "InitiateCheckout", {
         value: 299,
@@ -42,9 +38,9 @@ export default function SubmitPage() {
 
       <main className="flex-1 flex flex-col">
         <div className="flex-1 relative">
-          {/* This iframe will now be automatically picked up and rendered by the Tally script */}
+          {/* Direct src means the form loads immediately without needing external script parsing */}
           <iframe
-            data-tally-src="https://case.playbooklabs.co/r/LZDDjy?transparentBackground=1"
+            src="https://case.playbooklabs.co/r/LZDDjy?transparentBackground=1"
             loading="lazy"
             width="100%"
             height="100%"
