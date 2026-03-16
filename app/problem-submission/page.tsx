@@ -1,25 +1,52 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 
 export default function SubmitPage() {
+  // We use a ref to track if we've already fired the lead event
+  const hasFiredLead = useRef(false);
+
   useEffect(() => {
     const handleTallyEvent = (e) => {
-      // 1. Log every message to the console for visibility
       console.log("Tally Message Received:", e.data);
 
-      // 2. Check for the start event in various formats
-      const isStartEvent =
-        e.data === "tally-form-started" ||
-        e.data === "tally-form-start" ||
-        (typeof e.data === "string" && e.data.includes("form-started"));
+      let eventName = "";
+      let payload = null;
 
-      if (isStartEvent) {
-        console.log("🚀 Parent detected form start! Firing Reddit Lead...");
-        if (typeof window !== "undefined" && window.rdt) {
-          window.rdt("track", "Lead");
+      // Handle stringified JSON (standard Tally broadcast)
+      if (typeof e.data === "string") {
+        try {
+          const parsed = JSON.parse(e.data);
+          eventName = parsed.event || e.data;
+          payload = parsed.payload || null;
+        } catch (err) {
+          eventName = e.data;
+        }
+      } else if (typeof e.data === "object" && e.data !== null) {
+        // Handle object data (some internal Tally signals)
+        eventName = e.data.type || e.data.event || "";
+        payload = e.data.payload || null;
+      }
+
+      /**
+       * TRIGGER LOGIC:
+       * 1. Official 'tally-form-started' event.
+       * 2. 'Tally.FormPageView' only if page number is 2 or higher.
+       * (This ensures the user clicked the 'Begin' button on the Start Page).
+       */
+      const isActualStart =
+        eventName === "tally-form-started" ||
+        (eventName === "Tally.FormPageView" && payload?.page > 1);
+
+      if (isActualStart && !hasFiredLead.current) {
+        console.log("🚀 MATCH! User engaged. Firing Reddit Lead...");
+
+        // Use window['rdt'] to avoid TypeScript property errors
+        if (typeof window !== "undefined" && window["rdt"]) {
+          window["rdt"]("track", "Lead");
+          hasFiredLead.current = true; // Prevent double-firing
         }
       }
     };
