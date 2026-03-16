@@ -40,7 +40,7 @@ export default function SubmitPage() {
         <div className="flex-1 relative">
           {/* Direct src means the form loads immediately without needing external script parsing */}
           <iframe
-            src="https://case.playbooklabs.co/r/LZDDjy?transparentBackground=1"
+            src="https://case.playbooklabs.co"
             loading="lazy"
             width="100%"
             height="100%"
