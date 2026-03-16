@@ -6,9 +6,17 @@ import Script from "next/script";
 
 export default function SubmitPage() {
   useEffect(() => {
-    // This listener waits for Tally to "shout" that the form started
     const handleTallyEvent = (e) => {
-      if (e.data === "tally-form-started") {
+      // 1. Log every message to the console for visibility
+      console.log("Tally Message Received:", e.data);
+
+      // 2. Check for the start event in various formats
+      const isStartEvent =
+        e.data === "tally-form-started" ||
+        e.data === "tally-form-start" ||
+        (typeof e.data === "string" && e.data.includes("form-started"));
+
+      if (isStartEvent) {
         console.log("🚀 Parent detected form start! Firing Reddit Lead...");
         if (typeof window !== "undefined" && window.rdt) {
           window.rdt("track", "Lead");
@@ -22,7 +30,7 @@ export default function SubmitPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
-      {/* 1. Load Reddit Pixel Script Safely */}
+      {/* 1. Load Reddit Pixel Script */}
       <Script id="reddit-pixel" strategy="afterInteractive">
         {`
           !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_imnqcglj4sjt",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
@@ -31,7 +39,7 @@ export default function SubmitPage() {
         `}
       </Script>
 
-      {/* 2. Load Tally Embed Bridge Script */}
+      {/* 2. Load Tally Embed Library */}
       <Script
         src="https://tally.so/widgets/embed.js"
         strategy="afterInteractive"
@@ -53,7 +61,9 @@ export default function SubmitPage() {
       </header>
 
       <main className="flex-1 relative min-h-[800px]">
+        {/* We keep data-tally-src so the embed.js can "hook" into it */}
         <iframe
+          id="tally-iframe"
           data-tally-src="https://case.playbooklabs.co"
           width="100%"
           height="100%"
