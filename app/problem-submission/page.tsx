@@ -78,7 +78,7 @@ export default function SubmitPage() {
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col min-h-[800px]">
+      <main className="flex-1 flex flex-col min-h-[800px] will-change-transform">
         <div className="flex-1 relative">
           <iframe
             id="tally-iframe"
@@ -90,6 +90,12 @@ export default function SubmitPage() {
             marginHeight={0}
             marginWidth={0}
             title="Problem Submission"
+            /* This is the magic for smooth scrolling */
+            data-tally-layout="scroll"
+            style={{
+              overscrollBehavior: "contain",
+              WebkitOverflowScrolling: "touch",
+            }}
             className="absolute inset-0 w-full h-full"
           />
         </div>
