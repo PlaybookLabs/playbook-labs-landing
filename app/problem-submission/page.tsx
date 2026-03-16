@@ -56,7 +56,7 @@ export default function SubmitPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
       {/* 1. Load Reddit Pixel Script */}
       <Script id="reddit-pixel" strategy="afterInteractive">
         {`
@@ -72,36 +72,34 @@ export default function SubmitPage() {
         strategy="afterInteractive"
       />
 
-      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-center">
+      <header className="flex-none bg-white/80 backdrop-blur-md border-b border-slate-200 z-50">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-center">
           <Link href="/">
             <Image
               src="/images/playbook-labs-logo-black.png"
               alt="Playbook Labs"
               width={200}
               height={80}
-              className="h-36 w-auto"
+              className="h-10 w-auto" // Slightly smaller logo for better mobile fit
               priority
             />
           </Link>
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col w-full h-full">
+      <main className="flex-grow relative w-full overflow-hidden">
         <iframe
           id="tally-iframe"
-          data-tally-src="https://case.playbooklabs.co?alignLeft=1&hideTitle=1"
+          data-tally-src="https://case.playbooklabs.co"
           width="100%"
-          style={{
-            flex: "1 1 auto",
-            minHeight: "calc(100vh - 64px - 80px)", // Screen minus header/footer
-            border: "none",
-          }}
+          height="100%"
+          frameBorder="0"
           title="Problem Submission"
+          className="w-full h-full"
         />
       </main>
 
-      <footer className="bg-slate-900 text-slate-300 py-8 px-4 text-center text-sm">
+      <footer className="flex-none bg-slate-900 text-slate-300 py-4 px-4 text-center text-xs">
         <p>© 2026 Playbook Labs. All rights reserved</p>
       </footer>
     </div>
