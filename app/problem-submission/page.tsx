@@ -87,16 +87,17 @@ export default function SubmitPage() {
         </div>
       </header>
 
-      <main className="flex-1 relative min-h-[800px]">
-        {/* We keep data-tally-src so the embed.js can "hook" into it */}
+      <main className="flex-1 flex flex-col w-full h-full">
         <iframe
           id="tally-iframe"
-          data-tally-src="https://case.playbooklabs.co"
+          data-tally-src="https://case.playbooklabs.co?alignLeft=1&hideTitle=1"
           width="100%"
-          height="100%"
-          frameBorder="0"
+          style={{
+            flex: "1 1 auto",
+            minHeight: "calc(100vh - 64px - 80px)", // Screen minus header/footer
+            border: "none",
+          }}
           title="Problem Submission"
-          className="absolute inset-0 w-full h-full"
         />
       </main>
 
