@@ -1831,6 +1831,7 @@ export default function HomePage() {
                       alt="Stripe"
                       width={120}
                       height={40}
+                      priority //
                       className="h-8 w-auto opacity-45 grayscale flex-shrink-0"
                     />
                     <Image
@@ -1838,6 +1839,7 @@ export default function HomePage() {
                       alt="New York Times"
                       width={150}
                       height={40}
+                      priority //
                       className="h-8 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                     <Image
@@ -1845,6 +1847,7 @@ export default function HomePage() {
                       alt="BCG"
                       width={100}
                       height={40}
+                      priority //
                       className="h-6 w-auto opacity-55 grayscale flex-shrink-0"
                     />
                     <Image
@@ -1852,6 +1855,7 @@ export default function HomePage() {
                       alt="Shopify"
                       width={120}
                       height={40}
+                      priority //
                       className="h-8 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                     <Image
@@ -1859,6 +1863,7 @@ export default function HomePage() {
                       alt="BlackRock"
                       width={140}
                       height={40}
+                      priority //
                       className="h-6 w-auto opacity-40 grayscale flex-shrink-0"
                     />
                   </div>
@@ -1926,6 +1931,7 @@ export default function HomePage() {
                 alt="Stripe"
                 width={96}
                 height={32}
+                priority //
                 className="h-8 w-auto opacity-45 grayscale"
               />
               <Image
@@ -1933,6 +1939,7 @@ export default function HomePage() {
                 alt="New York Times"
                 width={128}
                 height={32}
+                priority //
                 className="h-8 w-auto opacity-40 grayscale"
               />
               <Image
@@ -1940,6 +1947,7 @@ export default function HomePage() {
                 alt="BCG"
                 width={80}
                 height={32}
+                priority //
                 className="h-5.5 w-auto opacity-55 grayscale"
               />
               <Image
@@ -1947,6 +1955,7 @@ export default function HomePage() {
                 alt="Shopify"
                 width={96}
                 height={32}
+                priority //
                 className="h-8 w-auto opacity-40 grayscale"
               />
               <Image
@@ -1954,6 +1963,7 @@ export default function HomePage() {
                 alt="BlackRock"
                 width={112}
                 height={32}
+                priority //
                 className="h-5 w-auto opacity-40 grayscale"
               />
             </div>
