@@ -1342,13 +1342,13 @@ const VideoTestimonialCarousel = memo(() => {
       videoSrc: "/videos/work-life-architecture.mp4",
       category: "balance",
       categoryColor: "#3B82F6",
-      caption: "Work-Life Architecture",
+      caption: "Burnout",
     },
     {
       videoSrc: "/videos/strategic-clarity.mp4",
       category: "decision-making",
       categoryColor: "#8B5CF6",
-      caption: "Strategic Clarity",
+      caption: "Stay or Leave",
     },
     {
       videoSrc: "/videos/relationship-patterns.mp4",
