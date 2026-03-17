@@ -7,15 +7,27 @@ import Link from "next/link";
 
 export default function ThankYouPage() {
   useEffect(() => {
-    // Only fire Purchase event if ?purchase=true is in the URL
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get("purchase") === "true") {
+    const urlParams = new URLSearchParams(window.location.search);
+    const isPurchase = urlParams.get("purchase") === "true";
+
+    if (typeof window !== "undefined" && isPurchase) {
+      // Meta Purchase
+      if ((window as any).fbq) {
         (window as any).fbq("track", "Purchase", {
           value: 299,
           currency: "USD",
           content_name: "Playbook Submission",
         });
+      }
+
+      // Reddit Purchase
+      if ((window as any).rdt) {
+        (window as any).rdt("track", "Purchase", {
+          value: 299,
+          currency: "USD",
+          itemCount: 1,
+        });
+        console.log("🚀 Reddit Purchase Event Fired");
       }
     }
   }, []);
@@ -69,9 +81,7 @@ export default function ThankYouPage() {
               asChild
               className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold"
             >
-              <a href="/problem-submission" rel="noopener noreferrer">
-                Submit Your Problem
-              </a>
+              <a href="https://case.playbooklabs.co">Submit Your Problem</a>
             </Button>
           </div>
         </div>
