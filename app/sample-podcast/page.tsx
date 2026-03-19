@@ -93,7 +93,7 @@ export default function SamplePodcastPage() {
 
               {/* Audio Player */}
               <audio controls className="w-full">
-                <source src="/podcast_full.mp3" type="audio/mpeg" />
+                <source src="/sample_podcast.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
 
