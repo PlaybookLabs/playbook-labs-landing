@@ -462,7 +462,7 @@ export default function SamplePlaybookPage() {
             size="lg"
             className="bg-white hover:bg-slate-50 text-slate-900 text-lg px-8 py-6 font-semibold cursor-pointer"
           >
-            <a href="https://case.playbooklabs.co">Submit Your Problem</a>
+            <a href="/problem-submission">Submit Your Problem</a>
           </Button>
         </div>
       </section>

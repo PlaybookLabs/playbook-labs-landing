@@ -1775,7 +1775,7 @@ export default function HomePage() {
                 asChild
                 className="bg-slate-900 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 text-white font-semibold cursor-pointer"
               >
-                <a href="https://case.playbooklabs.co">Submit Your Problem</a>
+                <a href="/problem-submission">Submit Your Problem</a>
               </Button>
             </div>
           </div>
@@ -2512,7 +2512,7 @@ export default function HomePage() {
                       className="w-full bg-white hover:bg-slate-50 text-slate-900 py-6 text-lg md:text-lg rounded-full font-semibold cursor-pointer"
                     >
                       <a
-                        href="https://case.playbooklabs.co"
+                        href="/problem-submission"
                         onClick={() => {
                           if (typeof window !== "undefined") {
                             // 1. Meta (Facebook) AddToCart
@@ -2645,7 +2645,7 @@ export default function HomePage() {
               size="lg"
               className="bg-white hover:bg-slate-50 text-slate-900 text-lg px-8 py-6 font-semibold cursor-pointer"
             >
-              <a href="https://case.playbooklabs.co">Submit Your Problem</a>
+              <a href="/problem-submission">Submit Your Problem</a>
             </Button>
           </div>
         </section>
