@@ -1337,7 +1337,6 @@ const VideoTestimonialCarousel = memo(() => {
       category: "couple",
       categoryColor: "#EC4899",
       caption: "Partner Disconnect",
-      hidden: true,
     },
     {
       videoSrc: "/videos/work-life-architecture.mp4",
