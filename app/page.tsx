@@ -1331,12 +1331,13 @@ VideoTestimonial.displayName = "VideoTestimonial";
 const VideoTestimonialCarousel = memo(() => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const videos = [
+    const allVideos = [
     {
       videoSrc: "/videos/partner-disconnect.mp4",
       category: "couple",
       categoryColor: "#EC4899",
       caption: "Partner Disconnect",
+      hidden: true,
     },
     {
       videoSrc: "/videos/work-life-architecture.mp4",
@@ -1355,8 +1356,11 @@ const VideoTestimonialCarousel = memo(() => {
       category: "couple",
       categoryColor: "#EC4899F6",
       caption: "Relationship Patterns",
+      hidden: true,
     },
   ];
+
+  const videos = allVideos.filter((v) => !v.hidden);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
